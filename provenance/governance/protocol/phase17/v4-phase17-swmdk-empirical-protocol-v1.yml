@@ -1,0 +1,127 @@
+schema_version: paperA-v4-phase17-swmdk-empirical-protocol-v1
+status: FROZEN_PRE_PHASE17_EMPIRICAL_OUTCOME
+authority:
+  path: governance/v4-phase17-empirical-application-authority-v1.json
+  required_status: AUTHORIZED_PHASE17_TO_G17_ONLY
+  stop_rule: STOP_AT_G17_BEFORE_PHASE18
+parent:
+  phase16_decision: CONFIRM_CLUSTER_POLYTOMOUS_METHOD
+  phase16_closure: PHASE16_CONFIRMATION_COMPLETE
+  gamma_cluster: -1.5
+dataset:
+  object: mokken::SWMDK
+  package_version_at_lock: 3.1.2
+  object_digest_sha256: e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797
+  respondents: 639
+  clusters: 30
+  cluster_id: classId
+  cluster_size_range: [5, 29]
+  score_support: [1, 2, 3, 4, 5]
+  missing_fixed_scale_values: 0
+  conditioning:
+    scale_definition: fixed
+    observed_cluster_ids: fixed
+    observed_cluster_sizes: conditioned
+    random_weight_interpretation: cluster_superpopulation_posterior_functional_with_phase16_repeated_sampling_support
+scales:
+  teacher:
+    items: [Item1, Item2, Item3, Item4, Item5, Item6]
+    expected_point_H: 0.6199199106866372
+    expected_scale_icc: 0.169
+  classmate:
+    items: [Item8, Item9, Item10, Item11, Item13]
+    expected_point_H: 0.5923085600813489
+    expected_scale_icc: 0.183
+  item_reselection_permitted: false
+  T_AISP_permitted: false
+  reverse_key_change_permitted: false
+targets:
+  primary:
+    id: V4-TARGET-RESPONDENT-WEIGHTED-v1
+    label: respondent_weighted
+    point_weights: 1_over_N
+    reporting_role: primary
+  sensitivity:
+    id: V4-TARGET-EQUAL-CLUSTER-v1
+    label: equal_cluster
+    point_weights: 1_over_G_m_g
+    reporting_role: sensitivity
+method:
+  selected:
+    gamma_cluster: -1.5
+    multiplier_at_G_30: 0.7261387212474169
+    respondent_method_id: V4-P15-HBB-RESP-GN150-v1
+    equal_cluster_method_id: V4-P15-HBB-CLUSTER-GN150-v1
+    interval_form: midpoint_plus_minus_one_plus_gamma_over_sqrt_G_times_raw_half_width
+    quantile_type: 8
+    level: 0.95
+    clipping: false
+  raw_base:
+    respondent_method_id: V4-PRI-TWO-STAGE-HBB-RESP-v1
+    equal_cluster_method_id: V4-SENS-TWO-STAGE-HBB-CLUSTER-v1
+  tuning_permitted: false
+  fallback_permitted: false
+comparators:
+  random_weight:
+    - V4-CMP-IID-RESP-BB-v1
+    - V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1
+    - V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1
+    - V4-DIAG-WITHIN-STAGE-HBB-RESP-v1
+  analytic:
+    - V4-CMP-MOKKEN-TWOLEVEL-DELTA-v1
+precision:
+  task_design: empirical-swmdk/phase17/protocol/v4-phase17-task-design-v1.csv
+  tasks: 12
+  draws_per_random_weight_task: 99999
+  batch_size: 2000
+  batches_per_task: 50
+  seed_base: 2026075701
+  batch_seed_formula: seed_base_plus_task_index_times_10000_plus_batch_id
+  split_half_endpoint_stability_threshold: 0.005
+  maximum_invalid_fraction: 0.001
+  raw_draw_output_required: true
+diagnostics:
+  required:
+    - dataset_digest_and_dimensions
+    - cluster_size_distribution
+    - scale_ICC
+    - item_category_counts_and_sparse_mass
+    - respondent_and_equal_cluster_point_H
+    - exact_and_near_knot_counts
+    - target_difference
+    - raw_and_selected_interval_centers_widths_and_SE_equivalents
+    - comparator_interval_centers_widths_and_SE_equivalents
+  threshold_crossing_is_formal_decision: false
+  exact_knot_claim: diagnostic_empirical_disclosure_only
+gate_G17:
+  blocking_criteria:
+    - parent_phase16_confirmed
+    - dataset_and_scale_provenance_match
+    - all_12_tasks_complete
+    - all_raw_draw_and_receipt_hashes_match
+    - maximum_invalid_fraction_at_most_0_001
+    - point_H_concordance_below_1e_10
+    - selected_intervals_finite_ordered_and_contain_point
+    - selected_intervals_shorter_than_raw
+    - selected_split_half_endpoint_difference_at_most_0_005
+    - both_targets_and_all_comparators_reported
+    - cluster_sparse_ICC_and_knot_disclosures_complete
+    - interpretation_and_no_threshold_decision_labels_present
+    - protected_source_baseline_intact
+    - evidence_manifest_complete
+  pass_decision: PROCEED_TO_PHASE18_REVIEW
+  repair_decision: RESTRICT_AND_REPAIR_PHASE17_APPLICATION
+  stop_decision: STOP_SWMDK_APPLICATION
+compute:
+  heavy_provider: AWS_ONLY
+  aws_alias: aws-vm
+  workers: 12
+  raw_download_before_evaluation: true
+  gcp_allowed: false
+execution:
+  authorized: true
+  executed_at_lock: false
+  raw_output_count_at_lock: 0
+phase18:
+  authorized: false
+stop_rule: STOP_AT_G17_BEFORE_PHASE18

@@ -1,0 +1,17 @@
+"check_id","criterion","observed","pass"
+"S14_1_DIRECTORY_CONTRACT","all required v4 directories exist","14/14",TRUE
+"S14_1_README_EXISTS","branch README exists","TRUE",TRUE
+"S14_1_INVENTORY_NONEMPTY","baseline inventory has at least one row","103",TRUE
+"S14_1_INVENTORY_ALL_PRESENT","all inventoried files exist","103",TRUE
+"S14_1_INVENTORY_HASH_REPRODUCIBLE","all captured hashes reproduce","103",TRUE
+"S14_1_PHASE13_RESTRICTED_DECISION","Phase 13 permits restricted development only","PROCEED_RESTRICTED_ORDINAL_DEVELOPMENT",TRUE
+"S14_1_PHASE13_PRODUCTION_BLOCKED","Phase 13 did not authorize production","FALSE",TRUE
+"S14_1_BINARY_PACKAGE_BASELINE_PRESENT","binary package files are included in baseline","56",TRUE
+"S14_1_PACKAGE_GATE_PASSED","frozen package application gate remains PASS","TRUE",TRUE
+"S14_1_PACKAGE_API_MUTATION_BLOCKED","governance prohibits package changes","FALSE",TRUE
+"S14_1_CLUSTER_METHOD_NOT_ACCEPTED","candidate cluster method remains unaccepted","FALSE",TRUE
+"S14_1_BINARY_GAMMA_TRANSFER_BLOCKED","binary gamma .25 transfer is prohibited","FALSE",TRUE
+"S14_1_GCP_BLOCKED","GCP access is prohibited","FALSE",TRUE
+"S14_1_STEP14_2_NOT_EXECUTED","execution stops after Step 14.1","FALSE",TRUE
+"S14_1_V4_ENGINE_EMPTY","no v4 core/weight/DGP/evaluation R implementation exists","0",TRUE
+"S14_1_LOG035_QMD_PRESENT","log 035 QMD exists","TRUE",TRUE

@@ -1,0 +1,8 @@
+"criterion","threshold","observed","pass"
+"respondent_regular_coverage","0.935 to 0.975",0.97359375,TRUE
+"equal_cluster_regular_coverage","0.93 to 0.98",0.97375,TRUE
+"minimum_regular_cell_coverage",">=0.88",0.93,TRUE
+"minimum_G_group_coverage",">=0.91",0.950625,TRUE
+"minimum_size_mechanism_group_coverage",">=0.91",0.9675,TRUE
+"maximum_invalid_fraction","<=0.01",0,TRUE
+"maximum_respondent_mean_length_to_raw_ratio","<=0.9",0.751432560353137,TRUE

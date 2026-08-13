@@ -1,0 +1,8 @@
+"criterion","pass"
+"respondent_regular_coverage",TRUE
+"equal_cluster_regular_coverage",TRUE
+"minimum_regular_cell_coverage",TRUE
+"minimum_G_group_coverage",TRUE
+"minimum_size_mechanism_group_coverage",TRUE
+"maximum_invalid_fraction",TRUE
+"maximum_respondent_mean_length_to_raw_ratio",TRUE

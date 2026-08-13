@@ -1,0 +1,129 @@
+schema_version: paperA-v4-phase15-development-validation-protocol-v1
+status: FROZEN_PRE_TRAINING_OUTCOME
+authority:
+  addendum: governance/v4-phase15-autonomous-authority-addendum-v1.json
+  scope: phase15_only_stop_before_phase16_confirmation
+scientific_question:
+  primary: determine_whether_phase14_overcoverage_is_a_finite_G_width_problem_and_lock_one_minimal_cluster_width_candidate_or_RAW_ONLY
+  prohibited_interpretation: phase14_proceed_is_not_method_acceptance
+targets:
+  primary: V4-TARGET-RESPONDENT-WEIGHTED-v1
+  sensitivity: V4-TARGET-EQUAL-CLUSTER-v1
+base_laws:
+  primary: V4-PRI-TWO-STAGE-HBB-RESP-v1
+  sensitivity: V4-SENS-TWO-STAGE-HBB-CLUSTER-v1
+  unchanged_from_phase14: true
+interval_candidates:
+  form: midpoint_plus_minus_one_plus_gamma_cluster_over_sqrt_G_times_raw_half_width
+  gamma_cluster: [0.0, -0.5, -0.75, -1.0, -1.25, -1.5]
+  quantile_type: 8
+  level: 0.95
+  clipping: false
+  method_cascade_within_replication: false
+  training_only_selection: true
+  binary_gamma_0_25_inherited: false
+diagnostic_comparators:
+  - V4-CMP-IID-RESP-BB-v1
+  - V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1
+  - V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1
+  - V4-CMP-MOKKEN-TWOLEVEL-DELTA-v1
+  - V4-DIAG-WITHIN-STAGE-HBB-RESP-v1
+dgp:
+  items: 5
+  categories: 5
+  score_support: [0, 1, 2, 3, 4]
+  latent_cluster_effect: standard_normal
+  latent_individual_effect: standard_normal
+  theta: sqrt_icc_u_plus_sqrt_one_minus_icc_e
+  response_model: graded_logistic_conditional_independence
+  cluster_size_bounds: [5, 29]
+  threshold_profiles:
+    standard: [-1.20, -0.35, 0.40, 1.25]
+    rare_high: [-1.80, -0.80, 0.30, 2.10]
+    rare_low: [-2.10, -0.30, 0.80, 1.80]
+    standard_shifted: [-1.10, -0.20, 0.55, 1.40]
+    rare_high_shifted: [-1.70, -0.65, 0.45, 2.25]
+    rare_low_shifted: [-2.25, -0.45, 0.65, 1.70]
+  regular_item_offsets: [-0.45, -0.20, 0.05, 0.30, 0.55]
+  near_knot_offsets:
+    training: [0.0, 0.0002, -0.35, 0.32, 0.65]
+    validation: [0.0, 0.00035, -0.28, 0.38, 0.72]
+  exact_knot_offsets: [0, 0, 0, 0, 0]
+  regular_discrimination_multipliers: [0.85, 0.925, 1.0, 1.075, 1.15]
+  near_knot_rule: first_two_discriminations_equal
+  exact_knot_rule: all_discriminations_equal
+truth:
+  method: two_dimensional_normal_gauss_hermite_quadrature
+  nodes_per_dimension: 41
+  target_specific_cluster_size_weighting: true
+training:
+  design: protocol/v4-phase15-training-design-v1.csv
+  cells: 24
+  replications_per_cell: 120
+  scheduled_replications: 2880
+  random_weight_draws: 299
+  seed_base: 2026072801
+  provider: AWS_ONLY
+  selection_domain: regular_only
+  exact_knot: diagnostic_only
+  eligibility:
+    respondent_regular_coverage: [0.94, 0.98]
+    equal_cluster_regular_coverage: [0.94, 0.985]
+    minimum_G_group_coverage: 0.90
+    minimum_size_mechanism_group_coverage: 0.90
+    maximum_invalid_fraction: 0.01
+    positive_multiplier_all_cells: true
+  selection_rule:
+    primary: minimum_mean_interval_length_among_eligible_candidates
+    tie_break_1: coverage_closest_to_0.95
+    tie_break_2: gamma_closest_to_zero
+    no_eligible_candidate: lock_RAW_ONLY_for_validation
+validation:
+  design: protocol/v4-phase15-validation-design-v1.csv
+  conditions_disjoint_from_training: true
+  seeds_disjoint_from_training: true
+  cells: 18
+  replications_per_cell: 180
+  scheduled_replications: 3240
+  random_weight_draws: 299
+  seed_base: 2026073801
+  provider: AWS_ONLY
+  selected_candidate_only_plus_prespecified_comparators: true
+  exact_knot: diagnostic_only
+  acceptance:
+    selected_respondent_regular_coverage: [0.935, 0.975]
+    selected_equal_cluster_regular_coverage: [0.93, 0.98]
+    minimum_regular_cell_coverage: 0.85
+    minimum_G_group_coverage: 0.90
+    minimum_size_mechanism_group_coverage: 0.90
+    maximum_invalid_fraction: 0.01
+    maximum_mean_length_to_raw_ratio: 1.000000000001
+  predeclared_fallback:
+    label: RAW_ONLY
+    permitted_only_if_selected_candidate_fails_and_raw_passes: true
+    raw_respondent_regular_coverage: [0.93, 0.99]
+    raw_equal_cluster_regular_coverage: [0.93, 0.995]
+    minimum_G_group_coverage: 0.90
+    minimum_size_mechanism_group_coverage: 0.90
+    maximum_invalid_fraction: 0.01
+  if_candidate_and_raw_fail: NO_METHOD_LOCKED_STOP
+compute:
+  local_allowed:
+    - unit_tests
+    - deterministic_truth
+    - two_replication_smoke
+    - postprocessing
+  heavy_provider: AWS_ONLY
+  aws_alias: aws-vm
+  workers: 12
+  checkpoint_per_cell: true
+  raw_download_before_evaluation: true
+  gcp_allowed: false
+phase16:
+  confirmation_execution_authorized: false
+  protocol_ready_gate_only: true
+  fresh_conditions_and_seeds_required: true
+source_crosswalk:
+  status: unresolved_production_blocker
+  development_may_proceed_with_restriction: true
+stop_rule: STOP_AT_PHASE16_PROTOCOL_READY_BEFORE_CONFIRMATION

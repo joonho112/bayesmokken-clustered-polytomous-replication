@@ -1,0 +1,35 @@
+# Environment in which this package was built and verified
+
+Recorded 2026-08-13 
+
+R version 4.6.0 (2026-04-24) 
+Platform: aarch64-apple-darwin23 
+Running under: macOS Tahoe 26.5.2 
+
+## Packages
+
+dplyr          1.2.1
+tidyr          1.3.2
+readr          2.2.0
+ggplot2        4.0.3
+scales         1.4.0
+patchwork      1.3.2
+tibble         3.3.1
+ragg           1.5.2
+yaml           2.3.12
+digest         0.6.39
+mokken         3.1.2
+bayesmokken    0.9.0
+
+## Command-line tools
+
+pdfinfo    /opt/homebrew/bin/pdfinfo
+pdftoppm   /opt/homebrew/bin/pdftoppm
+python3    /opt/miniconda3/bin/python3
+quarto     /usr/local/bin/quarto
+
+## Note
+
+mokken is REQUIRED, not optional: the application data SWMDK is
+distributed inside it. The version above must match the one recorded in
+config.yml under frozen_contract.swmdk_lock, or read_swmdk() will stop.

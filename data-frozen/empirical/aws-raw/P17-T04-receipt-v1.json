@@ -1,0 +1,33 @@
+{
+  "schema_version": "paperA-v4-phase17-task-receipt-v1",
+  "generated_at_utc": "2026-07-27T12:26:45Z",
+  "status": "PASS_TASK_COMPLETE",
+  "task_id": "P17-T04",
+  "task_index": 4,
+  "scale": "teacher",
+  "method_key": "one_stage",
+  "method_id": "V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1",
+  "target": "respondent",
+  "dataset_digest_sha256": "e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797",
+  "draws": 99999,
+  "batches": 50,
+  "defined_draws": 99999,
+  "invalid_fraction": 0,
+  "draw_output": {
+    "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/aws-raw/P17-T04-draws-v1.csv.gz",
+    "size_bytes": 1526238,
+    "sha256": "a67b8a257cdf9138cac538c333495693aee53ee6ae42a684b6ae6d497b73b4cd"
+  },
+  "batch_manifest": {
+    "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/aws-raw/P17-T04-batch-manifest-v1.csv",
+    "size_bytes": 5849,
+    "sha256": "53d0f0722c3af03b7fb2a50902b1f044c152c12b434cb8772af225b66d14d914"
+  },
+  "code_hashes": {
+    "task_runner_sha256": "9fc9269f8031917a9d71cb35d73a1b913ba19555bec5576b22b64f54fff9f150",
+    "ordinal_h_sha256": "a9fef7ae0a9e8dd135790ad2b4fa88896416643b2403422aad29140c725964c4",
+    "cluster_weights_sha256": "746f5cb529a61e7102ec01a763dd624da08ef5005eb009f276bb3b154f8b962b"
+  },
+  "elapsed_seconds": 8.4236075878143311,
+  "phase18_authorized": false
+}

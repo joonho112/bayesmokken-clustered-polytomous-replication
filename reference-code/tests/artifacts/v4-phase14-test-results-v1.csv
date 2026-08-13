@@ -1,0 +1,35 @@
+"check_id","description","observed","pass","error","elapsed_seconds"
+"T001_PROTOCOL_LOCK","Phase 14 protocol was frozen before outcomes","TRUE",TRUE,"",0
+"T002_PHASE15_BLOCKED","Phase 15 remains unauthorized","TRUE",TRUE,"",0
+"T003_PHASE13_POINT_CONCORDANCE","v4 point H matches the Phase 13 reference","0",TRUE,"",0
+"T004_SWMDK_MOKKEN_CONCORDANCE","v4 fixed-scale H matches mokken::coefH on both fixed SWMDK scales","5.75095526755831e-14",TRUE,"",0
+"T005_TRANSPORT_ORACLE_CONCORDANCE","internal transport agrees with independent two-pointer and LP oracles","0",TRUE,"",0
+"T006_SCORE_GAP_PRESERVED","declared score gaps reproduce the frozen counterexample value","1.0625",TRUE,"",0
+"T_WNORM_IID","draw normalization and nonnegativity: iid","2.22044604925031e-16",TRUE,"",0
+"T_WNORM_ONE_STAGE","draw normalization and nonnegativity: one_stage","4.44089209850063e-16",TRUE,"",0
+"T_WNORM_HBB_RESPONDENT","draw normalization and nonnegativity: hbb_respondent","2.22044604925031e-16",TRUE,"",0
+"T_WNORM_HBB_CLUSTER","draw normalization and nonnegativity: hbb_cluster","4.44089209850063e-16",TRUE,"",0
+"T_WNORM_FREQUENTIST","draw normalization and nonnegativity: frequentist","2.22044604925031e-16",TRUE,"",0
+"T012_RESPONDENT_POINT_IDENTITY","respondent target has uniform 1/N row weights","0",TRUE,"",0
+"T013_CLUSTER_POINT_IDENTITY","equal-cluster target assigns 1/(G m_g) per respondent","0.333333333333333|0.333333333333333|0.333333333333333",TRUE,"",0
+"T014_TARGET_WEIGHT_SEPARATION","unequal sizes separate respondent and equal-cluster point weights","0.0666666666666667",TRUE,"",0.001
+"T015_RNG_REPRODUCIBILITY","same law and seed reproduce exact weights","TRUE",TRUE,"",0
+"T016_RNG_SEPARATION","different seeds produce different weights","TRUE",TRUE,"",0
+"T017_METADATA_COMPLETE","weight object stores all required provenance fields","TRUE",TRUE,"",0
+"T018_CLUSTER_RELABELING_INVARIANCE","cluster label values do not alter the weight path","TRUE",TRUE,"",0
+"T019_ONE_RESPONDENT_SPECIAL_CASE","two-stage and one-stage laws coincide when m_g=1","TRUE",TRUE,"",0
+"T020_ROW_RELABELING_INVARIANCE","matched row and cluster permutation leaves point H invariant","2.77555756156289e-16",TRUE,"",0
+"T021_DGP_REPRODUCIBILITY","same DGP seed reproduces responses, clusters, and sizes","TRUE",TRUE,"",0
+"T022_BALANCED_SIZE_RULE","balanced mechanism fixes every cluster at size 20","TRUE",TRUE,"",0.001
+"T023_INFORMATIVE_SIZE_RULE","informative size is bounded and positively associated with cluster effect","0.989539102907053",TRUE,"",0
+"T024_SWMDK_SIZE_RULE","SWMDK-like size pool retains the observed 5 to 29 support","TRUE",TRUE,"",0
+"T025_TRUTH_DEFINED","quadrature truth is defined with positive denominator","TRUE",TRUE,"",0
+"T026_REGULAR_KNOT_CLASS","regular truth has no exact or near knot","TRUE",TRUE,"",0
+"T027_NEAR_KNOT_CLASS","near-knot truth has a near but not exact equality","TRUE",TRUE,"",0
+"T028_EXACT_KNOT_CLASS","exact-knot truth has exact cumulative equalities","TRUE",TRUE,"",0
+"T029_SIMULATED_MOKKEN_CONCORDANCE","simulated unweighted point agrees with mokken::coefH","2.22044604925031e-15",TRUE,"",0
+"T030_DELTA_COMPARATOR","two-level mokken delta comparator executes with finite SE","TRUE",TRUE,"",0
+"T031_GRADED_PROBABILITY","graded-response probabilities are nonnegative and row normalized","TRUE",TRUE,"",0
+"T032_INVALID_CLUSTER_FAILS_CLOSED","one-cluster input fails closed","TRUE",TRUE,"",0
+"T033_SWMDK_KNOT_DIAGNOSTIC","SWMDK teacher fixed scale exposes exact empirical knots","TRUE",TRUE,"",0
+"T034_SWMDK_FIXED_COMPLETE","both fixed SWMDK scales have no missing responses","TRUE",TRUE,"",0

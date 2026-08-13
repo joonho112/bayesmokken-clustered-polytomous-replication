@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+title: >-
+  Replication package for "Cluster-Aware Uncertainty for Polytomous Mokken
+  Scalability: A Calibrated Hierarchical Bayesian Bootstrap"
+message: >-
+  If you use this package, please cite both it and the article it accompanies.
+type: software
+version: 1.0.0
+date-released: "2026-08-13"
+license: MIT
+repository-code: https://github.com/joonho112/bayesmokken-clustered-polytomous-replication
+url: https://joonho112.github.io/bayesmokken-clustered-polytomous-replication/
+authors:
+  - family-names: Lee
+    given-names: JoonHo
+    email: jlee296@ua.edu
+    orcid: https://orcid.org/0009-0006-4019-8703
+    affiliation: The University of Alabama
+abstract: >-
+  Rebuilds every number, figure and table in Lee (2026) from a frozen analysis
+  snapshot spanning a feasibility pilot, a training and held-out validation
+  split, a fresh 24-cell confirmation at 6,400 replications per population
+  target, and an application to the SWMDK data distributed with the mokken
+  package. Ships the complete raw draw streams of the application (12 tasks of
+  99,999 draws), the 86,400 raw confirmation replication rows, the hash-locked
+  protocol and receipt files, an annotated reference copy of the pipeline, and
+  an independent oracle lane that checks finite comonotone transport against a
+  linear-programming solution and reproduces the published results of Koopman
+  et al. (2022).
+keywords:
+  - Mokken scale analysis
+  - polytomous scalability
+  - clustered data
+  - hierarchical Bayesian bootstrap
+  - comonotone transport
+  - confidence interval
+  - reproducibility
+  - replication package
+references:
+  - type: article
+    title: >-
+      Cluster-Aware Uncertainty for Polytomous Mokken Scalability:
+      A Calibrated Hierarchical Bayesian Bootstrap
+    authors:
+      - family-names: Lee
+        given-names: JoonHo
+        orcid: https://orcid.org/0009-0006-4019-8703
+    year: 2026
+    notes: arXiv preprint; identifier forthcoming
+  - type: software
+    title: "bayesmokken: Calibrated Bayesian-Bootstrap Intervals for Mokken Scalability"
+    authors:
+      - family-names: Lee
+        given-names: JoonHo
+        orcid: https://orcid.org/0009-0006-4019-8703
+    version: 0.9.0
+    repository-code: https://github.com/joonho112/bayesmokken

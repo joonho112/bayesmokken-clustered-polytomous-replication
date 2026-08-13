@@ -1,0 +1,28 @@
+# --- OS / editor -------------------------------------------------------------
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+*~
+
+# --- Quarto ------------------------------------------------------------------
+docs/.quarto/
+/.quarto/
+
+# --- verification scratch ----------------------------------------------------
+verification/_scratch/
+verification/_coldstart/
+verification/_negctl/
+
+# --- never commit ------------------------------------------------------------
+# Rendered rasters used only for figure-parity comparison are regenerated on
+# demand and are not part of the package.
+verification/_render/
+
+# --- Python bytecode ---------------------------------------------------------
+# Generated whenever a verification script is imported rather than run directly.
+# It is not part of the package, and disclosure_scan.py deliberately skips
+# __pycache__ when walking the tree -- so without this rule a stale .pyc would
+# ship without ever appearing as an unregistered file.
+__pycache__/
+*.pyc

@@ -1,0 +1,662 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "",
+    "text": "Welcome\nThis is the replication guide for\nIt walks through the package that rebuilds every number, figure and table in the paper.\nAlmost no external data. One thing you need is the mokken package, which carries the application data; everything else ships. Clone, run four commands, and all 15 exhibits rebuild in about five seconds.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#quick-start",
+    "href": "index.html#quick-start",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "Quick start",
+    "text": "Quick start\nRscript 00_setup.R                          # reports what's missing; installs nothing\nRscript exhibits/00_build_all.R             # 7 figures + 8 floats + the ledger, ~5s\nRscript verification/verify_reproduction.R  # 16 / 16\nbash verification/cold_start_rehearsal.sh   # everything, from a bare copy\nR ≥ 4.1 and eleven CRAN packages — including mokken, which is required here rather than optional, because the application data SWMDK is distributed inside it and no responses ship with this package.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-reproduced",
+    "href": "index.html#what-is-reproduced",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "What is reproduced",
+    "text": "What is reproduced\n\nAll 15 published exhibits. The eight LaTeX floats are byte-identical to what the paper prints; the seven figures match on page geometry and a fixed-DPI render hash.\nThe 144-key ledger, byte-identical to the one the manuscript was verified against.\nAll 69 of the manuscript’s concordance predicates, re-expressed against the rebuilt ledger.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-not-reproduced",
+    "href": "index.html#what-is-not-reproduced",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "What is not reproduced",
+    "text": "What is not reproduced\nThe Phase 16 confirmation and the Phase 17 application. Both ran on AWS; the pipeline ships as annotated reference code and is documented rather than enabled.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#what-you-can-check",
+    "href": "index.html#what-you-can-check",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "What you can check",
+    "text": "What you can check\n\n\n\nQuestion\nWhere\n\n\n\n\nDo the exhibits follow from the data?\nExhibits\n\n\nDoes the data follow from a documented pipeline?\nPipeline\n\n\nWas the pipeline tuned after seeing results?\nGovernance\n\n\nDoes an independent implementation agree?\nthe oracle lane\n\n\n\nThat last one is unusually strong here. The oracle lane recomputes Koopman et al. (2022)’s published results from the same data and reproduces them, and it confirms that a linear-programming solution of the transport problem agrees with the two-pointer implementation the method uses across an exhaustive grid.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#one-thing-to-know-before-reading-the-code",
+    "href": "index.html#one-thing-to-know-before-reading-the-code",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "One thing to know before reading the code",
+    "text": "One thing to know before reading the code\nreference-code/R/core/ordinal-h.R ships with a known archival defect and a prominent “do not port” banner. Its transport helper advances on a 1e-12 mass tolerance and can drop a valid tiny positive mass; the corrected kernel is in the bayesmokken package.\nNo locked result is affected, and this package checks that rather than asserting it: across the 48 locked truth rows, the number with a gap in the open interval (0, 1e-12) — the only condition under which the defect can fire — is zero. See reproducibility.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#companion-package",
+    "href": "index.html#companion-package",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "Companion package",
+    "text": "Companion package\nThe binary, independent-respondent case has its own package: bayesmokken-scalability-replication.\nNeither depends on the other and they share no data. They do share the verification harness, byte-for-byte, because this package ports it.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#software-and-licence",
+    "href": "index.html#software-and-licence",
+    "title": "Cluster-Aware Uncertainty for Polytomous Mokken Scalability",
+    "section": "Software and licence",
+    "text": "Software and licence\nbayesmokken ≥ 0.9.0 implements the method and is pinned, not vendored.\nCode is MIT; data, exhibits and this guide are CC BY 4.0. No third-party response data is redistributed.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "01-overview.html",
+    "href": "01-overview.html",
+    "title": "1  The claim, in one page",
+    "section": "",
+    "text": "1.1 Two population targets, not one estimator\nMokken’s scalability coefficient H is normally computed as if respondents were independent. They often are not: pupils sit in classrooms, patients in clinics, respondents in interviewer caseloads. This paper supplies an interval for polytomous H that accounts for that clustering, and whose coverage has been measured rather than assumed.\nThe distinction the whole paper turns on, and the first thing the design fixes:\nUnder informative cluster size — when a cluster’s size is associated with its scalability — these are different population quantities, not two estimators of one thing. Reporting “the” H without saying which is a category error, so the estimand contract requires the target to be declared, never inferred, and every locked summary carries a target column.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The claim, in one page</span>"
+    ]
+  },
+  {
+    "objectID": "01-overview.html#two-population-targets-not-one-estimator",
+    "href": "01-overview.html#two-population-targets-not-one-estimator",
+    "title": "1  The claim, in one page",
+    "section": "",
+    "text": "Target\nMeans\n\n\n\n\nrespondent-weighted\nevery respondent counts equally\n\n\nequal-cluster\nevery cluster counts equally",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The claim, in one page</span>"
+    ]
+  },
+  {
+    "objectID": "01-overview.html#the-method",
+    "href": "01-overview.html#the-method",
+    "title": "1  The claim, in one page",
+    "section": "1.2 The method",
+    "text": "1.2 The method\n\nA two-stage hierarchical Bayesian bootstrap: resample clusters, then respondents within clusters, under a declared weight law.\nCompute H exactly under arbitrary weights by finite comonotone transport — not by an approximation that happens to be close.\nTighten the resulting interval by a factor depending on the number of clusters G.\n\nStep 3 runs the opposite way from the companion binary paper, and that is not an accident. The two-stage bootstrap is conservative before calibration — it over-covers — so the correction narrows rather than widens.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The claim, in one page</span>"
+    ]
+  },
+  {
+    "objectID": "01-overview.html#what-the-confirmation-found",
+    "href": "01-overview.html#what-the-confirmation-found",
+    "title": "1  The claim, in one page",
+    "section": "1.3 What the confirmation found",
+    "text": "1.3 What the confirmation found\nA fresh 24-cell confirmation at 6,400 replications per target, run after the calibration was frozen:\n\n\n\n\nRaw\nCalibrated\n\n\n\n\nrespondent-weighted coverage\n99.75 %\n97.36 %\n\n\nequal-cluster coverage\n99.63 %\n97.38 %\n\n\nrespondent-weighted mean length\n0.1167\n0.0877\n\n\n\nThe raw interval over-covers badly at ~99.7 %. The calibrated one lands near 97.4 % — still conservative relative to 95 %, and about 25 % shorter (length ratio 0.751).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The claim, in one page</span>"
+    ]
+  },
+  {
+    "objectID": "01-overview.html#the-application",
+    "href": "01-overview.html#the-application",
+    "title": "1  The claim, in one page",
+    "section": "1.4 The application",
+    "text": "1.4 The application\nSWMDK: 639 pupils in 30 classrooms, cluster sizes 5–29, two prespecified six- and five-item scales.\n\n\n\nTeacher scale\nValue\n\n\n\n\nrespondent-weighted H\n0.6199\n\n\nequal-cluster H\n0.6223\n\n\nrespondent-weighted 95 % CI\n[0.5728, 0.6692]\n\n\nequal-cluster 95 % CI\n[0.5743, 0.6698]\n\n\nwidth multiplier\n0.7261\n\n\n\nThe two targets differ by 0.0024 here — small, but reported separately because the difference is a property of the population, not noise to be averaged away.\n12 tasks × 99,999 draws = 1,199,988 draws, with zero invalid draws.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The claim, in one page</span>"
+    ]
+  },
+  {
+    "objectID": "01-overview.html#the-boundary",
+    "href": "01-overview.html#the-boundary",
+    "title": "1  The claim, in one page",
+    "section": "1.5 The boundary",
+    "text": "1.5 The boundary\nThis is a confidence interval, not a posterior credible interval. The hierarchical Bayesian bootstrap is a resampling device; the property claimed is repeated-sampling coverage.\nSix phrases the article deliberately never asserts:\n\n“first-ever” · “universally superior” · “new transport theorem” · “credible interval” · “posterior probabilit…” · “analytically derived”\n\nEach occurs in the manuscript only inside a negation or boundary statement, and a frozen claim-eligibility register — 14 claims, written at the source-review gate — governs the article’s wording. It ships as Table H1, and verify_semantics.R asserts all 14 are transcribed.\nThe comonotone transport result is not claimed as new: CL-03 in that register requires the predecessor credit to Andreadis (2017) to be given.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The claim, in one page</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html",
+    "href": "02-getting-started.html",
+    "title": "2  Getting started",
+    "section": "",
+    "text": "2.1 Requirements\nThe publication-parity build is declared for macOS because the published PDFs were produced with the Quartz device. It requires R ≥ 4.1 and twelve CRAN packages: dplyr, tidyr, readr, ggplot2, scales, patchwork, tibble, ragg, yaml, digest, jsonlite, and mokken.\nmokken is required, not optional — unlike in the companion Paper A package. The application data SWMDK is distributed inside it and no responses ship here.\nFour command-line tools: pdfinfo, pdftoppm (figure parity), python3 (the disclosure scan), and quarto (the release-gated guide render). bayesmokken is optional.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html#check-the-contract-first",
+    "href": "02-getting-started.html#check-the-contract-first",
+    "title": "2  Getting started",
+    "section": "2.2 Check the contract first",
+    "text": "2.2 Check the contract first\nRscript 00_setup.R\nReports what is missing and installs nothing. It reads the contract from config.yml, exercises a JSON receipt parse and a one-page Quartz PDF, and checks Quarto, so the declared and executed environment paths cannot drift.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html#rebuild-everything",
+    "href": "02-getting-started.html#rebuild-everything",
+    "title": "2  Getting started",
+    "section": "2.3 Rebuild everything",
+    "text": "2.3 Rebuild everything\nRscript exhibits/00_build_all.R\nAbout five seconds: 7 figures (PDF + PNG), 8 LaTeX floats, and the 144-key ledger.\n\n\n\n\n\n\nImportantBuild order matters here for two reasons\n\n\n\n01_build_key_numbers.R runs first because it writes the ledger every other generator asserts against — and because it also derives outputs/derived_p16_allcell_summary.csv from the 86,400 raw Phase 16 replication rows, cross-checking it against the locked regular-cell artifact at a 1e-12 tolerance. Both 07_tables.R and 08_osm_figures.R read that file.\nThe driver enforces the order. Running the generators by hand out of order fails outright rather than silently.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html#check-it-reproduced",
+    "href": "02-getting-started.html#check-it-reproduced",
+    "title": "2  Getting started",
+    "section": "2.4 Check it reproduced",
+    "text": "2.4 Check it reproduced\nRscript verification/verify_reproduction.R\n#&gt; 16 / 16 exhibits reproduce\nThe target is the published manuscript build, not this package’s output.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html#run-everything-from-a-bare-copy",
+    "href": "02-getting-started.html#run-everything-from-a-bare-copy",
+    "title": "2  Getting started",
+    "section": "2.5 Run everything from a bare copy",
+    "text": "2.5 Run everything from a bare copy\nbash verification/cold_start_rehearsal.sh\nCopies the package to a temporary location, deletes the build outputs, and runs the whole workflow by absolute path from outside the copy, under a directory whose name contains a space. Both details are deliberate: they catch path handling that only works when the working directory happens to be right, and R’s habit of encoding spaces in --file= as ~+~.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html#when-it-is-not-green",
+    "href": "02-getting-started.html#when-it-is-not-green",
+    "title": "2  Getting started",
+    "section": "2.6 When it is not green",
+    "text": "2.6 When it is not green\n\n\n\nSymptom\nLikely cause\n\n\n\n\nSWMDK digest does not match the Phase 17 lock\nYour mokken ships different data from the one the application ran on. A finding about the data source — see the data chapter.\n\n\ncontract violation: … expected N rows\nA frozen tier was copied incompletely. That assertion working.\n\n\nA figure fails, geometry matches, pixels differ\nAlmost certainly a different Poppler build.\n\n\nA float differs\nLaTeX has no rendering tolerance; something real changed.\n\n\nAn oracle fails\nA finding about the method, not the packaging.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "02-getting-started.html#running-the-pieces-individually",
+    "href": "02-getting-started.html#running-the-pieces-individually",
+    "title": "2  Getting started",
+    "section": "2.7 Running the pieces individually",
+    "text": "2.7 Running the pieces individually\nRscript verification/verify_manuscript_numbers.R   # ledger digest + 69 predicates\nRscript verification/verify_semantics.R            # registers, claims, the defect check\nRscript verification/verify_governance.R           # the receipt chain\npython3 verification/disclosure_scan.py            # includes the A/B severance check\nRscript verification/oracles/run_oracles.R         # LP vs two-pointer; Koopman (2022)\nbash    verification/negative_controls.sh          # do the gates fail when they should",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Getting started</span>"
+    ]
+  },
+  {
+    "objectID": "03-data.html",
+    "href": "03-data.html",
+    "title": "3  The frozen data",
+    "section": "",
+    "text": "3.1 Reading it\nEight tiers, 28 MB, laid out along the chain that produced them:\nFull column documentation: data-frozen/CODEBOOK.md.\nverification/verify_numeric_basis.R validates the complete raw layer: all 24 Phase 16 cells, all 12 Phase 17 draw streams, their manifests and receipts, batch/draw identities, and their locked summaries. It is run by the cold-start rehearsal and is independent of the exhibit builder.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The frozen data</span>"
+    ]
+  },
+  {
+    "objectID": "03-data.html#reading-it",
+    "href": "03-data.html#reading-it",
+    "title": "3  The frozen data",
+    "section": "",
+    "text": "source(\"common/R/paths.R\"); source(\"common/R/io.R\")\n\nraw   &lt;- read_confirmatory_raw()   # 86,400 rows, binds all 24 gzipped files\ndraws &lt;- read_draws(task = 1)      # 99,999 draws from P17-T01\nswmdk &lt;- read_swmdk()              # from mokken, digest asserted on every load\n\n\n\n\n\n\n\nWarning\n\n\n\nNever hand a .gz path to data.table::fread() — it decompresses in place and mutates the frozen snapshot. The readers open gzfile() connections.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The frozen data</span>"
+    ]
+  },
+  {
+    "objectID": "03-data.html#the-application-data-does-not-ship",
+    "href": "03-data.html#the-application-data-does-not-ship",
+    "title": "3  The frozen data",
+    "section": "3.2 The application data does not ship",
+    "text": "3.2 The application data does not ship\nSWMDK is distributed inside the mokken package:\nlibrary(mokken); data(SWMDK)\n\n3.2.1 What was locked\nThe Phase 17 protocol recorded these facts before the application ran:\n\n\n\nmokken version at lock\n3.1.2\n\n\nSHA-256 of the object\ne1257ff16f821ef3…70797\n\n\nRespondents\n639\n\n\nClusters (classId)\n30\n\n\nCluster size range\n5 – 29\n\n\nScore support\n1 – 5\n\n\n\ndigest::digest(SWMDK, algo = \"sha256\")\n#&gt; e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797\nThe digest is of the data frame as loaded; as.matrix(SWMDK) gives a different value, and config.yml records which one the lock means.\n\n\n\n\n\n\nImportant\n\n\n\nIf the digest does not match, the mokken you have installed ships different data from the one the application ran on. read_swmdk() stops with both digests and both version numbers. That is a finding about the data source, not something to work around — every application number in the paper is conditional on this object.\n\n\n\n\n3.2.2 Where SWMDK comes from\nA documented subset of the Dutch COOL5-18 cohort study, with items from Peetsma and Van der Veen and subset construction following Koopman et al. (2022). None of it is the authors’ to relicense.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The frozen data</span>"
+    ]
+  },
+  {
+    "objectID": "03-data.html#the-confirmation-raw-tier",
+    "href": "03-data.html#the-confirmation-raw-tier",
+    "title": "3  The frozen data",
+    "section": "3.3 The confirmation raw tier",
+    "text": "3.3 The confirmation raw tier\n24 per-cell files, 86,400 rows. Load-bearing, not archival: 01_build_key_numbers.R derives the 48-row all-cell summary from it and cross-checks against the locked regular-cell artifact at 1e-12. That summary feeds tabF1_cells.tex and FigF1_cells.pdf.\nSelection: candidate == TRUE and gamma_cluster == -1.5 gives 19,200 rows, all with invalid_fraction == 0 and total_draws == 499.\nEach cell also ships a truth file, whose minimum_internal_cdf_gap column is what the archival-defect check reads.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The frozen data</span>"
+    ]
+  },
+  {
+    "objectID": "03-data.html#a-note-on-paths-inside-the-locked-artifacts",
+    "href": "03-data.html#a-note-on-paths-inside-the-locked-artifacts",
+    "title": "3  The frozen data",
+    "section": "3.4 A note on paths inside the locked artifacts",
+    "text": "3.4 A note on paths inside the locked artifacts\nSeventy-five shipped receipts record the project-relative path each file had in the research tree — strings beginning codebase/research/v4/cluster-polytomous/….\nThose are provenance, not dependencies. The executable paths registered in provenance/runnable-code.csv do not source, import, execute, or require that tree. Verification is allowed to read copied receipts and archival code as data—for example, to check digests and banners—so a package-wide string search is not the boundary. The paths remain legible because editing locked evidence would break its digests and defeat the point of shipping it.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>The frozen data</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html",
+    "href": "04-method-notes.html",
+    "title": "4  Method notes",
+    "section": "",
+    "text": "4.1 The estimand: declare the target\nUnder informative cluster size these are different population quantities. v4-estimand-and-sampling-contract-v1.yml requires the target to be declared, and every locked summary carries a target column so a number can never be read without one.\nIn the SWMDK application the two differ by 0.0024 on the teacher scale (0.6199 respondent-weighted, 0.6223 equal-cluster). Small — and reported separately, because the difference is a property of the population rather than noise to average away.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html#the-estimand-declare-the-target",
+    "href": "04-method-notes.html#the-estimand-declare-the-target",
+    "title": "4  Method notes",
+    "section": "",
+    "text": "Target id\nWeights\n\n\n\n\nV4-TARGET-RESPONDENT-WEIGHTED-v1\nevery respondent equally\n\n\nV4-TARGET-EQUAL-CLUSTER-v1\nevery cluster equally",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html#what-is-conditioned-on-and-what-is-resampled",
+    "href": "04-method-notes.html#what-is-conditioned-on-and-what-is-resampled",
+    "title": "4  Method notes",
+    "section": "4.2 What is conditioned on, and what is resampled",
+    "text": "4.2 What is conditioned on, and what is resampled\nFrom the estimand contract:\n\n\n\nscale definition\nfixed\n\n\nobserved cluster ids\nfixed\n\n\nobserved cluster sizes\nconditioned\n\n\nrandom weights\na cluster-superpopulation posterior functional\n\n\n\nCluster sizes are conditioned on, not resampled. That is a modelling choice with consequences for what the interval covers, and it is written down rather than left implicit.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html#exact-h-under-arbitrary-weights",
+    "href": "04-method-notes.html#exact-h-under-arbitrary-weights",
+    "title": "4  Method notes",
+    "section": "4.3 Exact H under arbitrary weights",
+    "text": "4.3 Exact H under arbitrary weights\nThe coefficient is computed by finite comonotone transport — exactly, under whatever weights a bootstrap draw produces, rather than by an approximation that happens to be close for equal weights.\n\n\n\n\n\n\nNoteThe transport result is not claimed as new\n\n\n\nClaim CL-03 in the frozen register requires the predecessor credit to Andreadis (2017) to be given, and the article never says “new transport theorem”. The contribution is the cluster-aware interval built on it, not the transport identity.\n\n\nThe independent oracle lane checks the implementation against a linear-programming solution of the same problem across an exhaustive grid: 32 configurations, 0 discrepancies.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html#the-two-stage-bootstrap-and-why-calibration-tightens",
+    "href": "04-method-notes.html#the-two-stage-bootstrap-and-why-calibration-tightens",
+    "title": "4  Method notes",
+    "section": "4.4 The two-stage bootstrap and why calibration tightens",
+    "text": "4.4 The two-stage bootstrap and why calibration tightens\nResample clusters, then respondents within clusters. Before calibration this is conservative — the Phase 16 confirmation measured raw coverage at 99.75 % (respondent) and 99.63 % (equal-cluster) against a nominal 95 %.\nSo the correction narrows rather than widens: a factor k_G = 1 − 1.5/√G, which for the application’s G = 30 gives 0.7261.\n\n\n\n\n\n\nImportant\n\n\n\nThis runs the opposite way from the companion binary paper, whose calibration widens a slightly-short interval. Same idea — a measured correction to a measured miss — in opposite directions, because the two procedures err in opposite directions.\nverify_semantics.R asserts the direction (p16_sel_raw_ratio &lt; 1), and one of the negative controls flips it to confirm the check bites.\n\n\nAfter calibration: 97.36 % and 97.38 % coverage, at about 75 % of the raw length. Still conservative relative to 95 %, and the paper says so rather than presenting it as exact.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html#exact-knots-are-disclosures-not-errors",
+    "href": "04-method-notes.html#exact-knots-are-disclosures-not-errors",
+    "title": "4  Method notes",
+    "section": "4.5 Exact knots are disclosures, not errors",
+    "text": "4.5 Exact knots are disclosures, not errors\nThe transport path reports exact-knot counts — configurations where a marginal CDF gap is exactly zero. The article reports these as diagnostic disclosures of the weighted-marginal transport path, not error flags, and the application had 2 on the teacher respondent-weighted lane and 0 on the equal-cluster lane.\nThey matter for reading the archival defect: the corrected kernel advances on exact zero by design, so an exact knot is a handled case rather than a risk.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "04-method-notes.html#the-claim-boundary",
+    "href": "04-method-notes.html#the-claim-boundary",
+    "title": "4  Method notes",
+    "section": "4.6 The claim boundary",
+    "text": "4.6 The claim boundary\nSix phrases the article never asserts outside a negation:\n\n“first-ever” · “universally superior” · “new transport theorem” · “credible interval” · “posterior probabilit…” · “analytically derived”\n\nThe interval is a confidence interval. The hierarchical Bayesian bootstrap is a resampling device, and the property claimed is repeated-sampling coverage.\nA frozen claim-eligibility register of 14 claims, written at the source-review gate, governs the article’s wording. It ships as Table H1; verify_semantics.R asserts all 14 are transcribed into it.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Method notes</span>"
+    ]
+  },
+  {
+    "objectID": "05-pipeline.html",
+    "href": "05-pipeline.html",
+    "title": "5  The pipeline",
+    "section": "",
+    "text": "5.1 What ran where\nFive gates punctuate the evidence chain. reference-code/PIPELINE.md is the full narrative; this is the shape of it.\nThe order is the argument. The calibration was fitted on training data, tested on held-out data, and only then run on a fresh confirmation — so the confirmation’s coverage numbers are not the numbers the calibration was tuned to.\nThe Phase 16 confirmation and the Phase 17 application both ran on AWS, with hash-bound protocol locks written before each. Phase 16 wrote 24 per-cell replication files (86,400 rows); Phase 17 wrote 12 draw streams of 99,999 each, 1,199,988 draws in total, with zero invalid draws.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The pipeline</span>"
+    ]
+  },
+  {
+    "objectID": "05-pipeline.html#the-reference-code",
+    "href": "05-pipeline.html#the-reference-code",
+    "title": "5  The pipeline",
+    "section": "5.2 The reference code",
+    "text": "5.2 The reference code\nreference-code/\n  R/core/           ordinal-h.R (SEE BELOW), knot-diagnostics.R\n  R/dgp/            the clustered ordinal data-generating processes\n  R/evaluation/     intervals, comparators, the Phase 15 calibration\n  R/weights/        the two-stage cluster weight law\n  phase16/          the confirmation runner, evaluator and finalizer\n  phase17/          the application runner, evaluator, finalizer and tests\n  tests/            the Phase 14 and 15 test suites, with their receipts\n  PIPELINE.md\nNothing in this package sources it. It expects the research tree and an AWS fleet, and keeping it unsourced is what lets it stay faithful to what actually ran — including the defect below.\nEvery file carries a nine-line archival banner. No code line was changed; ARCHIVAL-DIGESTS.csv records both digests, so tail -n +11 recovers the original — for every file but one, whose authority field was redacted before release and recorded in provenance/redactions.csv.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The pipeline</span>"
+    ]
+  },
+  {
+    "objectID": "05-pipeline.html#the-archival-defect-in-ordinal-h.r",
+    "href": "05-pipeline.html#the-archival-defect-in-ordinal-h.r",
+    "title": "5  The pipeline",
+    "section": "5.3 The archival defect in ordinal-h.R",
+    "text": "5.3 The archival defect in ordinal-h.R\n\n\n\n\n\n\nWarningDo not port this file\n\n\n\nreference-code/R/core/ordinal-h.R contains the deterministic per-pair transport helper as it ran. It advances its pointers on a 1e-12 mass tolerance and can drop a valid tiny positive mass. The corrected implementation — exact-zero advancement plus a mass-conservation assertion — is the package kernel: ordinal-transport.R inside the bayesmokken package, which is a separate repository.\nThe file ships unchanged, with the banner. A replication package that quietly fixes the code it exists to document stops documenting anything.\n\n\nNo locked result is affected, and this package checks it rather than asserting it. See reproducibility for the measurement.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The pipeline</span>"
+    ]
+  },
+  {
+    "objectID": "05-pipeline.html#what-you-can-and-cannot-re-run",
+    "href": "05-pipeline.html#what-you-can-and-cannot-re-run",
+    "title": "5  The pipeline",
+    "section": "5.4 What you can and cannot re-run",
+    "text": "5.4 What you can and cannot re-run\nCannot: the confirmation or the application.\nCan: everything downstream — exhibits/00_build_all.R in about five seconds.\nCan, independently: re-derive the 48-row all-cell summary from the 86,400 raw replication rows, which is exactly what 01_build_key_numbers.R does, with a 1e-12 cross-check against the locked artifact. And recompute the application’s point estimates from data(SWMDK) — the oracle lane does, and reproduces Koopman et al. (2022) while it is there.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>The pipeline</span>"
+    ]
+  },
+  {
+    "objectID": "06-exhibits.html",
+    "href": "06-exhibits.html",
+    "title": "6  The exhibits",
+    "section": "",
+    "text": "6.1 Figures\nAll 15, rebuilt in about five seconds:\nMachine-readable: provenance/reproduction-map.csv and provenance/manuscript-artifact-contract.csv, which verify_semantics.R asserts agree in both directions.\nFloats are compared byte for byte; figures by page geometry plus a 150-dpi render hash, because quartz embeds a timestamp in every PDF. The target is the published manuscript build.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>The exhibits</span>"
+    ]
+  },
+  {
+    "objectID": "06-exhibits.html#figures",
+    "href": "06-exhibits.html#figures",
+    "title": "6  The exhibits",
+    "section": "",
+    "text": "6.1.1 Figure 1 — the interval, end to end\n\n01_fig1_concept.R, reading one of the 12 application draw streams (99,999 draws) directly. Shows the HBB distribution of H and the calibrated interval that tightens the raw one.\n\n\n6.1.2 Figure 2 — the confirmation design\n\nThe 24 cells over cluster count G and latent ICC.\n\n\n6.1.3 Figure 3 — coverage\n\nCoverage by cell, with the two population targets shown separately — never pooled, because they are different population quantities.\n\n\n6.1.4 Figure 4 — the calibration\n\nPanel (a) shows the Phase 15 training path over the frozen gamma_cluster candidates; -1.5 was the shortest eligible candidate. Panel (b) shows fresh Phase 16 confirmation coverage by G and cluster-size mechanism. For the selected negative constant, k_G = 1 - 1.5/sqrt(G) increases toward 1 as G increases; the figure does not plot the held-out Phase 15 validation tier.\n\n\n6.1.5 Figure 5 — the SWMDK application\n\nBoth targets, side by side, with the comparators.\n\n\n6.1.6 Figure F1 — all 48 cell-target rows\n\nDerived from the 86,400 raw replication rows and cross-checked against the locked regular-cell artifact at 1e-12.\n\n\n6.1.7 Figure G1 — split-half stability\n\nMaximum split-half discrepancy 8.75e-4 — small relative to an interval about 0.096 wide.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>The exhibits</span>"
+    ]
+  },
+  {
+    "objectID": "06-exhibits.html#the-floats",
+    "href": "06-exhibits.html#the-floats",
+    "title": "6  The exhibits",
+    "section": "6.2 The floats",
+    "text": "6.2 The floats\nAll eight byte-identical to the published .tex.\n\n\n\n\n\n\n\n\nFile\nPrinted as\nContent\n\n\n\n\ntab2_confirmation.tex\nTable 1\nPhase 16 coverage and length by lane and target\n\n\ntab3_swmdk.tex\nTable 2\nthe SWMDK application summary\n\n\ntabE1_training.tex\nTable E1\nthe Phase 15 training tier\n\n\ntabE2_validation.tex\nTable E2\nthe Phase 15 held-out validation tier\n\n\ntabF1_cells.tex\nTable F1\nall 48 confirmation cell-target rows\n\n\ntabF2_comparators.tex\nTable F2\ncomparator intervals\n\n\ntabG1_categories.tex\nTable G1\nSWMDK category structure\n\n\ntabH1_claims.tex\nTable H1\nthe frozen claim-eligibility register\n\n\n\n\n\n\n\n\n\nNotePresentational edits live in the generator\n\n\n\nFour floats carry changes the combined arXiv build made to fit its 6-inch measure: adjustbox wrappers on tab2, tab3 and tabF2, and rebalanced column widths on tabH1. tab3 additionally retargets one note pointer from “Appendix G of the online supplement” to \\cref{app:swmdk}, because the combined build has no separate supplement.\nAll four are self-documented in the float headers, and none touches a value, a column or a note. 07_tables.R emits them so this package reproduces the floats the paper actually prints.\n\n\n\n\n\n\n\n\nImportantTable H1 is a governance artifact\n\n\n\nThe claim-eligibility register is not an ordinary results table. Its 14 claims were frozen at the source-review gate and govern what the article is allowed to say — including CL-03, which requires the predecessor credit to Andreadis (2017). verify_semantics.R asserts all 14 are transcribed.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>The exhibits</span>"
+    ]
+  },
+  {
+    "objectID": "06-exhibits.html#the-ledger",
+    "href": "06-exhibits.html#the-ledger",
+    "title": "6  The exhibits",
+    "section": "6.3 The ledger",
+    "text": "6.3 The ledger\noutputs/key_numbers.csv — 144 keys, byte-identical to the manuscript’s, SHA-256 6a42e7352e455ff0…, the constant the manuscript’s own verifier carries.\nEvery generator asserts its displayed headline values against it before writing.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>The exhibits</span>"
+    ]
+  },
+  {
+    "objectID": "07-empirical.html",
+    "href": "07-empirical.html",
+    "title": "7  The SWMDK application",
+    "section": "",
+    "text": "7.1 The result\n639 pupils in 30 classrooms, cluster sizes 5–29, responses on 1–5.\nTwo prespecified scales: teacher (Items 1–6) and classmate (Items 8, 9, 10, 11, 13).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The SWMDK application</span>"
+    ]
+  },
+  {
+    "objectID": "07-empirical.html#the-result",
+    "href": "07-empirical.html#the-result",
+    "title": "7  The SWMDK application",
+    "section": "",
+    "text": "7.1.1 Teacher scale\n\n\n\n\nRespondent-weighted\nEqual-cluster\n\n\n\n\nH\n0.6199\n0.6223\n\n\n95 % CI\n[0.5728, 0.6692]\n[0.5743, 0.6698]\n\n\nlength\n0.0964\n0.0956\n\n\n\n\n\n7.1.2 Classmate scale\n\n\n\n\nRespondent-weighted\nEqual-cluster\n\n\n\n\nH\n0.5923\n0.5829\n\n\n95 % CI\n[0.5431, 0.6408]\n[0.5347, 0.6345]\n\n\nlength\n0.0978\n0.0998\n\n\n\nThe targets differ by +0.0024 on teacher and −0.0094 on classmate — in opposite directions. That is the informative-cluster-size effect showing up as something other than noise, and it is why the paper reports both rather than picking one.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The SWMDK application</span>"
+    ]
+  },
+  {
+    "objectID": "07-empirical.html#what-the-clustering-costs",
+    "href": "07-empirical.html#what-the-clustering-costs",
+    "title": "7  The SWMDK application",
+    "section": "7.2 What the clustering costs",
+    "text": "7.2 What the clustering costs\n\n\n\nTeacher scale\nLength\n\n\n\n\nraw two-stage HBB (uncalibrated)\n0.1327\n\n\ncalibrated HBB\n0.0964\n\n\ntwo-level delta comparator\n0.1004\n\n\niid respondent bootstrap (ignores clustering)\n0.0803\n\n\n\nThe iid interval is 20 % narrower than the calibrated cluster-aware one. That gap is the cost of taking the clustering seriously — an analyst who ignores it reports more precision than the design supports.\nThe calibrated interval reaches 96.0 % (teacher) and 98.5 % (classmate) of the delta comparator’s length, so the gain is real but modest against a well-specified analytic alternative.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The SWMDK application</span>"
+    ]
+  },
+  {
+    "objectID": "07-empirical.html#computation",
+    "href": "07-empirical.html#computation",
+    "title": "7  The SWMDK application",
+    "section": "7.3 Computation",
+    "text": "7.3 Computation\n12 tasks × 99,999 draws = 1,199,988 draws, zero invalid. The width multiplier at G = 30 is 0.7261.\nExact knots: 2 on the teacher respondent-weighted lane, 0 on equal-cluster. Those are diagnostic disclosures of the transport path, not error flags — and they bear on the archival defect, where an exact zero is the handled case.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The SWMDK application</span>"
+    ]
+  },
+  {
+    "objectID": "07-empirical.html#stability",
+    "href": "07-empirical.html#stability",
+    "title": "7  The SWMDK application",
+    "section": "7.4 Stability",
+    "text": "7.4 Stability\nMaximum split-half discrepancy 8.75e-4, against an interval about 0.096 wide. Minimum category mass 0.0031, minimum category count 2.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The SWMDK application</span>"
+    ]
+  },
+  {
+    "objectID": "07-empirical.html#independent-reproduction",
+    "href": "07-empirical.html#independent-reproduction",
+    "title": "7  The SWMDK application",
+    "section": "7.5 Independent reproduction",
+    "text": "7.5 Independent reproduction\nThe oracle lane recomputes both scales from data(SWMDK) with the mokken package and reproduces Koopman et al. (2022)’s published values:\n\n\n\nScale\nPublished\nRecomputed\n\n\n\n\nteacher\n0.62\n0.6199\n\n\nclassmate\n0.592\n0.5923\n\n\n\nRscript verification/oracles/run_oracles.R\nThis is the strongest external check in the package: a different implementation, run on the same data, reproducing numbers published by different authors.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>The SWMDK application</span>"
+    ]
+  },
+  {
+    "objectID": "08-governance.html",
+    "href": "08-governance.html",
+    "title": "8  Governance: what was fixed before what",
+    "section": "",
+    "text": "8.1 The gate chain\nThe order is the argument. The calibration was fitted, then held out, then run on a fresh confirmation — so the confirmation’s coverage is not the coverage the calibration was tuned to.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Governance: what was fixed before what</span>"
+    ]
+  },
+  {
+    "objectID": "08-governance.html#the-gate-chain",
+    "href": "08-governance.html#the-gate-chain",
+    "title": "8  Governance: what was fixed before what",
+    "section": "",
+    "text": "Gate\nAsked\nRecorded in\n\n\n\n\nG14\nis a cluster-aware interval feasible?\nv4-g14-decision-receipt-v1.json\n\n\nPhase 15 lock\nthe calibration, fitted on training data\nv4-phase15-protocol-lock-receipt-v1.json\n\n\nPhase 15 validation\ndoes it hold held out?\nvalidation/\n\n\nG16\na fresh 24-cell confirmation\nv4-phase16-confirmation-decision-v1.json\n\n\nG17\nthe SWMDK application\nv4-g17-decision-receipt-v1.json\n\n\nG18-A\ndoes the method match its cited sources?\n3 crosswalks closed, 13 checks\n\n\nG18-B\nintegration into bayesmokken\n791 expectations, R CMD check OK",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Governance: what was fixed before what</span>"
+    ]
+  },
+  {
+    "objectID": "08-governance.html#g18-a-checking-the-method-against-its-sources",
+    "href": "08-governance.html#g18-a-checking-the-method-against-its-sources",
+    "title": "8  Governance: what was fixed before what",
+    "section": "8.2 G18-A: checking the method against its sources",
+    "text": "8.2 G18-A: checking the method against its sources\nUnusual enough to call out. Before integration, the implementation was checked against the published sources it claims to follow — three crosswalks closed across 13 blocking checks, with page- and line-level registers shipping:\n\nv4-andreadis-file-line-crosswalk-v1.csv\nv4-molenaar-page-crosswalk-v1.csv\nv4-rueschendorf-page-crosswalk-v1.csv\n\nThat is what makes the Andreadis (2017) predecessor credit in claim CL-03 a finding rather than a courtesy.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Governance: what was fixed before what</span>"
+    ]
+  },
+  {
+    "objectID": "08-governance.html#the-claim-eligibility-register",
+    "href": "08-governance.html#the-claim-eligibility-register",
+    "title": "8  Governance: what was fixed before what",
+    "section": "8.3 The claim-eligibility register",
+    "text": "8.3 The claim-eligibility register\nv4-phase18-claim-eligibility-v1.csv, 14 claims, frozen at the source-review gate. It governs the article’s wording: what may be asserted, what must be attributed, and what is out of bounds.\nIt ships as Table H1, and verify_semantics.R asserts all 14 are transcribed. A results table you can regenerate; a claim register you can only preserve.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Governance: what was fixed before what</span>"
+    ]
+  },
+  {
+    "objectID": "08-governance.html#the-swmdk-lock",
+    "href": "08-governance.html#the-swmdk-lock",
+    "title": "8  Governance: what was fixed before what",
+    "section": "8.4 The SWMDK lock",
+    "text": "8.4 The SWMDK lock\nThe Phase 17 protocol recorded the data object’s digest, version, dimensions and score support before the application ran. Since no responses ship, that lock is what makes the application’s numbers checkable at all — read_swmdk() asserts it on every load.\nThe digest appears in provenance/excluded-digests.csv with a reason: it is the digest of an R object, not a file, so it resolves to a live check rather than to something on disk.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Governance: what was fixed before what</span>"
+    ]
+  },
+  {
+    "objectID": "08-governance.html#two-documented-departures-from-byte-identity",
+    "href": "08-governance.html#two-documented-departures-from-byte-identity",
+    "title": "8  Governance: what was fixed before what",
+    "section": "8.5 Two documented departures from byte-identity",
+    "text": "8.5 Two documented departures from byte-identity\n\n\n\n\n\n\n\nWhat\nRegister\n\n\n\n\n21 reference-code files bannered\nreference-code/ARCHIVAL-DIGESTS.csv\n\n\n— including ordinal-h.R, with its defect notice\nsame\n\n\n10 authority records redacted\nprovenance/redactions.csv\n\n\n\nNo code line was changed by the banners. The redactions touched two fields of the authority records: the one naming the command-line harness through which the author’s instruction arrived, and the one that held that instruction verbatim as a short colloquial message. The second is now an English authority token of the same form the companion package uses.\nNeither field carried evidence. What each authority actually licensed is in authorized_scope, what it withheld is in explicitly_not_authorized, where it had to stop is in required_stop, and when it was recorded and what it descends from are in recorded_at_utc and parent_governance.sha256. Every one of those is unchanged, and they are what the gate reads.\nverify_governance.R accepts the pre-modification digest from either register, which is what lets both departures coexist with a chain that closes.\nThe rule: a package may modify what it ships only if it records what the file was before.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Governance: what was fixed before what</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html",
+    "href": "09-reproducibility.html",
+    "title": "9  Reproducibility and known limits",
+    "section": "",
+    "text": "9.1 The gates",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#the-gates",
+    "href": "09-reproducibility.html#the-gates",
+    "title": "9  Reproducibility and known limits",
+    "section": "",
+    "text": "Gate\nAsks\nResult\n\n\n\n\nverify_reproduction.R\ndid the build reproduce the paper’s exhibits?\n16 / 16\n\n\nverify_manuscript_numbers.R\ndoes the rebuilt ledger agree with the paper?\ndigest match + 69 / 69\n\n\nverify_semantics.R\nregisters, exact inputs, claims, chart direction, the defect\n21 / 21\n\n\nverify_governance.R\ndoes the receipt chain close?\n30 / 30\n\n\nverify_quarantine.py\ncan runnable code execute the archival pipeline?\n0 findings\n\n\ndisclosure_scan.py\ndoes the exact release set contain a disclosure or licence defect?\n0 findings\n\n\noracles/run_oracles.R\ndo published, exhaustive, and boundary oracles agree?\n13 / 13\n\n\nnegative_controls.sh\ndo the gates fail when they should?\n19 / 19\n\n\ncold_start_rehearsal.sh\ndoes it work from a bare copy?\n15 / 15",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#the-archival-defect",
+    "href": "09-reproducibility.html#the-archival-defect",
+    "title": "9  Reproducibility and known limits",
+    "section": "9.2 The archival defect",
+    "text": "9.2 The archival defect\nreference-code/R/core/ordinal-h.R ships with a known defect: its transport helper advances on a 1e-12 mass tolerance and can drop a valid tiny positive mass. The corrected kernel lives in the separate bayesmokken package.\nThe helper compares each current residual atom mass with its tolerance, before and after allocation. Depending on the pointer state, that residual can be an original marginal category mass or a cross-CDF residual. Consequently the exact vulnerable set is inclusive: (0 &lt; ^{-12}).\nThe claim is that no locked result is affected. This package checks it by direct execution. verification/archival/verify_archival_safety.R rebuilds all 168 population-truth configurations that called this helper: 36 Phase 14, 48 Phase 15 training, 36 Phase 15 validation, and 48 Phase 16.\nAcross those 168 configurations:\n\n\n\nresiduals in (0, 1e-12]\n0\n\n\nsmallest positive marginal category mass\n0.0155404871882598\n\n\nsmallest positive cross-CDF gap\n1.93915947650503e-05\n\n\nmaximum abs(old H - corrected H)\n0\n\n\ncorrected-kernel mass-conservation failures\n0\n\n\n\nLiteral zero is safe: the old &lt;= check advances it, and simultaneous exact exhaustion advances both pointers. The Phase 16 table has eight rows whose scalar minimum is zero; that is not a count of literal zero gaps. The full certificate records all positive marginal masses, all positive cross-CDF gaps, and direct old/corrected results instead of treating one scalar minimum as a complete risk certificate.\nThe verifier also runs synthetic fixtures at 0.5e-12, exactly 1e-12, and just above 1e-12, plus an edge-mass case and literal-zero case. The first two inclusive risk cases make old and corrected results diverge; the above-boundary and literal-zero cases agree.\nPer-replication point and bootstrap-draw calculations use the survival/pmin kernel and bypass the defective helper. The helper was used for deterministic population truths; the 168-row certificate therefore covers every locked execution path to which this particular defect applies.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#the-independent-oracle-lane",
+    "href": "09-reproducibility.html#the-independent-oracle-lane",
+    "title": "9  Reproducibility and known limits",
+    "section": "9.3 The independent oracle lane",
+    "text": "9.3 The independent oracle lane\nTwo external checks:\nTransport, solved two ways. A linear-programming solution against the two-pointer implementation the method uses, across an exhaustive grid: 3,362 cases across 32 strata, 0 failures, maximum |LP − corrected two-pointer| = 7.11e-15. A separate five-case boundary grid covers literal zero, residuals below/at/above 1e-12, and a tiny edge mass.\nKoopman et al. (2022), reproduced. Both scales recomputed from data(SWMDK) with mokken:\n\n\n\nScale\nPublished\nRecomputed\n\n\n\n\nteacher\n0.62\n0.6199\n\n\nclassmate\n0.592\n0.5923\n\n\n\nAnd this article’s own locked teacher value to |diff| = 5.76e-14.\n\n\n\n\n\n\nImportant\n\n\n\nAn oracle failure is a finding about the method, not about the packaging. Do not reconcile it against the locked artifact.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#a-gate-that-cannot-fail-is-not-a-gate",
+    "href": "09-reproducibility.html#a-gate-that-cannot-fail-is-not-a-gate",
+    "title": "9  Reproducibility and known limits",
+    "section": "9.4 A gate that cannot fail is not a gate",
+    "text": "9.4 A gate that cannot fail is not a gate\n\n\n\nControl\nGate\n\n\n\n\ncorrupt a float\nverify_reproduction\n\n\nperturb one ledger value\nverify_manuscript_numbers\n\n\nreverse the calibration-direction claim\nverify_semantics\n\n\nplant an absolute path\ndisclosure_scan\n\n\nadd a file with no ledger verdict\ndisclosure_scan\n\n\ndrop the SWMDK object-digest record\nverify_governance\n\n\ndelete the archival-defect banner\nverify_semantics\n\n\nchange nothing\nall five must pass\n\n\n\nThe direction control matters here because this calibration tightens while the companion paper’s widens. A check that merely asserted “the calibration changes the length” would pass on either, and would be worthless.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#known-limits",
+    "href": "09-reproducibility.html#known-limits",
+    "title": "9  Reproducibility and known limits",
+    "section": "9.5 Known limits",
+    "text": "9.5 Known limits\nCross-platform raster identity. Figure parity hashes a pdftoppm render at 150 dpi, so the hash depends on the Poppler build. Matching geometry with differing pixels is more likely a renderer difference than a scientific one.\nThis reproduces the analysis snapshot, not the production runs. The Phase 16 confirmation and Phase 17 application ran on AWS and are documented, not enabled.\nThe application data is not ours to ship. Every application number is conditional on the SWMDK object in your mokken install. The lock makes a mismatch loud rather than silent, but it cannot prevent one.\nThe receipt chain is scoped to the v4 receipts; see governance.\nThe manuscript-text checks live with the manuscript — the needle half of each concordance check, and the six-phrase claim-boundary audit, run where the .tex is.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#two-traps-worth-knowing",
+    "href": "09-reproducibility.html#two-traps-worth-knowing",
+    "title": "9  Reproducibility and known limits",
+    "section": "9.6 Two traps worth knowing",
+    "text": "9.6 Two traps worth knowing\ngrep silently skips Latin-1 TeX logs as binary — zero hits can mean “did not read”. Use grep -a.\ndata.table::fread() given a .gz path decompresses it in place, mutating the frozen snapshot. The readers here open gzfile() connections.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "09-reproducibility.html#environment",
+    "href": "09-reproducibility.html#environment",
+    "title": "9  Reproducibility and known limits",
+    "section": "9.7 Environment",
+    "text": "9.7 Environment\nsessioninfo.txt records R 4.6.0 on aarch64-apple-darwin23, mokken 3.1.2, and the tool paths.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Reproducibility and known limits</span>"
+    ]
+  },
+  {
+    "objectID": "10-artifact-index.html",
+    "href": "10-artifact-index.html",
+    "title": "10  Artifact index",
+    "section": "",
+    "text": "10.1 Registers\nDigests of record are of uncompressed content.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Artifact index</span>"
+    ]
+  },
+  {
+    "objectID": "10-artifact-index.html#registers",
+    "href": "10-artifact-index.html#registers",
+    "title": "10  Artifact index",
+    "section": "",
+    "text": "File\nRows\nRecords\n\n\n\n\nprovenance/ship-ledger.csv\n303\nevery upstream file, its verdict, and why\n\n\nprovenance/package-file-origins.csv\n265\nshipped file → upstream path, size, uncompressed digest\n\n\nprovenance/release-files.csv\n412\nexact public file set, class, and governing licence\n\n\nprovenance/shared-harness-files.csv\n14\nreviewed cross-package base set and SHA-256\n\n\nprovenance/runnable-code.csv\n36\nexact executable audit surface\n\n\nprovenance/reproduction-map.csv\n16\nexhibit → generator → inputs → parity method\n\n\nprovenance/manuscript-artifact-contract.csv\n16\nexhibit → printed label → claim\n\n\nprovenance/chart-specs.csv\n9\neach figure panel’s mapping and direction claim\n\n\nprovenance/excluded-digests.csv\n39\nwhat was excluded, with a reason — including the SWMDK object and Phase 16 bundle digests\n\n\nprovenance/redactions.csv\n10\nevery file modified before shipping, with both digests\n\n\nprovenance/governance/DIGESTS.csv\n17\ngovernance files with their SHA-256\n\n\nreference-code/ARCHIVAL-DIGESTS.csv\n21\narchival vs shipped digest per reference file\n\n\nverification/expected/exhibit-parity.csv\n15\nthe parity target, from the published build",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Artifact index</span>"
+    ]
+  },
+  {
+    "objectID": "10-artifact-index.html#layout",
+    "href": "10-artifact-index.html#layout",
+    "title": "10  Artifact index",
+    "section": "10.2 Layout",
+    "text": "10.2 Layout\n├── 00_setup.R                environment check; installs nothing\n├── config.yml                tiers, counts, gates, the SWMDK lock\n├── common/R/paths.R, io.R    the only location resolver; typed readers\n├── data-frozen/              28 MB — see CODEBOOK.md\n│   ├── design/               estimand contract, weight law, Phase 14/15 designs\n│   ├── pilot/ development/ validation/\n│   ├── confirmatory/         Phase 16, locked\n│   ├── confirmatory-raw/     86,400 replication rows, gzipped\n│   ├── empirical/            12 x 99,999 draws + artifacts + results\n│   └── phase18/              the G18-A crosswalk and G18-B integration\n├── exhibits/                 the runnable layer\n├── outputs/                  7 figures, 8 floats, the 144-key ledger\n├── reference-code/           the pipeline, annotated, NEVER sourced\n├── provenance/               boundary, governance, the registers\n├── verification/             the gates, their controls, and the oracles\n└── docs/                     this guide",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Artifact index</span>"
+    ]
+  },
+  {
+    "objectID": "10-artifact-index.html#three-conventions",
+    "href": "10-artifact-index.html#three-conventions",
+    "title": "10  Artifact index",
+    "section": "10.3 Three conventions",
+    "text": "10.3 Three conventions\nAbsolute paths live in one file — common/R/paths.R, which contains none itself.\nreference-code/ is never sourced or executed by the registered runnable layer. Verification may read it as text/data to check digests, banners, and the archival-safety certificate. verification/verify_quarantine.py audits the source/import/subprocess boundary, and a cold build is rehearsed with the whole directory unavailable.\nThe runnable build does not depend on the companion paper’s research tree. The copied receipts and archival evidence legitimately retain those provenance strings; they are outside this narrower execution claim. The exact public file set is checked against provenance/release-files.csv.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Artifact index</span>"
+    ]
+  },
+  {
+    "objectID": "10-artifact-index.html#further-reading",
+    "href": "10-artifact-index.html#further-reading",
+    "title": "10  Artifact index",
+    "section": "10.4 Further reading",
+    "text": "10.4 Further reading\n\n\n\nDocument\nFor\n\n\n\n\ndata-frozen/CODEBOOK.md\nevery tier, every column\n\n\nreference-code/PIPELINE.md\nthe G14 → G18-B chain\n\n\nprovenance/publication-boundary.md\nwhat ships and why\n\n\nDATA_ACCESS.md\nthe SWMDK lock and its provenance\n\n\nLICENSE-SCOPE.md\nwhich licence covers which file",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Artifact index</span>"
+    ]
+  }
+]

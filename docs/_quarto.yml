@@ -1,0 +1,48 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Cluster-Aware Uncertainty for Polytomous Mokken Scalability"
+  subtitle: "A replication guide — companion to Lee (2026)"
+  author: "JoonHo Lee"
+  date: "2026-08-13"
+  date-format: "MMMM YYYY"
+  search: true
+  page-navigation: true
+  repo-url: https://github.com/joonho112/bayesmokken-clustered-polytomous-replication
+  repo-subdir: docs
+  repo-actions: [source, issue]
+  sidebar:
+    style: docked
+    collapse-level: 1
+  chapters:
+    - index.qmd
+    - 01-overview.qmd
+    - 02-getting-started.qmd
+    - 03-data.qmd
+    - 04-method-notes.qmd
+    - 05-pipeline.qmd
+    - 06-exhibits.qmd
+    - 07-empirical.qmd
+    - 08-governance.qmd
+    - 09-reproducibility.qmd
+    - 10-artifact-index.qmd
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-overflow: wrap
+    fig-align: center
+    tbl-cap-location: bottom
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  eval: false
+  echo: true
+  warning: false
+  message: false

@@ -1,0 +1,13 @@
+{
+  "schema_version": "paperA-v4-phase15-test-receipt-v1",
+  "generated_at_utc": "2026-07-27T04:42:18Z",
+  "status": "PASS",
+  "tests_total": 22,
+  "tests_passed": 22,
+  "tests_failed": 0,
+  "output": {
+    "path": "codebase/research/v4/cluster-polytomous/tests/artifacts/v4-phase15-test-results-v1.csv",
+    "sha256": "be84f87186e058c5c9f1b2304310a99f04e674616aea6eb5d79a2804b04a50aa"
+  },
+  "phase16_confirmation_authorized": false
+}

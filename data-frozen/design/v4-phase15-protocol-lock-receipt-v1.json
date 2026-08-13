@@ -1,0 +1,56 @@
+{
+  "schema_version": "paperA-v4-phase15-protocol-lock-receipt-v1",
+  "generated_at_utc": "2026-07-27T04:14:00Z",
+  "status": "PASS_FROZEN_PRE_TRAINING_OUTCOME",
+  "authority": "AUTHORIZED_PHASE15_ONLY",
+  "parent_gate": "PROCEED_TO_CLUSTER_POLYTOMOUS_DEVELOPMENT",
+  "files": [
+    {
+      "component": "authority",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/governance/v4-phase15-autonomous-authority-addendum-v1.json",
+      "size_bytes": 1572,
+      "sha256": "1f6f7dd9f6b718d155223eac8a292a7f38463e388ff0a0e41f1afa01aed97d6b"
+    },
+    {
+      "component": "parent_gate",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/artifacts/v4-g14-decision-receipt-v1.json",
+      "size_bytes": 1969,
+      "sha256": "461002f6708f7654351ed8d42eeafbe3dfbf214b3efa38b86780ae2fa3d71716"
+    },
+    {
+      "component": "protocol",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-phase15-development-validation-protocol-v1.yml",
+      "size_bytes": 4749,
+      "sha256": "248b45f0a7beab829086a79f7335bd88cff31096968daf8649b0fec49ba2d69c"
+    },
+    {
+      "component": "training_design",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-phase15-training-design-v1.csv",
+      "size_bytes": 1553,
+      "sha256": "ed009366f3ad9c44d05d9b0235211b5c2fefbbd9374b03936bb34bce144c5d26"
+    },
+    {
+      "component": "validation_design",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-phase15-validation-design-v1.csv",
+      "size_bytes": 1319,
+      "sha256": "b53f4b0a597f0a30c74366ff9271f1db9f56ea54262c8c83574e1b6ce9271a57"
+    }
+  ],
+  "training": {
+    "cells": 24,
+    "scheduled_replications": 2880,
+    "draws": 299,
+    "outputs_present_at_lock": 0
+  },
+  "validation": {
+    "cells": 18,
+    "scheduled_replications": 3240,
+    "draws": 299,
+    "outputs_present_at_lock": 0,
+    "conditions_disjoint": true,
+    "seeds_disjoint": true
+  },
+  "gamma_candidates": [0, -0.5, -0.75, -1, -1.25, -1.5],
+  "phase16_confirmation_authorized": false,
+  "terminal_rule": "STOP_AT_PHASE16_PROTOCOL_READY_BEFORE_CONFIRMATION"
+}

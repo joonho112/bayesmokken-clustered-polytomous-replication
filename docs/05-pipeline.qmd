@@ -1,0 +1,82 @@
+# The pipeline
+
+Five gates punctuate the evidence chain. `reference-code/PIPELINE.md` is the
+full narrative; this is the shape of it.
+
+| Gate | Asked | Outcome |
+|---|---|---|
+| **G14** | is a cluster-aware interval feasible at all? | proceed |
+| Phase 15 lock | fit the calibration on a **training** tier | k_G frozen |
+| Phase 15 validation | does it hold on **held-out** data? | proceed |
+| **G16** | does it hold on a **fresh** 24-cell confirmation? | 6,400 reps/target |
+| **G17** | the SWMDK application | 12 tasks × 99,999 draws |
+| **G18-A** | does the method match the sources it claims to follow? | 3 crosswalks closed, 13 checks |
+| **G18-B** | integration into `bayesmokken` | 791 expectations, `R CMD check` OK |
+
+The order is the argument. The calibration was fitted on training data, tested
+on held-out data, and only then run on a *fresh* confirmation — so the
+confirmation's coverage numbers are not the numbers the calibration was tuned
+to.
+
+## What ran where
+
+The Phase 16 confirmation and the Phase 17 application both ran on AWS, with
+hash-bound protocol locks written before each. Phase 16 wrote 24 per-cell
+replication files (86,400 rows); Phase 17 wrote 12 draw streams of 99,999 each,
+**1,199,988 draws in total, with zero invalid draws**.
+
+## The reference code
+
+```
+reference-code/
+  R/core/           ordinal-h.R (SEE BELOW), knot-diagnostics.R
+  R/dgp/            the clustered ordinal data-generating processes
+  R/evaluation/     intervals, comparators, the Phase 15 calibration
+  R/weights/        the two-stage cluster weight law
+  phase16/          the confirmation runner, evaluator and finalizer
+  phase17/          the application runner, evaluator, finalizer and tests
+  tests/            the Phase 14 and 15 test suites, with their receipts
+  PIPELINE.md
+```
+
+**Nothing in this package sources it.** It expects the research tree and an AWS
+fleet, and keeping it unsourced is what lets it stay faithful to what actually
+ran — including the defect below.
+
+Every file carries a nine-line archival banner. No code line was changed;
+`ARCHIVAL-DIGESTS.csv` records both digests, so `tail -n +11` recovers the
+original — for every file but one, whose authority field was redacted before
+release and recorded in `provenance/redactions.csv`.
+
+## The archival defect in `ordinal-h.R`
+
+::: {.callout-warning}
+## Do not port this file
+
+`reference-code/R/core/ordinal-h.R` contains the deterministic per-pair
+transport helper as it ran. It advances its pointers on a **1e-12 mass
+tolerance** and can drop a valid tiny *positive* mass. The corrected
+implementation — exact-zero advancement plus a mass-conservation assertion —
+is the package kernel: `ordinal-transport.R` inside the
+`bayesmokken` package, which is a separate repository.
+
+The file ships **unchanged**, with the banner. A replication package that
+quietly fixes the code it exists to document stops documenting anything.
+:::
+
+**No locked result is affected, and this package checks it** rather than
+asserting it. See [reproducibility](09-reproducibility.qmd#the-archival-defect)
+for the measurement.
+
+## What you can and cannot re-run
+
+**Cannot:** the confirmation or the application.
+
+**Can:** everything downstream — `exhibits/00_build_all.R` in about five
+seconds.
+
+**Can, independently:** re-derive the 48-row all-cell summary from the 86,400
+raw replication rows, which is exactly what `01_build_key_numbers.R` does, with
+a 1e-12 cross-check against the locked artifact. And recompute the application's
+point estimates from `data(SWMDK)` — the oracle lane does, and reproduces
+Koopman et al. (2022) while it is there.

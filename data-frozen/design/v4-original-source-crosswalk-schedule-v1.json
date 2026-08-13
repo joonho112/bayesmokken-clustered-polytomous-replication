@@ -1,0 +1,32 @@
+{
+  "schema_version": "paperA-v4-original-source-crosswalk-schedule-v1",
+  "status": "SCHEDULED_UNRESOLVED_PRODUCTION_BLOCKER",
+  "purpose": "Close the semantic and page-level provenance gap without treating metadata or secondary summaries as original-source verification.",
+  "sources": [
+    {
+      "source": "Molenaar (1991)",
+      "required_mapping": "standard polytomous Mokken denominator definition and notation",
+      "current_status": "NOT_PAGE_VERIFIED",
+      "required_evidence": ["original pages", "formula crosswalk", "assumption comparison"]
+    },
+    {
+      "source": "Rueschendorf (1982)",
+      "required_mapping": "comonotone maximum/rearrangement theorem assumptions and page mapping",
+      "current_status": "NOT_PAGE_VERIFIED",
+      "required_evidence": ["original pages", "theorem statement mapping", "finite-support specialization"]
+    },
+    {
+      "source": "Andreadis (2017)",
+      "required_mapping": "weighted implementation or predecessor mapping",
+      "current_status": "NOT_PAGE_VERIFIED",
+      "required_evidence": ["original implementation description", "weight semantics", "difference ledger"]
+    }
+  ],
+  "phase14_policy": {
+    "research_engine_allowed": true,
+    "production_claim_allowed": false,
+    "public_api_allowed": false,
+    "g14_may_proceed_with_explicit_restriction": true
+  },
+  "closure_rule": "Every source requires page-level evidence, formula or code mapping, assumptions, and independent review; metadata and search snippets do not close the blocker."
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "paperA-v4-phase18-review-metrics-v1",
+  "generated_at_utc": "2026-07-27T14:17:44Z",
+  "sources": {
+    "required": 3,
+    "acquired": 3,
+    "closed": 3,
+    "physical_artifacts_hashed": 5,
+    "all_hashes_match": true
+  },
+  "review_tests": {
+    "passed": 23,
+    "total": 23,
+    "failed": 0,
+    "andreadis_permutation_gap": 0.14584936637422405,
+    "v4_permutation_gap": 0,
+    "formula_H_gap": 7.2164496600635175e-16,
+    "formula_denominator_gap": 8.8817841970012523e-16,
+    "inherited_transport_oracle_maximum_gap": 0
+  },
+  "formula_bridge": {
+    "rows": 7,
+    "verified": 7,
+    "standard_denominator": "CLOSED"
+  },
+  "claims": {
+    "allowed": 7,
+    "diagnostic_only": 1,
+    "forbidden": 6,
+    "prior_weighted_software_credit": "LOCKED"
+  },
+  "architecture": {
+    "decision": "DEDICATED_CLUSTER_POLYTOMOUS_PAPER",
+    "dedicated_score": 5,
+    "dedicated_total": 5,
+    "integrated_score": 1,
+    "integrated_total": 4
+  },
+  "eligibility": {
+    "production_ordinal_denominator": true,
+    "weighted_implementation": true,
+    "cluster_posterior_functional": true,
+    "production_package_currently_modified": false,
+    "public_cluster_polytomous_API_currently_exposed": false,
+    "manuscript_currently_drafted": false,
+    "fresh_post_G18A_authority_required": true
+  },
+  "gate": {
+    "passed": 13,
+    "total": 13,
+    "failed": 0,
+    "decision": "PRODUCTION_API_ELIGIBLE_AT_G18A"
+  },
+  "terminal_state": "STOP_AT_G18A_BEFORE_PACKAGE_OR_MANUSCRIPT"
+}

@@ -1,0 +1,84 @@
+# Welcome {.unnumbered}
+
+This is the replication guide for
+
+> **Cluster-Aware Uncertainty for Polytomous Mokken Scalability:
+> A Calibrated Hierarchical Bayesian Bootstrap.**
+> JoonHo Lee (2026). arXiv preprint (identifier forthcoming).
+
+It walks through the package that rebuilds every number, figure and table in
+the paper.
+
+**Almost no external data.** One thing you need is the `mokken` package, which
+carries the application data; everything else ships. Clone, run four commands,
+and all 15 exhibits rebuild in about five seconds.
+
+## Quick start
+
+```bash
+Rscript 00_setup.R                          # reports what's missing; installs nothing
+Rscript exhibits/00_build_all.R             # 7 figures + 8 floats + the ledger, ~5s
+Rscript verification/verify_reproduction.R  # 16 / 16
+bash verification/cold_start_rehearsal.sh   # everything, from a bare copy
+```
+
+R ≥ 4.1 and eleven CRAN packages — **including `mokken`, which is required
+here** rather than optional, because the application data `SWMDK` is
+distributed inside it and no responses ship with this package.
+
+## What is reproduced
+
+- **All 15 published exhibits.** The eight LaTeX floats are byte-identical to
+  what the paper prints; the seven figures match on page geometry and a
+  fixed-DPI render hash.
+- **The 144-key ledger, byte-identical** to the one the manuscript was verified
+  against.
+- **All 69 of the manuscript's concordance predicates**, re-expressed against
+  the *rebuilt* ledger.
+
+## What is *not* reproduced
+
+The Phase 16 confirmation and the Phase 17 application. Both ran on AWS; the
+pipeline ships as annotated reference code and is documented rather than
+enabled.
+
+## What you can check
+
+| Question | Where |
+|---|---|
+| Do the exhibits follow from the data? | [Exhibits](06-exhibits.qmd) |
+| Does the data follow from a documented pipeline? | [Pipeline](05-pipeline.qmd) |
+| Was the pipeline tuned after seeing results? | [Governance](08-governance.qmd) |
+| **Does an independent implementation agree?** | [the oracle lane](09-reproducibility.qmd#the-independent-oracle-lane) |
+
+That last one is unusually strong here. The oracle lane recomputes **Koopman et
+al. (2022)'s published results** from the same data and reproduces them, and it
+confirms that a linear-programming solution of the transport problem agrees with
+the two-pointer implementation the method uses across an exhaustive grid.
+
+## One thing to know before reading the code
+
+`reference-code/R/core/ordinal-h.R` ships with a **known archival defect** and a
+prominent "do not port" banner. Its transport helper advances on a 1e-12 mass
+tolerance and can drop a valid tiny positive mass; the corrected kernel is in
+the `bayesmokken` package.
+
+No locked result is affected, and this package **checks that** rather than
+asserting it: across the 48 locked truth rows, the number with a gap in the
+open interval (0, 1e-12) — the only condition under which the defect can fire —
+is **zero**. See [reproducibility](09-reproducibility.qmd#the-archival-defect).
+
+## Companion package
+
+The binary, independent-respondent case has its own package:
+[`bayesmokken-scalability-replication`](https://github.com/joonho112/bayesmokken-scalability-replication).
+
+Neither depends on the other and they share no data. They do share the
+verification harness, byte-for-byte, because this package ports it.
+
+## Software and licence
+
+`bayesmokken` ≥ 0.9.0 implements the method and is pinned, not vendored.
+
+Code is MIT; data, exhibits and this guide are CC BY 4.0. No third-party
+response data is redistributed.

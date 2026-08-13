@@ -1,0 +1,146 @@
+# =============================================================================
+# config.yml -- declared facts about this package.
+#
+# Read by 00_setup.R, by common/R/io.R on every frozen-data read, and by the
+# verification harness. Nothing here is a tuning knob: every value is either a
+# property of the frozen snapshot or a threshold that a gate enforces. Changing
+# a value changes what the package asserts about itself, so changes belong in a
+# phase log.
+# =============================================================================
+
+package:
+  name: bayesmokken-clustered-polytomous-replication
+  version: 1.0.0
+  paper: >-
+    Cluster-Aware Uncertainty for Polytomous Mokken Scalability:
+    A Calibrated Hierarchical Bayesian Bootstrap
+  authors: [JoonHo Lee]
+  arxiv_id: null            # TODO(author): fill in once posted
+  repository: https://github.com/joonho112/bayesmokken-clustered-polytomous-replication
+  pages: https://joonho112.github.io/bayesmokken-clustered-polytomous-replication/
+  companion:
+    paper: >-
+      A Calibrated Bayesian Bootstrap Confidence Interval for Mokken's
+      Scale-Level Scalability Coefficient
+    repository: https://github.com/joonho112/bayesmokken-scalability-replication
+
+reproduction:
+  tier: T1
+  description: >-
+    Every exhibit rebuilds from the frozen analysis snapshot. The Phase 16
+    confirmation and the Phase 17 application that produced the snapshot ship as
+    annotated reference code and are documented rather than enabled.
+  guide_executes_code: false
+
+environment:
+  r_min: "4.1"
+  required_os: Darwin             # published PDFs use the macOS quartz device
+  graphics_device: quartz
+  required:
+    - dplyr
+    - tidyr
+    - readr
+    - ggplot2
+    - scales
+    - patchwork
+    - tibble
+    - ragg
+    - yaml
+    - digest
+    - jsonlite
+    - lpSolve
+    - statmod
+    # mokken is REQUIRED here, not optional: the application data (SWMDK) is
+    # distributed inside it and no responses ship with this package.
+    - mokken
+  optional:
+    - bayesmokken
+  commands:
+    required:
+      - pdfinfo
+      - pdftoppm
+      - python3
+      - quarto
+  engines:
+    bayesmokken:
+      version: "0.9.0"
+      source: https://github.com/joonho112/bayesmokken
+
+frozen_contract:
+  design:
+    targets: 2                    # respondent-weighted and equal-cluster
+    target_ids:
+      - V4-TARGET-RESPONDENT-WEIGHTED-v1
+      - V4-TARGET-EQUAL-CLUSTER-v1
+  confirmatory:
+    cells: 24
+    cell_target_rows: 48          # 24 cells x 2 targets
+    reps_per_target: 6400
+    reps_per_cell_target: 400
+    raw_replication_rows: 86400   # 24 files x 3,600 rows
+    selected_rows: 19200          # candidate & gamma_cluster == -1.5
+    total_draws: 499
+    lanes: 4                      # {exact,near} knot x {equal-cluster,respondent}
+  empirical:
+    tasks: 12                     # P17-T01 .. P17-T12
+    draws_per_task: 99999
+    dataset: SWMDK
+    dataset_source: mokken
+    responses_shipped: false
+  # D-5: no responses ship. These are the facts the Phase 17 protocol locked
+  # about mokken::SWMDK; verify_reproduction.R asserts them against a live
+  # data(SWMDK) load. See DATA_ACCESS.md.
+  swmdk_lock:
+    object: mokken::SWMDK
+    package_version_at_lock: "3.1.2"
+    object_digest_sha256: e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797
+    respondents: 639
+    clusters: 30
+    cluster_id: classId
+    cluster_size_range: [5, 29]
+    score_support: [1, 2, 3, 4, 5]
+    # digest() of the data.frame as loaded -- NOT of as.matrix(), which differs.
+    digest_target: data.frame
+  scales:
+    teacher:
+      items: [Item1, Item2, Item3, Item4, Item5, Item6]
+      expected_point_H: 0.6199199106866372
+      expected_scale_icc: 0.169
+
+frozen_tiers:
+  - design
+  - pilot
+  - development
+  - validation
+  - confirmatory
+  - confirmatory-raw
+  - empirical/artifacts
+  - empirical/results
+  - empirical/aws-raw
+  - phase18/review
+  - phase18/production
+
+constants:
+  nominal: 0.95
+
+exhibit_contract:
+  figures:
+    main: 5
+    supplement: 2
+  tables:
+    main: 2
+    supplement: 6
+  key_numbers_rows: 144
+  manuscript_checks: 69
+  claims_registered: 14           # the frozen claim-eligibility register, tabH1
+
+gates:
+  size_budget_mb: 60
+  disclosure_findings_allowed: 0
+  table_parity: byte-identical
+  figure_parity: sha256-of-fixed-dpi-render
+  render_dpi: 150
+  # Paper B only: no path may reach back into the Paper A research tree.
+  severance_patterns:
+    - paper-A-bayesian-scalability
+    - codebase/research

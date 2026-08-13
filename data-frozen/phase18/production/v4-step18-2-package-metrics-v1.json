@@ -1,0 +1,64 @@
+{
+  "schema_version": "paperA-v4-step18-2-package-metrics-v1",
+  "generated_at_utc": "2026-07-27T15:08:08Z",
+  "status": "STEP18_2_INTEGRATION_AUDIT_PASS",
+  "immutable_parent": {
+    "G18A_decision": "PRODUCTION_API_ELIGIBLE_AT_G18A",
+    "files_verified": 28,
+    "files_required": 28
+  },
+  "package_tests": {
+    "files": 24,
+    "test_blocks": 77,
+    "expectations": 791,
+    "failures": 0,
+    "warnings": 0,
+    "skips": 0
+  },
+  "transport_oracle": {
+    "LP_fixtures": 25,
+    "maximum_absolute_difference": 1.4459544672718039e-12,
+    "tolerance": 1.9999999999999999e-07
+  },
+  "methods": {
+    "respondent_law_id": "V4-PRI-TWO-STAGE-HBB-RESP-v1",
+    "equal_cluster_law_id": "V4-SENS-TWO-STAGE-HBB-CLUSTER-v1",
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1",
+    "gamma_cluster": -1.5
+  },
+  "R_CMD_check": {
+    "errors": 0,
+    "warnings": 0,
+    "notes": 0,
+    "status": "OK",
+    "log_path": "bayesmokken.Rcheck/00check.log",
+    "log_sha256": "16b7242f8f11d09beb3432f90143c7bc1f124c2dcf44aaf0dcc6e4bb0cb327c2"
+  },
+  "package_changes": {
+    "baseline_files": 107,
+    "unchanged": 95,
+    "modified": 12,
+    "new": 16,
+    "missing": 0
+  },
+  "boundary": {
+    "prohibited_post_lock_files": 0,
+    "gamma_retuning_API_present": false,
+    "package_release_performed": false,
+    "manuscript_drafted": false,
+    "new_simulation_or_empirical_outcome": false
+  },
+  "audit": {
+    "passed": 18,
+    "total": 18,
+    "failed": 0
+  },
+  "terminal_state": "STOP_AT_G18B_BEFORE_MANUSCRIPT_OR_RELEASE",
+  "G18B": {
+    "decision": "PACKAGE_READY_FOR_DEDICATED_MANUSCRIPT",
+    "passed": 19,
+    "total": 19,
+    "failed": 0
+  }
+}

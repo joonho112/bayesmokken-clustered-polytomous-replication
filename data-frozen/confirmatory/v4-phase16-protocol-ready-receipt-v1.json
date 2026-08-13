@@ -1,0 +1,41 @@
+{
+  "schema_version": "paperA-v4-phase16-protocol-ready-receipt-v1",
+  "generated_at_utc": "2026-07-27T04:47:33Z",
+  "decision": "READY_FOR_PHASE16_FRESH_CONFIRMATION_AWAITING_AUTHORIZATION",
+  "checks": {
+    "passed": 23,
+    "total": 23,
+    "failed": 0,
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-protocol-ready-checks-v1.csv",
+    "sha256": "ec4a2720fdd1a2f9ab2cd3f7552a7d0c51248fb5c47962749167cf3ab3a045b4"
+  },
+  "final_method": {
+    "label": "CALIBRATED_CANDIDATE",
+    "gamma_cluster": -1.5,
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1",
+    "method_lock_path": "codebase/research/v4/cluster-polytomous/validation/artifacts/v4-phase15-final-method-lock-v1.json",
+    "method_lock_sha256": "190d6597754461e2251c6c0cfa51dc3207b04e532819d6d0ba144eebb28b8650"
+  },
+  "confirmation_protocol": {
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/v4-phase16-confirmation-protocol-v1.yml",
+    "sha256": "6c689162699c0eacedfefbc9c914b34f5eb8a10a047dfb8b4ff712f3924d5a37",
+    "design_path": "codebase/research/v4/cluster-polytomous/confirmatory/v4-phase16-confirmation-design-v1.csv",
+    "design_sha256": "66951ff0bc0115d1e7400f23e3cfa52e91958cc3189d515381398757dcd687a0",
+    "cells": 24,
+    "scheduled_replications": 9600
+  },
+  "evidence_manifest": {
+    "path": "codebase/research/v4/cluster-polytomous/artifacts/v4-phase15-evidence-manifest-v1.csv",
+    "files": 36,
+    "sha256": "81344ce8adddd80d23b077a0f125b7621e4c0981adfabdf3e1071833015d812f"
+  },
+  "phase16_fresh_confirmation": {
+    "authorized": false,
+    "executed": false,
+    "raw_output_count": 0,
+    "authority_file_present": false
+  },
+  "phase17_authorized": false,
+  "terminal_state": "STOP_AT_PHASE16_PROTOCOL_READY_BEFORE_CONFIRMATION"
+}

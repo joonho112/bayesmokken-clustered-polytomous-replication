@@ -1,0 +1,40 @@
+{
+  "schema_version": "paperA-v4-phase16-key-metrics-v1",
+  "generated_at_utc": "2026-07-27T11:40:19Z",
+  "decision": "CONFIRM_CLUSTER_POLYTOMOUS_METHOD",
+  "method": {
+    "gamma_cluster": -1.5,
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1"
+  },
+  "regular": {
+    "replications_per_target": 6400,
+    "respondent_coverage": 0.97359375000000004,
+    "respondent_coverage_mcse": 0.00200425172917388,
+    "equal_cluster_coverage": 0.97375,
+    "equal_cluster_coverage_mcse": 0.0019984735385726298,
+    "respondent_mean_length": 0.087676448804174995,
+    "equal_cluster_mean_length": 0.091031308238244998,
+    "raw_respondent_coverage": 0.99750000000000005,
+    "raw_equal_cluster_coverage": 0.99624999999999997,
+    "raw_respondent_mean_length": 0.116679065334847,
+    "selected_to_raw_length_ratio": 0.75143256035313666,
+    "minimum_cell_coverage": 0.93000000000000005,
+    "minimum_G_group_coverage": 0.95062500000000005,
+    "minimum_size_mechanism_group_coverage": 0.96750000000000003,
+    "maximum_invalid_fraction": 0
+  },
+  "diagnostic_lanes": {
+    "near_knot_respondent_coverage": 0.96750000000000003,
+    "near_knot_equal_cluster_coverage": 0.96312500000000001,
+    "exact_knot_respondent_coverage": 0.95499999999999996,
+    "exact_knot_equal_cluster_coverage": 0.95562499999999995
+  },
+  "restrictions": {
+    "regular_lane_is_decision_domain": true,
+    "near_knot_is_diagnostic_only": true,
+    "exact_knot_is_diagnostic_only": true,
+    "source_crosswalk_status": "SCHEDULED_UNRESOLVED_PRODUCTION_BLOCKER",
+    "phase17_authorized": false
+  }
+}

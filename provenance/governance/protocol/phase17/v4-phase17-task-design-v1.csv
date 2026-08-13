@@ -1,0 +1,13 @@
+task_id,scale,method_key,target,method_id,task_index
+P17-T01,teacher,hbb_respondent,respondent,V4-PRI-TWO-STAGE-HBB-RESP-v1,1
+P17-T02,teacher,hbb_cluster,equal_cluster,V4-SENS-TWO-STAGE-HBB-CLUSTER-v1,2
+P17-T03,teacher,iid,working_independence,V4-CMP-IID-RESP-BB-v1,3
+P17-T04,teacher,one_stage,respondent,V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1,4
+P17-T05,teacher,two_stage_frequentist,respondent,V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1,5
+P17-T06,teacher,within_stage,respondent,V4-DIAG-WITHIN-STAGE-HBB-RESP-v1,6
+P17-T07,classmate,hbb_respondent,respondent,V4-PRI-TWO-STAGE-HBB-RESP-v1,7
+P17-T08,classmate,hbb_cluster,equal_cluster,V4-SENS-TWO-STAGE-HBB-CLUSTER-v1,8
+P17-T09,classmate,iid,working_independence,V4-CMP-IID-RESP-BB-v1,9
+P17-T10,classmate,one_stage,respondent,V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1,10
+P17-T11,classmate,two_stage_frequentist,respondent,V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1,11
+P17-T12,classmate,within_stage,respondent,V4-DIAG-WITHIN-STAGE-HBB-RESP-v1,12

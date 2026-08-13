@@ -1,0 +1,17 @@
+{
+  "schema_version": "paperA-v4-phase16-confirmation-decision-v1",
+  "generated_at_utc": "2026-07-27T11:36:13Z",
+  "decision": "CONFIRM_CLUSTER_POLYTOMOUS_METHOD",
+  "checks_passed": 7,
+  "checks_total": 7,
+  "selected_gamma_cluster": -1.5,
+  "raw_download_complete_before_evaluation": true,
+  "phase17_authorized": false,
+  "note": "Phase 17 requires separate authority even after a successful confirmation decision.",
+  "source_hashes": {
+    "protocol_sha256": "6c689162699c0eacedfefbc9c914b34f5eb8a10a047dfb8b4ff712f3924d5a37",
+    "method_lock_sha256": "190d6597754461e2251c6c0cfa51dc3207b04e532819d6d0ba144eebb28b8650",
+    "raw_manifest_sha256": "5ac4c8aa83d56ca960a91a0d04233be3a7997a0da06a5864e028b9a292ed8dec",
+    "gate_checks_sha256": "48dfe06b5dc288cd9de905be5dc65512cbee795d3a5011a45b8777b79434c0f0"
+  }
+}

@@ -1,0 +1,53 @@
+# Licence for data, exhibits and the guide
+
+Code in this repository is [MIT](LICENSE). Everything that is not code — the
+frozen data snapshot, the rebuilt figures and tables, the provenance record and
+the replication guide — is released under
+**[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**.
+
+Suggested attribution:
+
+> Lee, J. (2026). Replication package for "Cluster-Aware Uncertainty for
+> Polytomous Mokken Scalability: A Calibrated Hierarchical Bayesian Bootstrap."
+
+---
+
+## No third-party responses are redistributed here
+
+This is the simple case, and it is worth stating plainly: **this package ships
+no item responses at all.**
+
+The simulation evidence — the Phase 14 pilot, the Phase 15 training and
+held-out validation tiers, and the Phase 16 fresh confirmation with its 86,400
+raw replication rows — is synthetic, generated from the documented seed tree in
+[`provenance/seed-tree.md`](provenance/seed-tree.md). It carries no upstream
+terms.
+
+The application evidence — the twelve Phase 17 draw streams under
+`data-frozen/empirical/aws-raw/`, 99,999 draws each — consists of bootstrap
+draws of the scalability coefficient. It is derived from `SWMDK` but contains
+no respondent-level data.
+
+## Where the application data comes from
+
+`SWMDK` is distributed inside the **`mokken`** R package, which is why `mokken`
+is a *required* dependency of this package rather than an optional one. Load it
+with `data(SWMDK)`; the pipeline consumed it read-only under a locked digest,
+which `verification/` asserts against your copy.
+
+Its provenance, none of which this package can relicense:
+
+- a documented subset of the Dutch **COOL^5-18^** cohort study;
+- items from Peetsma and Van der Veen;
+- subset construction following Koopman et al. (2022).
+
+See [`DATA_ACCESS.md`](DATA_ACCESS.md) for the exact call, the locked digest,
+and the version boundary.
+
+## Everything else
+
+Figures, tables, the ledger, the codebook, the provenance registers and the
+replication guide are CC BY 4.0 without qualification.
+
+Artifact-class routing is stated explicitly in
+[`LICENSE-SCOPE.md`](LICENSE-SCOPE.md).

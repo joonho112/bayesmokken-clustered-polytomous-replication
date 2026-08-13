@@ -1,0 +1,102 @@
+# Method notes
+
+## The estimand: declare the target
+
+| Target id | Weights |
+|---|---|
+| `V4-TARGET-RESPONDENT-WEIGHTED-v1` | every respondent equally |
+| `V4-TARGET-EQUAL-CLUSTER-v1` | every cluster equally |
+
+Under **informative cluster size** these are different population quantities.
+`v4-estimand-and-sampling-contract-v1.yml` requires the target to be declared,
+and every locked summary carries a `target` column so a number can never be
+read without one.
+
+In the SWMDK application the two differ by 0.0024 on the teacher scale
+(0.6199 respondent-weighted, 0.6223 equal-cluster). Small — and reported
+separately, because the difference is a property of the population rather than
+noise to average away.
+
+## What is conditioned on, and what is resampled
+
+From the estimand contract:
+
+| | |
+|---|---|
+| scale definition | **fixed** |
+| observed cluster ids | **fixed** |
+| observed cluster sizes | **conditioned** |
+| random weights | a cluster-superpopulation posterior functional |
+
+Cluster sizes are conditioned on, not resampled. That is a modelling choice
+with consequences for what the interval covers, and it is written down rather
+than left implicit.
+
+## Exact H under arbitrary weights
+
+The coefficient is computed by **finite comonotone transport** — exactly, under
+whatever weights a bootstrap draw produces, rather than by an approximation
+that happens to be close for equal weights.
+
+::: {.callout-note}
+## The transport result is not claimed as new
+
+Claim CL-03 in the frozen register requires the predecessor credit to
+**Andreadis (2017)** to be given, and the article never says "new transport
+theorem". The contribution is the cluster-aware interval built on it, not the
+transport identity.
+:::
+
+The independent [oracle lane](09-reproducibility.qmd#the-independent-oracle-lane)
+checks the implementation against a linear-programming solution of the same
+problem across an exhaustive grid: 32 configurations, 0 discrepancies.
+
+## The two-stage bootstrap and why calibration *tightens*
+
+Resample clusters, then respondents within clusters. Before calibration this is
+**conservative** — the Phase 16 confirmation measured raw coverage at 99.75 %
+(respondent) and 99.63 % (equal-cluster) against a nominal 95 %.
+
+So the correction narrows rather than widens: a factor
+k_G = 1 − 1.5/√G, which for the application's G = 30 gives **0.7261**.
+
+::: {.callout-important}
+This runs the **opposite way** from the companion binary paper, whose
+calibration widens a slightly-short interval. Same idea — a measured correction
+to a measured miss — in opposite directions, because the two procedures err in
+opposite directions.
+
+`verify_semantics.R` asserts the direction (`p16_sel_raw_ratio < 1`), and one
+of the negative controls flips it to confirm the check bites.
+:::
+
+After calibration: 97.36 % and 97.38 % coverage, at about 75 % of the raw
+length. Still conservative relative to 95 %, and the paper says so rather than
+presenting it as exact.
+
+## Exact knots are disclosures, not errors
+
+The transport path reports **exact-knot counts** — configurations where a
+marginal CDF gap is exactly zero. The article reports these as *diagnostic
+disclosures of the weighted-marginal transport path, not error flags*, and the
+application had 2 on the teacher respondent-weighted lane and 0 on the
+equal-cluster lane.
+
+They matter for reading [the archival
+defect](09-reproducibility.qmd#the-archival-defect): the corrected kernel
+advances on exact zero by design, so an exact knot is a handled case rather
+than a risk.
+
+## The claim boundary
+
+Six phrases the article never asserts outside a negation:
+
+> "first-ever" · "universally superior" · "new transport theorem" ·
+> "credible interval" · "posterior probabilit…" · "analytically derived"
+
+The interval is a **confidence interval**. The hierarchical Bayesian bootstrap
+is a resampling device, and the property claimed is repeated-sampling coverage.
+
+A **frozen claim-eligibility register** of 14 claims, written at the
+source-review gate, governs the article's wording. It ships as Table H1;
+`verify_semantics.R` asserts all 14 are transcribed into it.

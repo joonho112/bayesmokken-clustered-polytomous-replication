@@ -1,0 +1,55 @@
+{
+  "schema_version": "paperA-v4-phase14-protocol-lock-receipt-v1",
+  "generated_at_utc": "2026-07-27T03:52:23Z",
+  "status": "PASS_FROZEN_PRE_OUTCOME",
+  "authority": "AUTHORIZED_PHASE14_TO_G14_ONLY",
+  "phase15_authorized": false,
+  "protocol_files": [
+    {
+      "component": "authority",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/governance/v4-phase14-autonomous-authority-addendum-v1.json",
+      "sha256": "70326c70bf2b88553db760d3304d444e4113a939d2eca039ab082f63d4f8f2c8",
+      "size_bytes": 1912
+    },
+    {
+      "component": "estimand",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-estimand-and-sampling-contract-v1.yml",
+      "sha256": "d4dc1efdf2581d2d31cb815e054d21fe108226fce05db239bbac3b1c4be3e5d6",
+      "size_bytes": 3031
+    },
+    {
+      "component": "weights",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-weight-law-specification-v1.yml",
+      "sha256": "658c162a1f89871b9841404dceca1a63494e8234ef4e83be97319e15bedb5577",
+      "size_bytes": 2447
+    },
+    {
+      "component": "feasibility",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-phase14-feasibility-protocol-v1.yml",
+      "sha256": "c187112062f8d5779245383bfc88818f296c9e0255f75f0aea55b59869a9e8fb",
+      "size_bytes": 3081
+    },
+    {
+      "component": "design",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-phase14-pilot-design-v1.csv",
+      "sha256": "034c2adaf183a863b2bb63a0f479ab2f2c0bb5252a48ce128b9ee76507e3e958",
+      "size_bytes": 842
+    },
+    {
+      "component": "source_crosswalk",
+      "project_relative_path": "codebase/research/v4/cluster-polytomous/protocol/v4-original-source-crosswalk-schedule-v1.json",
+      "sha256": "376855c991a0bf8a21c36c7fc90a27f7c0e3527875d30d0bd75e5498ac12bc72",
+      "size_bytes": 1525
+    }
+  ],
+  "design": {
+    "cells": 18,
+    "replications_per_cell": 60,
+    "scheduled_replications": 1080,
+    "draws_per_method": 199,
+    "tuning_permitted": false
+  },
+  "outputs_present_at_lock": 0,
+  "source_crosswalk_status": "SCHEDULED_UNRESOLVED_PRODUCTION_BLOCKER",
+  "terminal_rule": "STOP_AT_G14_BEFORE_PHASE15"
+}

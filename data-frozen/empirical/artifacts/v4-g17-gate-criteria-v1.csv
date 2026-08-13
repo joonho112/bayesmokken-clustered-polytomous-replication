@@ -1,0 +1,15 @@
+"gate_id","criterion","observed","threshold","pass","blocking"
+"G17-B01","parent_phase16_confirmed","CONFIRM_CLUSTER_POLYTOMOUS_METHOD","CONFIRM_CLUSTER_POLYTOMOUS_METHOD",TRUE,TRUE
+"G17-B02","dataset_and_scale_provenance_match","e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797;0","hash match; point difference < 1e-10",TRUE,TRUE
+"G17-B03","all_12_tasks_complete","12 of 12","12/12",TRUE,TRUE
+"G17-B04","all_raw_draw_and_receipt_hashes_match","12 of 12","12/12",TRUE,TRUE
+"G17-B05","maximum_invalid_fraction_at_most_0_001","0","<= 0.001",TRUE,TRUE
+"G17-B06","point_H_concordance_below_1e_10","5.76205749780456e-14","< 1e-10",TRUE,TRUE
+"G17-B07","selected_intervals_finite_ordered_and_contain_point","TRUE","TRUE",TRUE,TRUE
+"G17-B08","selected_intervals_shorter_than_raw","0.726138721247417","< 1",TRUE,TRUE
+"G17-B09","selected_split_half_endpoint_difference_at_most_0_005","0.000875327129681303","<= 0.005",TRUE,TRUE
+"G17-B10","both_targets_and_all_comparators_reported","9 method IDs","both targets and all prespecified comparators",TRUE,TRUE
+"G17-B11","cluster_sparse_ICC_and_knot_disclosures_complete","TRUE","complete",TRUE,TRUE
+"G17-B12","interpretation_and_no_threshold_decision_labels_present","TRUE","complete; threshold decision FALSE",TRUE,TRUE
+"G17-B13","protected_source_baseline_intact","TRUE","all protected hashes match",TRUE,TRUE
+"G17-B14","evidence_manifest_complete","53","all required evidence files present",TRUE,TRUE

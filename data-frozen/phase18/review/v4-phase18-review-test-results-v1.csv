@@ -1,0 +1,24 @@
+"test_id","description","observed","expected","pass"
+"P18-T001_AUTHORITY","Phase 18 authority has the exact bounded status","AUTHORIZED_PHASE18_1_TO_G18A_ONLY","AUTHORIZED_PHASE18_1_TO_G18A_ONLY",TRUE
+"P18-T002_ZERO_OUTPUT_LOCK","Review lock predates extraction outputs","PASS_FROZEN_PRE_ORIGINAL_SOURCE_EXTRACTION;0","PASS_FROZEN_PRE_ORIGINAL_SOURCE_EXTRACTION;0",TRUE
+"P18-T003_PHASE17_PARENT","Phase 17 parent decision remains closed","PHASE17_EMPIRICAL_APPLICATION_COMPLETE;PROCEED_TO_PHASE18_REVIEW","PHASE17_EMPIRICAL_APPLICATION_COMPLETE;PROCEED_TO_PHASE18_REVIEW",TRUE
+"P18-T004_PHASE17_HASHES","Protected Phase 17 closure and gate hashes match authority","67feebb53f76567bf1da3d9e6f077f819e9d5cc773a1c331f70cee63ed7b82a8;e40bdd9f61d392e86b310a7d4fd6db10d6d250979f32a59a9d1647a434ce870f","67feebb53f76567bf1da3d9e6f077f819e9d5cc773a1c331f70cee63ed7b82a8;e40bdd9f61d392e86b310a7d4fd6db10d6d250979f32a59a9d1647a434ce870f",TRUE
+"P18-T005_ORIGINALS","Three logical original sources are acquired and hashed","3;5","3;5",TRUE
+"P18-T006_MOLENAAR_IDENTITY","Molenaar PDF identity and page extent verified","21;TRUE","21;TRUE",TRUE
+"P18-T007_RUESCHENDORF_IDENTITY","Rüschendorf PDF identity and page extent verified","11;TRUE","11;TRUE",TRUE
+"P18-T008_ANDREADIS_IDENTITY","Andreadis archive members match official and user copies","MATCH;MATCH;MATCH","MATCH;MATCH;MATCH",TRUE
+"P18-T009_MOLENAAR_CROSSWALK","Molenaar page crosswalk and second pass are closed","8;CLOSED","8;CLOSED",TRUE
+"P18-T010_RUESCHENDORF_CROSSWALK","Rüschendorf page crosswalk and second pass are closed","6;CLOSED","6;CLOSED",TRUE
+"P18-T011_ANDREADIS_CROSSWALK","Andreadis file-line crosswalk and second pass are closed","7;CLOSED","7;CLOSED",TRUE
+"P18-T012_MOLENAAR_LOCATORS","Molenaar theorem locators survive text audit","Theorems 2,5,6,7 located","TRUE",TRUE
+"P18-T013_RUESCHENDORF_LOCATORS","Rüschendorf fixed-margin and common-quantile locators survive text audit","Equation (2) setup and common U construction located","TRUE",TRUE
+"P18-T014_ANDREADIS_CLEAN_CALL","Archived wcoefH is not self-contained in a clean environment","object 'chile' not found","nonempty error caused by undeclared globals",TRUE
+"P18-T015_ANDREADIS_ARGUMENT","Archived wcoefH overwrites its formal weight argument","TRUE","TRUE",TRUE
+"P18-T016_ANDREADIS_PERMUTATION","Sorted-column weighted denominator is row-order dependent under unequal weights","0.145849366374224","> 1e-3",TRUE
+"P18-T017_V4_PERMUTATION","v4 arbitrary-mass transport is row-permutation invariant","0","< 1e-12",TRUE
+"P18-T018_FORMULA_BRIDGE","Independent discrete-quantile calculation agrees with v4 H and denominator","7.216449660063518e-16;8.881784197001252e-16","both < 1e-12",TRUE
+"P18-T019_ORACLE_EVIDENCE","Existing transport-oracle evidence remains exact","0","0",TRUE
+"P18-T020_PREDECESSOR_CREDIT","Prior weighted software credit is locked","REQUIRED_CREDIT","REQUIRED_CREDIT",TRUE
+"P18-T021_CLAIM_MATRIX","Allowed, diagnostic, and forbidden claims are all enumerated","ALLOWED;DIAGNOSTIC_ONLY;FORBIDDEN","ALLOWED;DIAGNOSTIC_ONLY;FORBIDDEN",TRUE
+"P18-T022_ARCHITECTURE","Frozen architecture rule selects a dedicated paper","DEDICATED_CLUSTER_POLYTOMOUS_PAPER;5;1","DEDICATED_CLUSTER_POLYTOMOUS_PAPER;5;1",TRUE
+"P18-T023_NO_PROHIBITED_WRITES","No package, manuscript, or prior outcome file is newer than the review lock","0;0","0;0",TRUE

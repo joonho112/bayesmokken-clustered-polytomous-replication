@@ -1,0 +1,24 @@
+{
+  "schema_version": "paperA-v4-phase16-cell-receipt-v1",
+  "generated_at_utc": "2026-07-27T11:32:47Z",
+  "status": "PASS_CELL_COMPLETE",
+  "stage": "confirmation",
+  "cell_id": "P16-C013",
+  "cell_index": 13,
+  "replications": 400,
+  "draws": 499,
+  "gamma_evaluated": [-1.5, 0],
+  "method_rows": 3600,
+  "status_ok_fraction": 1,
+  "maximum_invalid_fraction": 0,
+  "truth": {
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/aws-raw/P16-C013-truth-v1.csv",
+    "sha256": "84d8d8fcdd790378c85cbcb66e2dde4e8bc1bba51ebf4299cd4d5b8b81a926ed"
+  },
+  "output": {
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/aws-raw/P16-C013-replications-v1.csv",
+    "size_bytes": 1541633,
+    "sha256": "df121bdf77f5c134563a738594e7142ebcbfd67e52ed71b0c2f1743dabc3afa2"
+  },
+  "elapsed_seconds": 413.74911761283875
+}

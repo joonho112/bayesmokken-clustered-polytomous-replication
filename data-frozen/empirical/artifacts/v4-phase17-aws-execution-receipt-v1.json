@@ -1,0 +1,46 @@
+{
+  "schema_version": "paperA-v4-phase17-aws-execution-receipt-v1",
+  "generated_at_utc": "2026-07-27T12:35:38Z",
+  "status": "PASS_AWS_EXECUTION_AND_RAW_TRANSFER",
+  "provider": "AWS_ONLY",
+  "instance": {
+    "id": "i-0ad4ffafc8bb19ff0",
+    "name": "simulation-aws",
+    "type": "c6a.8xlarge",
+    "vcpus": 32,
+    "memory_total_kb": 64524224,
+    "memory_available_kb_at_preflight": 63394500,
+    "state_after_execution": "stopped"
+  },
+  "workers": {
+    "protocol_count": 12,
+    "used": 12
+  },
+  "execution": {
+    "tasks": 12,
+    "batches": 600,
+    "draws_per_task": 99999,
+    "total_random_weight_draws": 1199988,
+    "first_task_receipt_utc": "2026-07-27T12:26:44Z",
+    "last_task_receipt_utc": "2026-07-27T12:27:11Z",
+    "maximum_task_elapsed_seconds": 34.195224046707153,
+    "sum_task_elapsed_seconds": 172.5667884349823
+  },
+  "raw_transfer": {
+    "remote_raw_files": 36,
+    "local_draw_files": 12,
+    "local_batch_manifest_files": 12,
+    "local_receipt_files": 12,
+    "receipt_hashes_passed": 12,
+    "receipt_code_hashes_passed": 12,
+    "raw_manifest_files": 36,
+    "download_completed_before_evaluation": true
+  },
+  "execution_bundle": {
+    "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/execution-bundles/v4-phase17-aws-execution-bundle-v1.tar.gz",
+    "sha256": "5ebf8ace89bf01563bb88e8faae57df00f2676ec4ee9117012e9720e6ced723f",
+    "uploaded_sha256": "5ebf8ace89bf01563bb88e8faae57df00f2676ec4ee9117012e9720e6ced723f"
+  },
+  "gcp_accessed": false,
+  "gcp_used": false
+}

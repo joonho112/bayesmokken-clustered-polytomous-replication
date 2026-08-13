@@ -1,0 +1,159 @@
+{
+  "schema_version": "paperA-v4-cluster-polytomous-governance-manifest-v1",
+  "created_at_utc": "2026-07-27T03:30:59Z",
+  "created_at_local": "2026-07-26T22:30:59-0500",
+  "branch": {
+    "project_relative_root": "codebase/research/v4/cluster-polytomous",
+    "status": "NONPRODUCTION_RESEARCH_ONLY",
+    "isolated_from_package": true,
+    "production_api_connected": false
+  },
+  "authority": {
+    "source": "author instruction",
+    "instruction": "AUTHORIZE_STEP_14_1_V4_STRUCTURE_GOVERNANCE_AND_MASTER_PLAN",
+    "completed_scope": ["create isolated v4 directory contract", "create machine-readable nonproduction governance", "hash reusable and protected evidence baseline", "write and render log 035 master plan"],
+    "execution_beyond_step_14_1_authorized": false
+  },
+  "terminal_control": {
+    "completed_step": "14.1",
+    "current_terminal_state": "STOP_AFTER_STEP_14_1_V4_FOUNDATION",
+    "next_sequenced_step": "14.2 ESTIMAND_AND_SAMPLING_LAW_CONTRACT",
+    "fresh_instruction_required_for_next_step": true,
+    "gate_before_phase_15": "G14"
+  },
+  "scientific_state": {
+    "frozen_binary_status": "CONFIRMED_AND_PROTECTED",
+    "ordinal_status": "FEASIBILITY_PASSED_WITH_RESTRICTIONS",
+    "cluster_polytomous_status": "NOT_IMPLEMENTED",
+    "primary_candidate": "SIZE_AWARE_TWO_STAGE_HIERARCHICAL_BAYESIAN_BOOTSTRAP",
+    "primary_candidate_accepted": false,
+    "respondent_weighted_target_frozen": false,
+    "equal_cluster_target_frozen": false,
+    "cluster_calibration_frozen": false
+  },
+  "authorization_firewall": {
+    "production_authorized": false,
+    "package_change_authorized": false,
+    "manuscript_drafting_authorized": false,
+    "manuscript_claim_upgrade_authorized": false,
+    "phase15_calibration_authorized": false,
+    "phase16_confirmation_authorized": false,
+    "phase17_empirical_claim_authorized": false,
+    "binary_gamma_0_25_transfer_authorized": false,
+    "iid_respondent_bb_cluster_validity_authorized": false,
+    "swmdk_item_reselection_authorized": false
+  },
+  "protected_roots": [
+    {
+      "path": "codebase/bayesmokken",
+      "policy": "NO_MUTATION_PHASE_14_TO_16"
+    },
+    {
+      "path": "codebase/research/v3",
+      "policy": "READ_ONLY_FROZEN_EVIDENCE"
+    },
+    {
+      "path": "codebase/oracles/transport-lp",
+      "policy": "READ_ONLY_INDEPENDENT_ORACLE"
+    }
+  ],
+  "source_crosswalk": {
+    "status": "UNRESOLVED_PRODUCTION_BLOCKER",
+    "sources": ["Molenaar (1991)", "Rueschendorf (1982)", "Andreadis (2017)"],
+    "phase14_action": "complete or record a page-level acquisition and crosswalk schedule",
+    "consequence": "no production ordinal claim until the crosswalk is closed"
+  },
+  "compute_policy": {
+    "local_allowed": ["low-cost unit tests", "oracle comparisons", "small smoke and feasibility pilots"],
+    "heavy_compute_provider": "AWS_ONLY",
+    "gcp_access_allowed": false,
+    "expected_aws_alias": "aws-vm",
+    "expected_workers_after_preflight": 12,
+    "checkpoint_raw_before_postprocessing": true,
+    "download_raw_before_final_evaluation": true
+  },
+  "directory_contract": [
+    {
+      "path": "governance",
+      "purpose": "authority, firewalls, hashes, and receipts"
+    },
+    {
+      "path": "protocol",
+      "purpose": "prospective estimand, method, DGP, and gate contracts"
+    },
+    {
+      "path": "R/core",
+      "purpose": "weighted ordinal H and regularity diagnostics"
+    },
+    {
+      "path": "R/weights",
+      "purpose": "iid and cluster random-weight laws"
+    },
+    {
+      "path": "R/dgp",
+      "purpose": "clustered ordinal data-generating mechanisms"
+    },
+    {
+      "path": "R/evaluation",
+      "purpose": "coverage, length, failure, and gate evaluation"
+    },
+    {
+      "path": "oracles",
+      "purpose": "independent transport and population-truth calculations"
+    },
+    {
+      "path": "tests",
+      "purpose": "research-only deterministic and stochastic tests"
+    },
+    {
+      "path": "pilot",
+      "purpose": "Phase 14 low-cost feasibility work"
+    },
+    {
+      "path": "development",
+      "purpose": "Phase 15 training and candidate development"
+    },
+    {
+      "path": "validation",
+      "purpose": "Phase 15 disjoint held-out validation"
+    },
+    {
+      "path": "confirmatory",
+      "purpose": "Phase 16 fresh untouched confirmation"
+    },
+    {
+      "path": "empirical-swmdk",
+      "purpose": "fixed teacher and classmate scale analyses"
+    },
+    {
+      "path": "artifacts",
+      "purpose": "branch-level receipts and manifests"
+    }
+  ],
+  "evidence_baseline": {
+    "inventory_path": "codebase/research/v4/cluster-polytomous/governance/v4-source-and-freeze-inventory-v1.csv",
+    "inventory_sha256": "673424954996a357456f9f1d6dec8302f588e9a6833709ec5250444f6decf818",
+    "rows": 103,
+    "missing": 0,
+    "class_counts": {
+      "authority_and_theory": 8,
+      "frozen_binary_evidence": 6,
+      "frozen_binary_package_source": 56,
+      "independent_transport_oracle": 12,
+      "phase13_nonproduction_baseline": 21
+    },
+    "status": "PASS_BASELINE_CAPTURED"
+  },
+  "inherited_receipts": {
+    "phase13_decision": "PROCEED_RESTRICTED_ORDINAL_DEVELOPMENT",
+    "phase13_production_authorized": false,
+    "package_overall_pass": true,
+    "package_r_cmd_check": "OK",
+    "journal_primary_target": "Applied Psychological Measurement",
+    "journal_manuscript_drafting_authorized": false
+  },
+  "decision_labels": {
+    "gate_g14": ["PROCEED_TO_CLUSTER_POLYTOMOUS_DEVELOPMENT", "REPAIR_AND_REPEAT_FEASIBILITY", "STOP_CLUSTER_POLYTOMOUS_BRANCH"]
+  },
+  "status": "STEP_14_1_FOUNDATION_COMPLETE_NONPRODUCTION"
+}

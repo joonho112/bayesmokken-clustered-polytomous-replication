@@ -1,0 +1,78 @@
+# The SWMDK application
+
+**639 pupils in 30 classrooms**, cluster sizes 5–29, responses on 1–5.
+
+Two prespecified scales: **teacher** (Items 1–6) and **classmate**
+(Items 8, 9, 10, 11, 13).
+
+## The result
+
+### Teacher scale
+
+| | Respondent-weighted | Equal-cluster |
+|---|---|---|
+| H | **0.6199** | **0.6223** |
+| 95 % CI | [0.5728, 0.6692] | [0.5743, 0.6698] |
+| length | 0.0964 | 0.0956 |
+
+### Classmate scale
+
+| | Respondent-weighted | Equal-cluster |
+|---|---|---|
+| H | **0.5923** | **0.5829** |
+| 95 % CI | [0.5431, 0.6408] | [0.5347, 0.6345] |
+| length | 0.0978 | 0.0998 |
+
+The targets differ by **+0.0024** on teacher and **−0.0094** on classmate —
+in opposite directions. That is the informative-cluster-size effect showing up
+as something other than noise, and it is why the paper reports both rather than
+picking one.
+
+## What the clustering costs
+
+| Teacher scale | Length |
+|---|---|
+| raw two-stage HBB (uncalibrated) | 0.1327 |
+| **calibrated HBB** | **0.0964** |
+| two-level delta comparator | 0.1004 |
+| iid respondent bootstrap (ignores clustering) | 0.0803 |
+
+The iid interval is **20 % narrower** than the calibrated cluster-aware one.
+That gap is the cost of taking the clustering seriously — an analyst who
+ignores it reports more precision than the design supports.
+
+The calibrated interval reaches 96.0 % (teacher) and 98.5 % (classmate) of the
+delta comparator's length, so the gain is real but modest against a
+well-specified analytic alternative.
+
+## Computation
+
+12 tasks × 99,999 draws = **1,199,988 draws**, **zero invalid**. The width
+multiplier at G = 30 is 0.7261.
+
+Exact knots: 2 on the teacher respondent-weighted lane, 0 on equal-cluster.
+Those are diagnostic disclosures of the transport path, not error flags — and
+they bear on [the archival defect](09-reproducibility.qmd#the-archival-defect),
+where an exact zero is the handled case.
+
+## Stability
+
+Maximum split-half discrepancy **8.75e-4**, against an interval about 0.096
+wide. Minimum category mass 0.0031, minimum category count 2.
+
+## Independent reproduction
+
+The oracle lane recomputes both scales from `data(SWMDK)` with the `mokken`
+package and reproduces **Koopman et al. (2022)'s published values**:
+
+| Scale | Published | Recomputed |
+|---|---|---|
+| teacher | 0.62 | 0.6199 |
+| classmate | 0.592 | 0.5923 |
+
+```bash
+Rscript verification/oracles/run_oracles.R
+```
+
+This is the strongest external check in the package: a different implementation,
+run on the same data, reproducing numbers published by different authors.

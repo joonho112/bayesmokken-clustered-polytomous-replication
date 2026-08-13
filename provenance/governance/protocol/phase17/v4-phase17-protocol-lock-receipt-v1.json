@@ -1,0 +1,59 @@
+{
+  "schema_version": "paperA-v4-phase17-protocol-lock-receipt-v1",
+  "generated_at_utc": "2026-07-27T12:15:26Z",
+  "status": "PASS_FROZEN_PRE_PHASE17_EMPIRICAL_OUTCOME",
+  "dataset": {
+    "object": "mokken::SWMDK",
+    "digest_sha256": "e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797",
+    "respondents": 639,
+    "clusters": 30,
+    "cluster_size_range": [5, 29]
+  },
+  "scales": {
+    "teacher": ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6"],
+    "classmate": ["Item8", "Item9", "Item10", "Item11", "Item13"]
+  },
+  "method": {
+    "gamma_cluster": -1.5,
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1",
+    "tuning_permitted": false
+  },
+  "precision": {
+    "tasks": 12,
+    "draws_per_task": 99999,
+    "scheduled_draws": 1199988,
+    "batch_size": 2000,
+    "seed_base": 2026075701
+  },
+  "files": {
+    "authority": {
+      "path": "codebase/research/v4/cluster-polytomous/governance/v4-phase17-empirical-application-authority-v1.json",
+      "size_bytes": 2065,
+      "sha256": "dfc51eab15123ed0e68a30ac303cfe4f818927776d48f2e5190ab2da2a1bfbb4"
+    },
+    "protocol": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/protocol/v4-phase17-swmdk-empirical-protocol-v1.yml",
+      "size_bytes": 4325,
+      "sha256": "26ea8bfef638f25ed102c9d2f545016d1ee828a31d62becc2883fb765c38e484"
+    },
+    "task_design": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/protocol/v4-phase17-task-design-v1.csv",
+      "size_bytes": 970,
+      "sha256": "7a6bc2cb75dbbafa016751c61351bb5116b492c707112fbb64ad7a7ce074a472"
+    },
+    "parent_phase16": {
+      "path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-final-closure-receipt-v1.json",
+      "size_bytes": 1634,
+      "sha256": "471298962c9e0bb293d05c0219ed9afbe40468656576a422ff950021a92eb873"
+    },
+    "method_lock": {
+      "path": "codebase/research/v4/cluster-polytomous/validation/artifacts/v4-phase15-final-method-lock-v1.json",
+      "size_bytes": 2515,
+      "sha256": "190d6597754461e2251c6c0cfa51dc3207b04e532819d6d0ba144eebb28b8650"
+    }
+  },
+  "execution_output_count_at_lock": 0,
+  "phase18_authorized": false,
+  "terminal_rule": "STOP_AT_G17_BEFORE_PHASE18"
+}

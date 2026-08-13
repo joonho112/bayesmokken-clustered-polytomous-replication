@@ -1,0 +1,65 @@
+---
+title: "Exhaustive Small-Grid Transport Oracle Comparison"
+date: "2026-07-23"
+status: "PASS / PROOF-ORACLE-EVIDENCE"
+format:
+  html:
+    toc: true
+    embed-resources: true
+---
+
+# Result
+
+The cumulative-mass two-pointer reference and an independently constructed
+transportation linear program agreed in all **3,362** tested cases.
+
+| Check | Result |
+|---|---:|
+| Total cases | 3,362 |
+| Failed cases | 0 |
+| Maximum absolute objective discrepancy | \(7.106\times10^{-15}\) |
+| Maximum LP marginal residual | \(2.221\times10^{-16}\) |
+| Frozen comparison tolerance | \(10^{-10}\) |
+
+This is computational evidence for the finite-grid algorithm identity. It is
+not a source-level verification that the resulting covariance is the standard
+polytomous Mokken denominator.
+
+# Grid construction
+
+- Support sizes: \(K_x,K_y\in\{2,3,4,5\}\).
+- Marginal masses: all weak compositions of denominator four, including zero
+  masses, with a deterministic maximum of 12 representative vectors per
+  support size.
+- Score maps: consecutive integer scores and a deterministic nonconsecutive
+  (“gapped”) map.
+- Cross-product: every retained \(x\)-mass and \(y\)-mass vector for every
+  support-size and score-map combination.
+- Case IDs and deterministic integer pseudo-seeds are retained even though
+  enumeration uses no random draws.
+
+# Independence of the comparison
+
+`solve-transport-lp.R` constructs one decision variable per coupling cell,
+row- and column-marginal equality constraints, nonnegativity constraints and
+the score-product objective. It does not call the two-pointer reference.
+
+`two-pointer-reference.R` instead computes intersections of cumulative-mass
+intervals. It does not call `lpSolve`. Only input/output comparisons are
+shared.
+
+# Retained artifacts
+
+- `../results/exhaustive-grid-summary.csv` contains 32
+  support-size-by-score-map summaries.
+- `../results/exhaustive-grid-failures.csv` preserves the complete failure
+  schema; it contains zero rows for this run.
+- `../run-exhaustive-grid.R` deterministically regenerates both files and
+  exits nonzero if any case exceeds the frozen tolerance.
+
+# Interpretation boundary
+
+The test grid supports an adversarial review of the proof skeleton, tie
+handling and algorithm invariants. Production ordinal support remains closed
+because the Phase 3 Molenaar–Rüschendorf–Andreadis source crosswalk is still
+`BLOCKED`.

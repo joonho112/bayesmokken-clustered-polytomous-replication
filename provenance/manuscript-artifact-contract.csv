@@ -1,0 +1,17 @@
+exhibit_id,paper_label,output_path,claim_supported
+fig1_concept,Figure 1,outputs/figures/fig1_concept.pdf,"The cluster-aware interval end to end, on the SWMDK application"
+fig2_design,Figure 2,outputs/figures/fig2_design.pdf,The 24-cell confirmation design
+fig3_coverage,Figure 3,outputs/figures/fig3_coverage.pdf,Coverage by cell and target against the nominal level
+fig4_calibration,Figure 4,outputs/figures/fig4_calibration.pdf,"The cluster-count-dependent calibration, trained and held out"
+fig5_swmdk,Figure 5,outputs/figures/fig5_swmdk.pdf,The SWMDK application under both population targets
+FigF1_cells,Figure F1,outputs/figures/FigF1_cells.pdf,All 48 cell-target results
+FigG1_splithalf,Figure G1,outputs/figures/FigG1_splithalf.pdf,The split-half stability check
+tab2_confirmation,Table 1,outputs/floats/tab2_confirmation.tex,Phase 16 confirmation: coverage and length by lane and target
+tab3_swmdk,Table 2,outputs/floats/tab3_swmdk.tex,The SWMDK application summary
+tabE1_training,Table E1,outputs/floats/tabE1_training.tex,The Phase 15 training tier
+tabE2_validation,Table E2,outputs/floats/tabE2_validation.tex,The Phase 15 held-out validation tier
+tabF1_cells,Table F1,outputs/floats/tabF1_cells.tex,All 48 confirmation cell-target rows
+tabF2_comparators,Table F2,outputs/floats/tabF2_comparators.tex,Comparator intervals
+tabG1_categories,Table G1,outputs/floats/tabG1_categories.tex,SWMDK category structure
+tabH1_claims,Table H1,outputs/floats/tabH1_claims.tex,The frozen claim-eligibility register governing the article
+key_numbers,(ledger),outputs/key_numbers.csv,The 144-key registry every quantitative claim is drawn from

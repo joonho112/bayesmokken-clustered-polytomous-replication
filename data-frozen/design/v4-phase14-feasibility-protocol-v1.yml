@@ -1,0 +1,86 @@
+schema_version: paperA-v4-phase14-feasibility-protocol-v1
+status: FROZEN_PRE_OUTCOME
+authority: v4-phase14-autonomous-authority-addendum-v1
+design:
+  file: protocol/v4-phase14-pilot-design-v1.csv
+  cells: 18
+  items: 5
+  categories: 5
+  score_support: [0, 1, 2, 3, 4]
+  replications_per_cell: 60
+  scheduled_replications: 1080
+  random_weight_draws_per_method: 199
+  truth_quadrature_nodes_per_dimension: 31
+  raw_interval_only: true
+  tuning_permitted: false
+methods:
+  primary:
+    - V4-PRI-TWO-STAGE-HBB-RESP-v1
+  sensitivity:
+    - V4-SENS-TWO-STAGE-HBB-CLUSTER-v1
+  comparators:
+    - V4-CMP-IID-RESP-BB-v1
+    - V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1
+    - V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1
+    - V4-CMP-MOKKEN-TWOLEVEL-DELTA-v1
+dgp:
+  latent_cluster_effect: standard_normal
+  latent_individual_effect: standard_normal
+  theta: sqrt_icc_u_plus_sqrt_one_minus_icc_e
+  response_model: graded_logistic_conditional_independence
+  discriminations:
+    weak: [0.55, 0.62, 0.68, 0.74, 0.80]
+    medium: [0.95, 1.05, 1.15, 1.25, 1.35]
+    strong: [1.45, 1.60, 1.75, 1.90, 2.05]
+  base_thresholds: [-1.20, -0.35, 0.40, 1.25]
+  regularity_offsets:
+    regular: [-0.45, -0.20, 0.05, 0.30, 0.55]
+    near_knot: [0.00, 0.0002, -0.35, 0.32, 0.65]
+    exact_knot: [0.00, 0.00, 0.00, 0.00, 0.00]
+  regularity_discrimination_rule:
+    regular: use_declared_item_vector
+    near_knot: set_first_two_discriminations_to_their_mean
+    exact_knot: set_all_discriminations_to_their_mean
+seed_namespaces:
+  dgp_base: 2026072701
+  iid_bb_offset: 11
+  one_stage_bb_offset: 21
+  two_stage_hbb_respondent_offset: 31
+  two_stage_hbb_cluster_offset: 41
+  two_stage_frequentist_offset: 51
+truth:
+  respondent_target: cluster_size_weighted_quadrature
+  equal_cluster_target: unweighted_cluster_quadrature
+  informative_size_rule: 5_plus_round_24_times_plogis_u
+  noninformative_size_truth: standard_normal_theta_marginal
+outputs:
+  replication_csv: pilot/artifacts/v4-phase14-pilot-replications-v1.csv
+  cell_summary_csv: pilot/artifacts/v4-phase14-pilot-cell-summary-v1.csv
+  aggregate_summary_csv: pilot/artifacts/v4-phase14-pilot-aggregate-summary-v1.csv
+  truth_csv: pilot/artifacts/v4-phase14-pilot-truth-v1.csv
+  receipt_json: pilot/artifacts/v4-phase14-pilot-receipt-v1.json
+blocking_feasibility_gates:
+  scheduled_replications_complete: 1080
+  required_method_rows_per_replication: 6
+  maximum_primary_invalid_fraction: 0.01
+  minimum_regular_primary_respondent_coverage: 0.88
+  minimum_regular_equal_cluster_coverage: 0.88
+  maximum_primary_median_length_to_delta_length_ratio: 4.0
+  minimum_primary_median_length_to_delta_length_ratio: 0.25
+  comparator_execution_fraction: 1.0
+diagnostic_only:
+  - exact_knot_coverage
+  - near_knot_coverage
+  - iid_negative_control_direction
+  - cell_level_coverage_with_high_mcse
+swmdk_prototype:
+  draws_per_random_weight_method: 1999
+  interval_level: 0.95
+  quantile_type: 8
+  fixed_scales_only: true
+  label: PROTOTYPE_NONCONFIRMATORY
+compute:
+  local_authorized: true
+  heavy_if_required: AWS_ONLY
+  gcp_allowed: false
+stop_rule: stop_at_g14_before_phase15

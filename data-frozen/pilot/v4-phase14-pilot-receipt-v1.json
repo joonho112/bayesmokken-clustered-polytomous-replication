@@ -1,0 +1,41 @@
+{
+  "schema_version": "paperA-v4-phase14-pilot-receipt-v1",
+  "generated_at_utc": "2026-07-27T03:58:26Z",
+  "mode": "full",
+  "status": "PASS_EXECUTION_COMPLETE",
+  "protocol_status": "PASS_FROZEN_PRE_OUTCOME",
+  "tuning_permitted": false,
+  "cells": 18,
+  "replications_per_cell": 60,
+  "completed_replications": 1080,
+  "method_rows": 6480,
+  "methods": ["V4-CMP-IID-RESP-BB-v1", "V4-CMP-MOKKEN-TWOLEVEL-DELTA-v1", "V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1", "V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1", "V4-PRI-TWO-STAGE-HBB-RESP-v1", "V4-SENS-TWO-STAGE-HBB-CLUSTER-v1"],
+  "draws_per_random_weight_method": 199,
+  "status_ok_fraction": 1,
+  "maximum_invalid_fraction": 0,
+  "elapsed_seconds": 115.00195097923279,
+  "outputs": {
+    "truth": {
+      "path": "codebase/research/v4/cluster-polytomous/pilot/artifacts/v4-phase14-pilot-truth-v1.csv",
+      "size_bytes": 4214,
+      "sha256": "bf773695539e66790f3b91c836a254104ad86f88c26ed49e391e788e9b91f65c"
+    },
+    "replications": {
+      "path": "codebase/research/v4/cluster-polytomous/pilot/artifacts/v4-phase14-pilot-replications-v1.csv",
+      "size_bytes": 2205126,
+      "sha256": "bcbd5acd8c18c2173e5befdcd378e9fb3323678545f6b9aa6edea008929c1be7"
+    },
+    "cell_summary": {
+      "path": "codebase/research/v4/cluster-polytomous/pilot/artifacts/v4-phase14-pilot-cell-summary-v1.csv",
+      "size_bytes": 26593,
+      "sha256": "885f855d625887fb2459192973af31e83500348699e34d9508edf38c165d20e8"
+    },
+    "aggregate_summary": {
+      "path": "codebase/research/v4/cluster-polytomous/pilot/artifacts/v4-phase14-pilot-aggregate-summary-v1.csv",
+      "size_bytes": 5417,
+      "sha256": "34b8d31d7f945d03959d62aa6ee9d99903c28fac8f616050df67ccc82aeb718f"
+    }
+  },
+  "phase15_authorized": false,
+  "production_authorized": false
+}

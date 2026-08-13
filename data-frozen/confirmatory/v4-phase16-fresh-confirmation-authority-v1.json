@@ -1,0 +1,39 @@
+{
+  "schema_version": "paperA-v4-phase16-fresh-confirmation-authority-v1",
+  "recorded_at_utc": "2026-07-27T11:21:23Z",
+  "authority_source": "author instruction",
+  "authority_text": "AUTHORIZE_PHASE16_FRESH_CONFIRMATION_WORKER_COUNT_NOT_CAPPED",
+  "status": "AUTHORIZED_PHASE16_FRESH_CONFIRMATION",
+  "authorized_scope": {
+    "phase": 16,
+    "work": ["execute the frozen fresh confirmation protocol", "download raw outputs before frozen evaluation", "issue the Phase 16 confirmation decision", "create machine-readable evidence and QMD+HTML log"],
+    "required_stop": "STOP_AT_PHASE16_CONFIRMATION_DECISION_BEFORE_PHASE17"
+  },
+  "scientific_lock": {
+    "protocol_path": "codebase/research/v4/cluster-polytomous/confirmatory/v4-phase16-confirmation-protocol-v1.yml",
+    "method_lock_path": "codebase/research/v4/cluster-polytomous/validation/artifacts/v4-phase15-final-method-lock-v1.json",
+    "method_label": "CALIBRATED_CANDIDATE",
+    "gamma_cluster": -1.5,
+    "tuning_permitted": false,
+    "fallback_permitted": false
+  },
+  "compute_override": {
+    "provider": "AWS_ONLY",
+    "aws_alias": "aws-vm",
+    "protocol_worker_count": 12,
+    "authorized_worker_count": 24,
+    "override_scope": "worker_parallelism_only",
+    "scientific_results_invariant_to_worker_count": true,
+    "reason": "User explicitly removed the 12-worker ceiling; 24 leaves 8 of 32 vCPUs for system and I/O headroom.",
+    "gcp_allowed": false
+  },
+  "protocol_sha256": "6c689162699c0eacedfefbc9c914b34f5eb8a10a047dfb8b4ff712f3924d5a37",
+  "method_lock_sha256": "190d6597754461e2251c6c0cfa51dc3207b04e532819d6d0ba144eebb28b8650",
+  "protocol_ready_receipt_sha256": "33d276af790fb7508e9a8e100690b12b543725808edd21e4c76f1d17ad73eb64",
+  "runner_sha256": "98c961db53e3fbe1818a3962fb6fe8172b66122f65ba7560e7406446630d8d5f",
+  "launcher_sha256": "7c5cfd048fdb97dcb1ca70b63c2457592cac1520bd59148228cb5870044f80e8",
+  "evaluator_sha256": "364ed974dd5f815ff1695deb6580f98c7a0972f561d3e56b3f0e27fa745d60b4",
+  "output_count_at_authorization": 0,
+  "phase17_authorized": false,
+  "terminal_rule": "STOP_AT_PHASE16_CONFIRMATION_DECISION_BEFORE_PHASE17"
+}

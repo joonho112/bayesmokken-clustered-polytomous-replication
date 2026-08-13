@@ -1,0 +1,31 @@
+{
+  "schema_version": "paperA-v4-phase17-empirical-application-authority-v1",
+  "recorded_at_utc": "2026-07-27T12:13:59Z",
+  "authority_source": "author instruction",
+  "authority_text": "AUTHORIZE_PHASE17_IN_FULL_STOP_BEFORE_PHASE18",
+  "status": "AUTHORIZED_PHASE17_TO_G17_ONLY",
+  "parent_phase16": {
+    "closure_path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-final-closure-receipt-v1.json",
+    "closure_sha256": "471298962c9e0bb293d05c0219ed9afbe40468656576a422ff950021a92eb873",
+    "decision_path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-confirmation-decision-v1.json",
+    "decision_sha256": "3f2bd23d58129b01a7b3f100b33f3927aef4171cfcc9f05f2756af9ae8dd8964",
+    "decision": "CONFIRM_CLUSTER_POLYTOMOUS_METHOD"
+  },
+  "locked_method": {
+    "path": "codebase/research/v4/cluster-polytomous/validation/artifacts/v4-phase15-final-method-lock-v1.json",
+    "sha256": "190d6597754461e2251c6c0cfa51dc3207b04e532819d6d0ba144eebb28b8650",
+    "gamma_cluster": -1.5,
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1"
+  },
+  "authorized_scope": {
+    "phase": 17,
+    "work": ["outcome-blind SWMDK empirical protocol lock", "fixed-scale high-precision random-weight execution", "primary respondent and equal-cluster sensitivity analysis", "prespecified comparator and diagnostic analysis", "G17 empirical application gate", "machine-readable evidence and QMD+HTML log"],
+    "autonomous_repairs_within_scope": true,
+    "heavy_compute_provider": "AWS_ONLY"
+  },
+  "explicitly_not_authorized": ["Phase 18 package or application architecture", "production API changes", "item reselection or T-AISP", "scale modification or reverse-key changes", "post-outcome gamma tuning", "formal H threshold decision", "manuscript drafting or journal repositioning", "GCP access or use"],
+  "output_count_at_authorization": 0,
+  "required_stop": "STOP_AT_G17_BEFORE_PHASE18",
+  "phase18_authorized": false
+}

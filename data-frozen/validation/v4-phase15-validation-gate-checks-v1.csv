@@ -1,0 +1,13 @@
+"method_role","criterion","pass"
+"selected_training_candidate","respondent_regular_coverage",TRUE
+"selected_training_candidate","equal_cluster_regular_coverage",TRUE
+"selected_training_candidate","minimum_regular_cell_coverage",TRUE
+"selected_training_candidate","minimum_G_group_coverage",TRUE
+"selected_training_candidate","minimum_size_mechanism_group_coverage",TRUE
+"selected_training_candidate","maximum_invalid_fraction",TRUE
+"selected_training_candidate","maximum_mean_length_to_raw_ratio",TRUE
+"raw_fallback","respondent_regular_coverage",FALSE
+"raw_fallback","equal_cluster_regular_coverage",FALSE
+"raw_fallback","minimum_G_group_coverage",TRUE
+"raw_fallback","minimum_size_mechanism_group_coverage",TRUE
+"raw_fallback","maximum_invalid_fraction",TRUE

@@ -1,0 +1,12 @@
+# Frozen data and exhibits are binary or byte-sensitive: no EOL translation,
+# ever. A CRLF rewrite would silently break every parity gate.
+*.gz        binary
+*.rds       binary
+*.pdf       binary
+*.png       binary
+*.tar.gz    binary
+
+# LaTeX floats are compared with cmp; keep them byte-exact.
+*.tex       -text
+*.csv       -text
+*.tsv       -text

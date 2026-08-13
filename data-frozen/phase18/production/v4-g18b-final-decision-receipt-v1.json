@@ -1,0 +1,102 @@
+{
+  "schema_version": "paperA-v4-g18b-final-decision-receipt-v1",
+  "generated_at_utc": "2026-07-27T15:12:21Z",
+  "status": "STEP18_2_TO_G18B_COMPLETE",
+  "decision": "PACKAGE_READY_FOR_DEDICATED_MANUSCRIPT",
+  "authority": {
+    "status": "AUTHORIZED_STEP18_2_TO_G18B_ONLY",
+    "path": "codebase/research/v4/cluster-polytomous/phase18-production/governance/v4-step18-2-production-authority-v1.json",
+    "sha256": "4fd88d5a0e1b7346b742d7a5301562ca9cef7ee9766e696387422daa87dbc15d",
+    "prewrite_lock": "PASS_FROZEN_BEFORE_PACKAGE_INTEGRATION",
+    "package_changes_at_lock": 0,
+    "manuscript_changes_at_lock": 0
+  },
+  "immutable_parent": {
+    "G18A_status": "PHASE18_1_TO_G18A_COMPLETE",
+    "G18A_decision": "PRODUCTION_API_ELIGIBLE_AT_G18A",
+    "G18A_receipt_path": "codebase/research/v4/cluster-polytomous/phase18-review/artifacts/v4-g18a-final-decision-receipt-v1.json",
+    "G18A_receipt_sha256": "52de9d96785b77baefeca5e015c476458473169e51ec5865963c9c13861a55c5",
+    "G18A_manifest_path": "codebase/research/v4/cluster-polytomous/phase18-review/artifacts/v4-phase18-final-evidence-manifest-v1.csv",
+    "G18A_manifest_sha256": "d49f6335802593376e82ffa6cf39e935fa113f449f456609637ed6377d7934c1",
+    "files_verified": 28,
+    "files_required": 28
+  },
+  "frozen_contracts": {
+    "API_path": "codebase/research/v4/cluster-polytomous/phase18-production/protocol/v4-step18-2-public-api-contract-v1.yml",
+    "API_sha256": "2db865fba7d3b20b60982445353ba1b20d726b646251332772d3ff1969aff2ac",
+    "G18B_protocol_path": "codebase/research/v4/cluster-polytomous/phase18-production/protocol/v4-g18b-production-integration-protocol-v1.yml",
+    "G18B_protocol_sha256": "90e00d5d8b0dda5389ec1c80afa442f089cd89c576e9c40d35ee2d50827d19bb",
+    "port_map_path": "codebase/research/v4/cluster-polytomous/phase18-production/protocol/v4-step18-2-port-map-v1.csv",
+    "port_map_sha256": "c4f7aa2d60afd2998a1175f4d7414a32e47d85beed4b2c03c55a3e18395d40d5"
+  },
+  "production_package": {
+    "path": "codebase/bayesmokken",
+    "public_entry_points": ["mokken_h", "bb_mokken_h", "bayes_mokken_h"],
+    "deterministic_class": "bm_empirical_h",
+    "random_weight_class": "bm_bb_h",
+    "binary_path_preserved": true,
+    "ordinal_finite_support_integrated": true,
+    "respondent_target_integrated": true,
+    "equal_cluster_target_integrated": true,
+    "two_stage_HBB_integrated": true,
+    "gamma_cluster": -1.5,
+    "respondent_law_id": "V4-PRI-TWO-STAGE-HBB-RESP-v1",
+    "equal_cluster_law_id": "V4-SENS-TWO-STAGE-HBB-CLUSTER-v1",
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1"
+  },
+  "verification": {
+    "integration_audit_passed": 18,
+    "integration_audit_total": 18,
+    "package_test_files": 24,
+    "package_test_blocks": 77,
+    "package_expectations": 791,
+    "package_failures": 0,
+    "package_warnings": 0,
+    "package_skips": 0,
+    "LP_oracle_fixtures": 25,
+    "LP_oracle_maximum_absolute_difference": 1.4459544672718039e-12,
+    "R_CMD_check_errors": 0,
+    "R_CMD_check_warnings": 0,
+    "R_CMD_check_notes": 0,
+    "R_CMD_check_status": "OK"
+  },
+  "blocking_gate": {
+    "passed": 19,
+    "total": 19,
+    "failed": 0,
+    "path": "codebase/research/v4/cluster-polytomous/phase18-production/results/v4-g18b-gate-criteria-v1.csv",
+    "sha256": "a15d63bc7473cb087805020b43f6246208ce5ea9fecec4955dfdf5f2de0e9b47"
+  },
+  "reproducibility": {
+    "source_tarball_path": "codebase/research/v4/cluster-polytomous/phase18-production/reproducibility/bayesmokken_0.0.0.9000.tar.gz",
+    "source_tarball_sha256": "0bf498cb9927c6af402426675ee7d896d58ef739b2d9f65c6bde007216738d97",
+    "check_log_path": "codebase/research/v4/cluster-polytomous/phase18-production/reproducibility/bayesmokken-R-CMD-check-00check.log",
+    "check_log_sha256": "16b7242f8f11d09beb3432f90143c7bc1f124c2dcf44aaf0dcc6e4bb0cb327c2",
+    "reference_RDS_path": "codebase/research/v4/cluster-polytomous/phase18-production/artifacts/v4-step18-2-reference-objects-v1.rds",
+    "reference_RDS_sha256": "da22265aa106eb94335859bc4fab273e581451ed1ffd87063d818063e078bd0e",
+    "session_info_path": "codebase/research/v4/cluster-polytomous/phase18-production/artifacts/v4-step18-2-session-info-v1.txt",
+    "session_info_sha256": "98e9dd9eb87ea4e5af5906ac679207fb0162efce50ca34d76e2e8fc8204afdc1",
+    "evidence_manifest_path": "codebase/research/v4/cluster-polytomous/phase18-production/artifacts/v4-g18b-final-evidence-manifest-v1.csv",
+    "evidence_manifest_sha256": "f1c38fc27ef8c1e8402ffb4b66a3b1407adbe42674e14a0c5577c93cceb97f85",
+    "evidence_files": 23,
+    "QMD_path": "log/043_step18-2-production-integration-and-g18b.qmd",
+    "QMD_sha256": "b19c376e7da3396d0152f9377caab33cccf43e8b8148148a13dc454637646a84",
+    "HTML_path": "log/043_step18-2-production-integration-and-g18b.html",
+    "HTML_sha256": "5d2cf05249bf6af84ec19ebb78ecf9381011f9d2cbc7e35a827f7a9071ed5b31"
+  },
+  "boundary": {
+    "prohibited_post_lock_files": 0,
+    "manuscript_drafted": false,
+    "new_simulation_or_empirical_outcome": false,
+    "method_or_gamma_retuned": false,
+    "package_released": false,
+    "repository_pushed": false,
+    "externally_published": false
+  },
+  "next_authority_required": true,
+  "manuscript_authorized": false,
+  "package_release_authorized": false,
+  "phase18_post_G18B_authorized": false,
+  "terminal_state": "STOP_AT_G18B_BEFORE_MANUSCRIPT_OR_RELEASE"
+}

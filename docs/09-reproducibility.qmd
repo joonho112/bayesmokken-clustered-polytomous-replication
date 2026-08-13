@@ -1,0 +1,134 @@
+# Reproducibility and known limits
+
+## The gates
+
+| Gate | Asks | Result |
+|---|---|---|
+| `verify_reproduction.R` | did the build reproduce the paper's exhibits? | **16 / 16** |
+| `verify_manuscript_numbers.R` | does the rebuilt ledger agree with the paper? | digest match + **69 / 69** |
+| `verify_semantics.R` | registers, exact inputs, claims, chart direction, the defect | **21 / 21** |
+| `verify_governance.R` | does the receipt chain close? | **30 / 30** |
+| `verify_quarantine.py` | can runnable code execute the archival pipeline? | **0 findings** |
+| `disclosure_scan.py` | does the exact release set contain a disclosure or licence defect? | **0 findings** |
+| `oracles/run_oracles.R` | do published, exhaustive, and boundary oracles agree? | **13 / 13** |
+| `negative_controls.sh` | do the gates fail when they should? | **19 / 19** |
+| `cold_start_rehearsal.sh` | does it work from a bare copy? | **15 / 15** |
+
+## The archival defect
+
+`reference-code/R/core/ordinal-h.R` ships with a known defect: its transport
+helper advances on a 1e-12 mass tolerance and can drop a valid tiny **positive**
+mass. The corrected kernel lives in the separate `bayesmokken` package.
+
+The helper compares each **current residual atom mass** with its tolerance,
+before and after allocation. Depending on the pointer state, that residual can
+be an original marginal category mass or a cross-CDF residual. Consequently the
+exact vulnerable set is inclusive: (0 < \text{residual} \le 10^{-12}).
+
+The claim is that no locked result is affected. **This package checks it by
+direct execution.** `verification/archival/verify_archival_safety.R` rebuilds
+all 168 population-truth configurations that called this helper: 36 Phase 14,
+48 Phase 15 training, 36 Phase 15 validation, and 48 Phase 16.
+
+Across those 168 configurations:
+
+| | |
+|---|---|
+| residuals in `(0, 1e-12]` | **0** |
+| smallest positive marginal category mass | **0.0155404871882598** |
+| smallest positive cross-CDF gap | **1.93915947650503e-05** |
+| maximum `abs(old H - corrected H)` | **0** |
+| corrected-kernel mass-conservation failures | **0** |
+
+Literal zero is safe: the old `<=` check advances it, and simultaneous exact
+exhaustion advances both pointers. The Phase 16 table has eight **rows whose
+scalar minimum is zero**; that is not a count of literal zero gaps. The full
+certificate records all positive marginal masses, all positive cross-CDF gaps,
+and direct old/corrected results instead of treating one scalar minimum as a
+complete risk certificate.
+
+The verifier also runs synthetic fixtures at `0.5e-12`, exactly `1e-12`, and
+just above `1e-12`, plus an edge-mass case and literal-zero case. The first two
+inclusive risk cases make old and corrected results diverge; the above-boundary
+and literal-zero cases agree.
+
+Per-replication point and bootstrap-draw calculations use the survival/`pmin`
+kernel and bypass the defective helper. The helper was used for deterministic
+population truths; the 168-row certificate therefore covers every locked
+execution path to which this particular defect applies.
+
+## The independent oracle lane
+
+Two external checks:
+
+**Transport, solved two ways.** A linear-programming solution against the
+two-pointer implementation the method uses, across an exhaustive grid:
+**3,362 cases across 32 strata, 0 failures**, maximum
+|LP − corrected two-pointer| = 7.11e-15. A separate five-case boundary grid
+covers literal zero, residuals below/at/above `1e-12`, and a tiny edge mass.
+
+**Koopman et al. (2022), reproduced.** Both scales recomputed from
+`data(SWMDK)` with `mokken`:
+
+| Scale | Published | Recomputed |
+|---|---|---|
+| teacher | 0.62 | 0.6199 |
+| classmate | 0.592 | 0.5923 |
+
+And this article's own locked teacher value to |diff| = 5.76e-14.
+
+::: {.callout-important}
+An oracle failure is a finding about the **method**, not about the packaging.
+Do not reconcile it against the locked artifact.
+:::
+
+## A gate that cannot fail is not a gate
+
+| Control | Gate |
+|---|---|
+| corrupt a float | `verify_reproduction` |
+| perturb one ledger value | `verify_manuscript_numbers` |
+| **reverse the calibration-direction claim** | `verify_semantics` |
+| plant an absolute path | `disclosure_scan` |
+| add a file with no ledger verdict | `disclosure_scan` |
+| drop the SWMDK object-digest record | `verify_governance` |
+| **delete the archival-defect banner** | `verify_semantics` |
+| change nothing | all five must pass |
+
+The direction control matters here because this calibration **tightens** while
+the companion paper's widens. A check that merely asserted "the calibration
+changes the length" would pass on either, and would be worthless.
+
+## Known limits
+
+**Cross-platform raster identity.** Figure parity hashes a `pdftoppm` render at
+150 dpi, so the hash depends on the Poppler build. Matching geometry with
+differing pixels is more likely a renderer difference than a scientific one.
+
+**This reproduces the analysis snapshot, not the production runs.** The Phase 16
+confirmation and Phase 17 application ran on AWS and are documented, not
+enabled.
+
+**The application data is not ours to ship.** Every application number is
+conditional on the `SWMDK` object in your `mokken` install. The lock makes a
+mismatch loud rather than silent, but it cannot prevent one.
+
+**The receipt chain is scoped** to the v4 receipts; see
+[governance](08-governance.qmd).
+
+**The manuscript-text checks live with the manuscript** — the needle half of
+each concordance check, and the six-phrase claim-boundary audit, run where the
+`.tex` is.
+
+## Two traps worth knowing
+
+`grep` silently skips Latin-1 TeX logs as binary — zero hits can mean "did not
+read". Use `grep -a`.
+
+`data.table::fread()` given a `.gz` path decompresses it in place, mutating the
+frozen snapshot. The readers here open `gzfile()` connections.
+
+## Environment
+
+`sessioninfo.txt` records R 4.6.0 on aarch64-apple-darwin23, `mokken` 3.1.2,
+and the tool paths.

@@ -1,0 +1,3 @@
+"cell_id","stage","target","H","numerator","denominator","minimum_pair_denominator","minimum_internal_cdf_gap","exact_knot_count","near_knot_count"
+"P16-C011","confirmation","respondent",0.482789460559569,9.32020197919219,19.3048994242537,1.93048994242537,0,40,40
+"P16-C011","confirmation","cluster",0.482789460559569,9.32020197919219,19.3048994242537,1.93048994242537,0,40,40

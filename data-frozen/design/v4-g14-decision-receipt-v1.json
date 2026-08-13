@@ -1,0 +1,42 @@
+{
+  "schema_version": "paperA-v4-g14-decision-receipt-v1",
+  "generated_at_utc": "2026-07-27T04:02:16Z",
+  "decision": "PROCEED_TO_CLUSTER_POLYTOMOUS_DEVELOPMENT",
+  "phase14_status": "COMPLETE",
+  "blocking_gates": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0
+  },
+  "advisory_gates": {
+    "total": 3,
+    "passed": 1,
+    "flagged": 2
+  },
+  "scientific_interpretation": "Raw two-stage hierarchical BB is computationally and inferentially feasible in the Phase 14 design but is conservative relative to nominal coverage and the delta comparator; development may proceed only under a new Phase 15 authority.",
+  "restrictions": ["primary raw HBB is feasible but conservative", "exact-knot results are diagnostic only", "original-source crosswalk remains unresolved", "SWMDK results are prototype and nonconfirmatory", "no production or package claim", "binary gamma 0.25 not transported", "Phase 15 not authorized"],
+  "key_metrics": {
+    "path": "codebase/research/v4/cluster-polytomous/artifacts/v4-phase14-key-metrics-v1.json",
+    "sha256": "35fea79bc15bd9ff3665bf482d634d559475b950365f7a7a7a00855f67e6b748"
+  },
+  "gate_criteria": {
+    "path": "codebase/research/v4/cluster-polytomous/artifacts/v4-g14-gate-criteria-v1.csv",
+    "sha256": "9f5e38a8615551c69f81681e0bea1f839662485428655f3057174715b54b9a26"
+  },
+  "evidence_manifest": {
+    "path": "codebase/research/v4/cluster-polytomous/artifacts/v4-phase14-evidence-manifest-v1.csv",
+    "rows": 58,
+    "sha256": "f206f8e37279a7b8f88f23c5e2e943b833541ea871fea5d09751823e00c0e2a6"
+  },
+  "protected_baseline": {
+    "rows": 103,
+    "hashes_matching": 103,
+    "hashes_mismatching": 0
+  },
+  "production_authorized": false,
+  "package_change_authorized": false,
+  "manuscript_claim_upgrade_authorized": false,
+  "phase15_authorized": false,
+  "terminal_state": "STOP_AT_G14_BEFORE_PHASE15",
+  "next_step_if_user_authorizes": "Phase 15 development with a new outcome-blind DGP and method protocol"
+}

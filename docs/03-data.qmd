@@ -1,0 +1,111 @@
+# The frozen data
+
+Eight tiers, 28 MB, laid out along the chain that produced them:
+
+```
+Phase 14 pilot ──► Phase 15 training ──► Phase 15 held-out validation
+                                              │
+                                              ▼
+                          Phase 16 fresh 24-cell confirmation
+                                              │
+                                              ▼
+                        Phase 17 SWMDK application ──► Phase 18 crosswalk
+```
+
+| Tier | Files | Size |
+|---|---:|---:|
+| `empirical/` — 12 × 99,999 draws, artifacts, results | 52 | 18.6 MB |
+| `confirmatory-raw/` — **86,400 raw replication rows** | 72 | 5.0 MB |
+| `pilot/` | 23 | 4.5 MB |
+| `confirmatory/`, `phase18/`, `design/`, `development/`, `validation/` | 60 | 0.2 MB |
+
+Full column documentation: `data-frozen/CODEBOOK.md`.
+
+## Reading it
+
+```r
+source("common/R/paths.R"); source("common/R/io.R")
+
+raw   <- read_confirmatory_raw()   # 86,400 rows, binds all 24 gzipped files
+draws <- read_draws(task = 1)      # 99,999 draws from P17-T01
+swmdk <- read_swmdk()              # from mokken, digest asserted on every load
+```
+
+`verification/verify_numeric_basis.R` validates the complete raw layer: all 24
+Phase 16 cells, all 12 Phase 17 draw streams, their manifests and receipts,
+batch/draw identities, and their locked summaries. It is run by the cold-start
+rehearsal and is independent of the exhibit builder.
+
+::: {.callout-warning}
+Never hand a `.gz` path to `data.table::fread()` — it decompresses in place and
+mutates the frozen snapshot. The readers open `gzfile()` connections.
+:::
+
+## The application data does not ship
+
+`SWMDK` is distributed inside the `mokken` package:
+
+```r
+library(mokken); data(SWMDK)
+```
+
+### What was locked
+
+The Phase 17 protocol recorded these facts **before** the application ran:
+
+| | |
+|---|---|
+| `mokken` version at lock | 3.1.2 |
+| SHA-256 of the object | `e1257ff16f821ef3…70797` |
+| Respondents | 639 |
+| Clusters (`classId`) | 30 |
+| Cluster size range | 5 – 29 |
+| Score support | 1 – 5 |
+
+```r
+digest::digest(SWMDK, algo = "sha256")
+#> e1257ff16f821ef3cf6c5eed88a91ae2ffa5a067e12603f32c02660d47270797
+```
+
+The digest is of the **data frame as loaded**; `as.matrix(SWMDK)` gives a
+different value, and `config.yml` records which one the lock means.
+
+::: {.callout-important}
+If the digest does not match, the `mokken` you have installed ships different
+data from the one the application ran on. `read_swmdk()` stops with both
+digests and both version numbers. **That is a finding about the data source**,
+not something to work around — every application number in the paper is
+conditional on this object.
+:::
+
+### Where SWMDK comes from
+
+A documented subset of the Dutch COOL^5-18^ cohort study, with items from
+Peetsma and Van der Veen and subset construction following Koopman et al.
+(2022). None of it is the authors' to relicense.
+
+## The confirmation raw tier
+
+24 per-cell files, **86,400 rows**. Load-bearing, not archival:
+`01_build_key_numbers.R` derives the 48-row all-cell summary from it and
+cross-checks against the locked regular-cell artifact at 1e-12. That summary
+feeds `tabF1_cells.tex` and `FigF1_cells.pdf`.
+
+Selection: `candidate == TRUE` and `gamma_cluster == -1.5` gives 19,200 rows,
+all with `invalid_fraction == 0` and `total_draws == 499`.
+
+Each cell also ships a truth file, whose `minimum_internal_cdf_gap` column is
+what the [archival-defect check](09-reproducibility.qmd#the-archival-defect)
+reads.
+
+## A note on paths inside the locked artifacts
+
+Seventy-five shipped receipts record the project-relative path each file had in
+the research tree — strings beginning `codebase/research/v4/cluster-polytomous/…`.
+
+Those are **provenance, not dependencies**. The executable paths registered in
+`provenance/runnable-code.csv` do not source, import, execute, or require that
+tree. Verification is allowed to read copied receipts and archival code as
+data—for example, to check digests and banners—so a package-wide string search
+is not the boundary. The paths remain legible because editing locked evidence
+would break its digests and defeat the point of shipping it.

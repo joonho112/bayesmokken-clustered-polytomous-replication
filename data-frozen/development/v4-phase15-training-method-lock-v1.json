@@ -1,0 +1,45 @@
+{
+  "schema_version": "paperA-v4-phase15-training-method-lock-v1",
+  "generated_at_utc": "2026-07-27T04:31:36Z",
+  "status": "LOCKED_FOR_HELD_OUT_VALIDATION",
+  "selection_label": "CALIBRATED_CANDIDATE",
+  "selected_gamma_cluster": -1.5,
+  "selected_respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+  "selected_equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1",
+  "selection_reason": "Shortest primary-target mean interval among candidates meeting every frozen training eligibility criterion.",
+  "eligible_candidate_count": 2,
+  "validation_outcomes_accessed": false,
+  "validation_output_count_at_lock": 0,
+  "training": {
+    "cells": 24,
+    "scheduled_replications": 2880,
+    "observed_replications": 2880,
+    "method_rows": 48960,
+    "candidate_regular_rows": 20160
+  },
+  "selected_training_metrics": {
+    "gamma_cluster": -1.5,
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1",
+    "respondent_coverage": 0.96071428571428574,
+    "equal_cluster_coverage": 0.95892857142857146,
+    "respondent_mean_interval_length": 0.095477041461836679,
+    "equal_cluster_mean_interval_length": 0.099378126968281494,
+    "minimum_G_group_coverage": 0.93833333333333335,
+    "minimum_size_mechanism_group_coverage": 0.95277777777777772,
+    "maximum_invalid_fraction": 0,
+    "positive_multiplier_all_cells": true,
+    "eligible": true,
+    "failed_checks": ""
+  },
+  "source_hashes": {
+    "frozen_protocol_sha256": "248b45f0a7beab829086a79f7335bd88cff31096968daf8649b0fec49ba2d69c",
+    "protocol_lock_sha256": "d67f8a052d89b74466167a7561baceab4cddc51177a61f503fa7c9a80e9a805b",
+    "raw_manifest_sha256": "f3dd53d2fa067bf8d8c6a9fac0497025a4ba21c0ec4661b106c711a819b90a36",
+    "candidate_summary_sha256": "5d09490f6fb63b4d0290046e348d762210c5f0e02e25b5825a4cce3bf7ebf76d",
+    "subgroup_summary_sha256": "6619ead8e80dc95c4c8a02f04f6bebc1c7b1a04aeadcfc42bed49903b3545762",
+    "decision_table_sha256": "3ce65d53a25cec1bae20fa95120aae38cda9d62354cd8c2d3a7693bf63302d48"
+  },
+  "phase16_confirmation_authorized": false,
+  "terminal_rule": "STOP_AT_PHASE16_PROTOCOL_READY_BEFORE_CONFIRMATION"
+}

@@ -1,0 +1,5 @@
+"scale","target","point_H","target_difference_from_respondent","minimum_internal_cdf_gap","exact_knot_count","near_knot_count"
+"teacher","respondent",0.619919910686637,0,0,2,2
+"teacher","equal_cluster",0.622319152142876,0.00239924145623871,0.00120605056722534,0,0
+"classmate","respondent",0.592308560081349,0,0,2,2
+"classmate","equal_cluster",0.582943580481479,-0.0093649795998697,0.000617283950617286,0,0

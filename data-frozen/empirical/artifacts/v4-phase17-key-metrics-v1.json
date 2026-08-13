@@ -1,0 +1,63 @@
+{
+  "schema_version": "paperA-v4-phase17-key-metrics-v1",
+  "generated_at_utc": "2026-07-27T12:35:38Z",
+  "decision": "PROCEED_TO_PHASE18_REVIEW",
+  "gate": {
+    "passed": 14,
+    "total": 14,
+    "failed": 0
+  },
+  "dataset": {
+    "object": "mokken::SWMDK",
+    "respondents": 639,
+    "clusters": 30,
+    "cluster_size_range": [5, 29],
+    "minimum_fixed_category_count": 2,
+    "minimum_fixed_category_mass": 0.0031298904538341202
+  },
+  "method": {
+    "gamma_cluster": -1.5,
+    "width_multiplier_at_G_30": 0.72613872124741685,
+    "selected_to_raw_length_ratio": 0.72613872124741685,
+    "observed_selected_to_raw_length_ratio_range": [0.72613872124741574, 0.72613872124741918],
+    "maximum_invalid_fraction": 0,
+    "maximum_split_half_endpoint_difference": 0.00087532712968130299,
+    "split_half_threshold": 0.0050000000000000001
+  },
+  "teacher": {
+    "respondent_point_H": 0.61991991068663699,
+    "respondent_selected_interval": [0.572846061948732, 0.66920277625768698],
+    "respondent_selected_length": 0.096356714308955205,
+    "equal_cluster_point_H": 0.62231915214287603,
+    "equal_cluster_selected_interval": [0.57428467169888597, 0.66983948146037398],
+    "target_difference": 0.0023992414562387099,
+    "ICC": 0.16900000000000001,
+    "respondent_exact_knot_count": 2
+  },
+  "classmate": {
+    "respondent_point_H": 0.59230856008134902,
+    "respondent_selected_interval": [0.54305577194703103, 0.64083913870768106],
+    "respondent_selected_length": 0.097783366760649595,
+    "equal_cluster_point_H": 0.58294358048147898,
+    "equal_cluster_selected_interval": [0.53472391320944201, 0.63447883959696905],
+    "target_difference": -0.0093649795998696998,
+    "ICC": 0.183,
+    "respondent_exact_knot_count": 2
+  },
+  "comparator_context": {
+    "selected_to_delta_length_ratio": {
+      "teacher": 0.95985875984315783,
+      "classmate": 0.98540852382731026
+    },
+    "working_independence_is_a_comparator_not_the_target": true
+  },
+  "interpretation": {
+    "primary_target": "respondent-weighted cluster-superpopulation posterior-functional interval",
+    "equal_cluster_is_sensitivity": true,
+    "formal_H_threshold_decision": false,
+    "exact_knot_is_empirical_diagnostic_only": true,
+    "source_crosswalk_status": "SCHEDULED_UNRESOLVED_PRODUCTION_BLOCKER"
+  },
+  "phase18_authorized": false,
+  "terminal_state": "STOP_AT_G17_BEFORE_PHASE18"
+}

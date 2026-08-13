@@ -1,0 +1,83 @@
+schema_version: paperA-v4-estimand-and-sampling-contract-v1
+status: FROZEN_FOR_PHASE14_FEASIBILITY
+authority:
+  addendum: codebase/research/v4/cluster-polytomous/governance/v4-phase14-autonomous-authority-addendum-v1.json
+  scope: phase14_steps_14_2_to_14_6_and_g14
+scale_functional:
+  item_set: fixed_before_inference
+  response: finite_ordered_polytomous
+  score_support: declared_strictly_increasing_numeric
+  numerator: sum_pairwise_population_covariances
+  pair_denominator: comonotone_maximum_covariance_given_margins
+  scale_denominator: sum_pair_denominators
+  aggregation: quotient_of_sums_not_mean_pair_H
+  item_selection: prohibited
+  reverse_key_change: prohibited
+sampling_unit:
+  independent_superpopulation_unit: cluster
+  observed_unit: respondent_nested_in_cluster
+  primary_rate: sqrt_G
+  respondent_iid_interpretation: prohibited
+targets:
+  respondent_weighted:
+    id: V4-TARGET-RESPONDENT-WEIGHTED-v1
+    symbol: F_R
+    definition: sum_g_m_g_over_N_times_F_g
+    sample_point_weight: 1_over_N_per_respondent
+    primary_candidate: true
+    informative_size: target_is_size_weighted_joint_cluster_size_law
+  equal_cluster:
+    id: V4-TARGET-EQUAL-CLUSTER-v1
+    symbol: F_C
+    definition: one_over_G_sum_g_F_g
+    sample_point_weight: 1_over_G_m_g_per_respondent
+    primary_candidate: false
+    role: sensitivity_and_distinct_estimand
+conditioning:
+  pilot:
+    cluster_effects: resampled_across_replications
+    cluster_sizes: generated_by_declared_mechanism
+    repeated_sampling: unconditional_over_clusters_sizes_and_respondents
+  empirical_swmdk:
+    cluster_ids: observed_and_fixed_for_prototype
+    cluster_sizes: observed_and_conditioned_for_prototype
+    claim: nonconfirmatory_method_comparison_only
+cluster_size_mechanisms:
+  balanced:
+    informative: false
+    rule: fixed_20_per_cluster
+  swmdk_like:
+    informative: false
+    rule: sample_with_replacement_from_observed_SWMDK_sizes_5_to_29
+  informative:
+    informative: true
+    rule: 5_plus_round_24_times_plogis_cluster_effect
+asymptotic_domains:
+  primary: G_increases_cluster_sizes_bounded_between_5_and_29
+  increasing_cluster_size: not_claimed_in_phase14
+missingness:
+  target: complete_scale
+  pilot_missingness: none
+  swmdk_fixed_items_missingness: none
+  future_missing_data: out_of_scope
+regularity:
+  regular:
+    active_transport_path: separated
+    phase14_claim: feasibility_candidate
+  near_knot:
+    active_transport_path: locally_close_to_switch
+    phase14_claim: diagnostic_and_restricted
+  exact_knot:
+    active_transport_path: directionally_nonsmooth_possible
+    phase14_claim: diagnostic_only
+swmdk:
+  dataset: mokken::SWMDK
+  cluster_id: classId
+  teacher_items: [Item1, Item2, Item3, Item4, Item5, Item6]
+  classmate_items: [Item8, Item9, Item10, Item11, Item13]
+  reselection: prohibited
+interpretation:
+  phase14_interval: prototype_or_feasibility_confidence_procedure
+  posterior_credible_interval: prohibited
+  population_valid_empirical_interval: prohibited_before_confirmation
+stop_rule: g14_before_phase15

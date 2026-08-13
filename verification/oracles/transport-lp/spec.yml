@@ -1,0 +1,49 @@
+schema_version: ordinal-transport-spec-v1
+status: PROVISIONAL_PROOF_ORACLE_ONLY
+production_authorized: false
+source_crosswalk: BLOCKED
+domain:
+  supports: finite_ordered_numeric
+  minimum_categories: 1
+  scores:
+    finite: true
+    strictly_increasing: true
+    consecutive_required: false
+    tied_scores_allowed: false
+  masses:
+    finite: true
+    nonnegative: true
+    normalized_sum: 1.0
+    unused_declared_categories: allowed_zero_mass
+functional:
+  maximum_product: integral_0_1_Qx_u_Qy_u_du
+  maximum_covariance: maximum_product_minus_mu_x_mu_y
+  coupling: comonotone_upper_quantile
+algorithm_candidate:
+  name: cumulative_mass_two_pointer
+  complexity: O(Kx + Ky)
+oracle:
+  name: transportation_linear_program
+  independent_from_algorithm_candidate: true
+  objective: maximize_sum_pi_ab_x_a_y_b
+  constraints:
+    - nonnegative_cells
+    - declared_x_marginals
+    - declared_y_marginals
+tolerances:
+  mass_sum: 1.0e-12
+  mass_residual: 1.0e-10
+  value_identity: 1.0e-10
+  zero_tol: 1.4210854715202004e-14
+  eta_default: 1.4901161193847656e-8
+states:
+  zero: denominator_le_zero_tol
+  near_zero: zero_tol_lt_denominator_le_eta
+  positive: denominator_gt_eta
+  invalid: negative_nonfinite_or_invariant_failure
+forbidden:
+  - sort_rows_and_retain_unequal_row_weights
+  - min_of_marginal_variances
+  - correlation_denominator
+  - implicit_category_index_scores
+  - delete_zero_mass_declared_categories_from_provenance

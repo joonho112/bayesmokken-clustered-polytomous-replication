@@ -1,0 +1,90 @@
+# Getting started
+
+## Requirements
+
+The publication-parity build is declared for **macOS** because the published
+PDFs were produced with the Quartz device. It requires R ≥ 4.1 and twelve CRAN
+packages: `dplyr`, `tidyr`, `readr`, `ggplot2`, `scales`, `patchwork`, `tibble`,
+`ragg`, `yaml`, `digest`, `jsonlite`, and **`mokken`**.
+
+`mokken` is **required**, not optional — unlike in the companion Paper A
+package. The application data `SWMDK` is distributed inside it and no responses
+ship here.
+
+Four command-line tools: `pdfinfo`, `pdftoppm` (figure parity), `python3`
+(the disclosure scan), and `quarto` (the release-gated guide render).
+`bayesmokken` is optional.
+
+## Check the contract first
+
+```bash
+Rscript 00_setup.R
+```
+
+Reports what is missing and **installs nothing**. It reads the contract from
+`config.yml`, exercises a JSON receipt parse and a one-page Quartz PDF, and
+checks Quarto, so the declared and executed environment paths cannot drift.
+
+## Rebuild everything
+
+```bash
+Rscript exhibits/00_build_all.R
+```
+
+About five seconds: 7 figures (PDF + PNG), 8 LaTeX floats, and the 144-key
+ledger.
+
+::: {.callout-important}
+## Build order matters here for two reasons
+
+`01_build_key_numbers.R` runs first because it writes the ledger every other
+generator asserts against — and because it **also** derives
+`outputs/derived_p16_allcell_summary.csv` from the 86,400 raw Phase 16
+replication rows, cross-checking it against the locked regular-cell artifact at
+a 1e-12 tolerance. Both `07_tables.R` and `08_osm_figures.R` read that file.
+
+The driver enforces the order. Running the generators by hand out of order
+fails outright rather than silently.
+:::
+
+## Check it reproduced
+
+```bash
+Rscript verification/verify_reproduction.R
+#> 16 / 16 exhibits reproduce
+```
+
+The target is the **published manuscript build**, not this package's output.
+
+## Run everything from a bare copy
+
+```bash
+bash verification/cold_start_rehearsal.sh
+```
+
+Copies the package to a temporary location, deletes the build outputs, and runs
+the whole workflow **by absolute path from outside the copy**, under a directory
+whose name contains a space. Both details are deliberate: they catch path
+handling that only works when the working directory happens to be right, and R's
+habit of encoding spaces in `--file=` as `~+~`.
+
+## When it is not green
+
+| Symptom | Likely cause |
+|---|---|
+| `SWMDK digest does not match the Phase 17 lock` | Your `mokken` ships different data from the one the application ran on. A finding about the data source — see [the data chapter](03-data.qmd). |
+| `contract violation: … expected N rows` | A frozen tier was copied incompletely. That assertion working. |
+| A figure fails, geometry matches, pixels differ | Almost certainly a different Poppler build. |
+| A float differs | LaTeX has no rendering tolerance; something real changed. |
+| An oracle fails | A finding about the **method**, not the packaging. |
+
+## Running the pieces individually
+
+```bash
+Rscript verification/verify_manuscript_numbers.R   # ledger digest + 69 predicates
+Rscript verification/verify_semantics.R            # registers, claims, the defect check
+Rscript verification/verify_governance.R           # the receipt chain
+python3 verification/disclosure_scan.py            # includes the A/B severance check
+Rscript verification/oracles/run_oracles.R         # LP vs two-pointer; Koopman (2022)
+bash    verification/negative_controls.sh          # do the gates fail when they should
+```

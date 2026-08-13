@@ -1,0 +1,42 @@
+{
+  "schema_version": "paperA-v4-phase16-final-closure-receipt-v1",
+  "generated_at_utc": "2026-07-27T11:40:20Z",
+  "decision": "CONFIRM_CLUSTER_POLYTOMOUS_METHOD",
+  "status": "PHASE16_CONFIRMATION_COMPLETE",
+  "method": {
+    "gamma_cluster": -1.5,
+    "respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+    "equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1"
+  },
+  "blocking_gates": {
+    "passed": 7,
+    "total": 7,
+    "failed": 0,
+    "evidence_path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-confirmation-gate-evidence-v1.csv",
+    "evidence_sha256": "d1cf0249363b879b87c56f56d6411c5c1f867b100b24b39c47ffcf35fc96407b"
+  },
+  "closure_checks": {
+    "passed": 22,
+    "total": 22,
+    "failed": 0,
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-final-closure-checks-v1.csv",
+    "sha256": "65595d9059fe1a58d870e759a21a68c66c4e2940dcb8063936dcf69b7a7490f4"
+  },
+  "key_metrics": {
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-key-metrics-v1.json",
+    "sha256": "09e56f2ccbd4820100ddedf32d7b8524c50acabc558d6dda14616380c71fdac1"
+  },
+  "evidence_manifest": {
+    "path": "codebase/research/v4/cluster-polytomous/confirmatory/artifacts/v4-phase16-evidence-manifest-v1.csv",
+    "files": 23,
+    "sha256": "7706faae8cbb9e3bba59d2174eb9566e52fa0a7c28f1a36f60e8892117473967"
+  },
+  "compute": {
+    "workers": 24,
+    "instance_state": "stopped",
+    "gcp_accessed": false,
+    "gcp_used": false
+  },
+  "phase17_authorized": false,
+  "terminal_state": "STOP_AT_PHASE16_CONFIRMATION_DECISION_BEFORE_PHASE17"
+}

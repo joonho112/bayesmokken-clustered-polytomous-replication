@@ -1,0 +1,87 @@
+# The claim, in one page
+
+Mokken's scalability coefficient **H** is normally computed as if respondents
+were independent. They often are not: pupils sit in classrooms, patients in
+clinics, respondents in interviewer caseloads. This paper supplies an interval
+for polytomous H that accounts for that clustering, and whose coverage has been
+measured rather than assumed.
+
+## Two population targets, not one estimator
+
+The distinction the whole paper turns on, and the first thing the design fixes:
+
+| Target | Means |
+|---|---|
+| **respondent-weighted** | every respondent counts equally |
+| **equal-cluster** | every cluster counts equally |
+
+Under **informative cluster size** — when a cluster's size is associated with
+its scalability — these are *different population quantities*, not two
+estimators of one thing. Reporting "the" H without saying which is a category
+error, so the estimand contract requires the target to be **declared**, never
+inferred, and every locked summary carries a `target` column.
+
+## The method
+
+1. **A two-stage hierarchical Bayesian bootstrap**: resample clusters, then
+   respondents within clusters, under a declared weight law.
+2. **Compute H exactly under arbitrary weights** by finite comonotone
+   transport — not by an approximation that happens to be close.
+3. **Tighten** the resulting interval by a factor depending on the number of
+   clusters *G*.
+
+Step 3 runs the opposite way from the companion binary paper, and that is not
+an accident. The two-stage bootstrap is *conservative* before calibration —
+it over-covers — so the correction narrows rather than widens.
+
+## What the confirmation found
+
+A fresh 24-cell confirmation at **6,400 replications per target**, run after
+the calibration was frozen:
+
+| | Raw | **Calibrated** |
+|---|---|---|
+| respondent-weighted coverage | 99.75 % | **97.36 %** |
+| equal-cluster coverage | 99.63 % | **97.38 %** |
+| respondent-weighted mean length | 0.1167 | **0.0877** |
+
+The raw interval over-covers badly at ~99.7 %. The calibrated one lands near
+97.4 % — still conservative relative to 95 %, and about **25 % shorter**
+(length ratio 0.751).
+
+## The application
+
+`SWMDK`: **639 pupils in 30 classrooms**, cluster sizes 5–29, two prespecified
+six- and five-item scales.
+
+| Teacher scale | Value |
+|---|---|
+| respondent-weighted H | 0.6199 |
+| equal-cluster H | 0.6223 |
+| respondent-weighted 95 % CI | [0.5728, 0.6692] |
+| equal-cluster 95 % CI | [0.5743, 0.6698] |
+| width multiplier | 0.7261 |
+
+The two targets differ by 0.0024 here — small, but reported separately because
+the difference is a property of the population, not noise to be averaged away.
+
+12 tasks × 99,999 draws = **1,199,988 draws**, with zero invalid draws.
+
+## The boundary
+
+**This is a confidence interval, not a posterior credible interval.** The
+hierarchical Bayesian bootstrap is a resampling device; the property claimed is
+repeated-sampling coverage.
+
+Six phrases the article deliberately never asserts:
+
+> "first-ever" · "universally superior" · "new transport theorem" ·
+> "credible interval" · "posterior probabilit…" · "analytically derived"
+
+Each occurs in the manuscript only inside a negation or boundary statement, and
+a **frozen claim-eligibility register** — 14 claims, written at the source-review
+gate — governs the article's wording. It ships as Table H1, and
+`verify_semantics.R` asserts all 14 are transcribed.
+
+The comonotone transport result is **not** claimed as new: CL-03 in that
+register requires the predecessor credit to Andreadis (2017) to be given.

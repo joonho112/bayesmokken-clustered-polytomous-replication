@@ -1,0 +1,36 @@
+{
+  "schema_version": "paperA-v4-phase15-autonomous-authority-addendum-v1",
+  "recorded_at_utc": "2026-07-27T04:11:41Z",
+  "recorded_at_local": "2026-07-26T23:11:41-0500",
+  "authority_source": "author instruction",
+  "authority_text": "AUTHORIZE_PHASE15_DEVELOPMENT_AND_HELD_OUT_VALIDATION_STOP_AT_PHASE16_PROTOCOL_READY",
+  "parent_gate": {
+    "path": "codebase/research/v4/cluster-polytomous/artifacts/v4-g14-decision-receipt-v1.json",
+    "sha256": "461002f6708f7654351ed8d42eeafbe3dfbf214b3efa38b86780ae2fa3d71716",
+    "decision": "PROCEED_TO_CLUSTER_POLYTOMOUS_DEVELOPMENT"
+  },
+  "authorized_scope": {
+    "phase": 15,
+    "work": [
+      "outcome-blind DGP and method protocol lock",
+      "training-only method development",
+      "one candidate or RAW_ONLY training lock",
+      "disjoint held-out validation",
+      "final method or RAW_ONLY lock",
+      "Phase 16 protocol-ready gate and nonexecuted protocol"
+    ],
+    "autonomous_repairs_within_scope": true,
+    "heavy_compute_provider": "AWS_ONLY"
+  },
+  "explicitly_not_authorized": [
+    "Phase 16 fresh confirmation",
+    "test-time retuning or candidate replacement",
+    "production package changes",
+    "binary v3 mutation",
+    "SWMDK final empirical analysis",
+    "manuscript drafting or journal repositioning",
+    "GCP access or use"
+  ],
+  "required_stop": "STOP_AT_PHASE16_PROTOCOL_READY_BEFORE_CONFIRMATION",
+  "status": "AUTHORIZED_PHASE15_ONLY"
+}

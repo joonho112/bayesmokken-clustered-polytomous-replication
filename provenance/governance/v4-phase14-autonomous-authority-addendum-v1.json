@@ -1,0 +1,44 @@
+{
+  "schema_version": "paperA-v4-phase14-autonomous-authority-addendum-v1",
+  "recorded_at_utc": "2026-07-27T03:43:00Z",
+  "recorded_at_local": "2026-07-26T22:43:00-0500",
+  "authority_source": "author instruction",
+  "authority_text": "AUTHORIZE_STEPS_14_2_THROUGH_14_6_AND_G14_DECISION_STOP_BEFORE_PHASE15",
+  "parent_governance": {
+    "path": "codebase/research/v4/cluster-polytomous/governance/v4-cluster-polytomous-governance-manifest-v1.json",
+    "sha256": "d89caf5f5c21bfc38e85846089ff00ad4b1b9451f5881d3b211d5392a2672565",
+    "terminal_state_before_addendum": "STOP_AFTER_STEP_14_1_V4_FOUNDATION"
+  },
+  "authorized_scope": {
+    "phase": 14,
+    "steps": [
+      "14.2 ESTIMAND_AND_SAMPLING_LAW_CONTRACT",
+      "14.3 WEIGHT_LAW_AND_PROOF_OBLIGATIONS",
+      "14.4 ENGINE_ORACLE_COMPARATOR_TESTS",
+      "14.5 LOW_COST_FEASIBILITY_PILOT",
+      "14.6 SWMDK_PROTOTYPE",
+      "G14 FEASIBILITY_DECISION"
+    ],
+    "autonomous_repairs_within_scope": true,
+    "required_outputs": [
+      "research-only code and tests",
+      "prospectively locked low-cost pilot",
+      "fixed-scale SWMDK prototype",
+      "machine-readable artifacts and hashes",
+      "QMD and self-contained HTML log",
+      "exactly one G14 decision"
+    ]
+  },
+  "explicitly_not_authorized": [
+    "Phase 15 development or calibration",
+    "Phase 16 fresh confirmation",
+    "production package changes",
+    "binary v3 mutation or retuning",
+    "automatic transfer of binary gamma 0.25",
+    "SWMDK item reselection or T-AISP",
+    "manuscript drafting or journal repositioning",
+    "GCP access or use"
+  ],
+  "required_stop": "STOP_AT_G14_BEFORE_PHASE15",
+  "status": "AUTHORIZED_PHASE14_TO_G14_ONLY"
+}

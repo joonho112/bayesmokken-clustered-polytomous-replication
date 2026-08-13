@@ -1,0 +1,17 @@
+{
+  "schema_version": "paperA-v4-phase14-test-receipt-v1",
+  "generated_at_utc": "2026-07-27T03:54:29Z",
+  "status": "PASS",
+  "tests_total": 34,
+  "tests_passed": 34,
+  "tests_failed": 0,
+  "maximum_transport_discrepancy": 0,
+  "maximum_swmdk_mokken_difference": 5.7509552675583109e-14,
+  "phase13_point_difference": 0,
+  "output": {
+    "path": "codebase/research/v4/cluster-polytomous/tests/artifacts/v4-phase14-test-results-v1.csv",
+    "sha256": "44e5c650ea1c7a0029a9387b1bff4c2985b90ccd29da834dfea38db780a005a6"
+  },
+  "production_authorized": false,
+  "package_change_authorized": false
+}

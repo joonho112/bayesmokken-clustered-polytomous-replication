@@ -1,0 +1,71 @@
+schema_version: paperA-v4-weight-law-specification-v1
+status: FROZEN_FOR_PHASE14_FEASIBILITY
+interval:
+  level: 0.95
+  probabilities: [0.025, 0.975]
+  quantile_type: 8
+  calibration: none
+  endpoint_clipping: false
+  minimum_defined_fraction: 0.99
+laws:
+  - id: V4-CMP-IID-RESP-BB-v1
+    role: negative_control
+    target: working_independence_respondent
+    law: Dirichlet_N_1
+    normalization: sum_i_W_i_equals_1
+    cluster_valid_label: prohibited
+  - id: V4-CMP-ONE-STAGE-CLUSTER-BB-RESP-v1
+    role: comparator
+    target: V4-TARGET-RESPONDENT-WEIGHTED-v1
+    law: cluster_Dirichlet_with_fixed_within_cluster_empirical_distribution
+    formula: W_gi_equals_A_g_over_sum_h_m_h_A_h
+    uniform_point_identity: W_gi_equals_1_over_N
+  - id: V4-PRI-TWO-STAGE-HBB-RESP-v1
+    role: primary_candidate
+    target: V4-TARGET-RESPONDENT-WEIGHTED-v1
+    law: independent_cluster_and_within_cluster_Dirichlet_1
+    formula: W_gi_equals_m_g_A_g_B_gi_over_sum_h_m_h_A_h
+    uniform_point_identity: W_gi_equals_1_over_N
+    accepted_method: false
+  - id: V4-SENS-TWO-STAGE-HBB-CLUSTER-v1
+    role: sensitivity_candidate
+    target: V4-TARGET-EQUAL-CLUSTER-v1
+    law: independent_cluster_and_within_cluster_Dirichlet_1
+    formula: W_gi_equals_A_g_B_gi
+    uniform_point_identity: W_gi_equals_1_over_G_m_g
+    accepted_method: false
+  - id: V4-CMP-TWO-STAGE-FREQ-BOOT-RESP-v1
+    role: independent_comparator
+    target: V4-TARGET-RESPONDENT-WEIGHTED-v1
+    law: resample_G_clusters_then_m_g_respondents_within_each_selected_cluster
+  - id: V4-CMP-MOKKEN-TWOLEVEL-DELTA-v1
+    role: independent_comparator
+    target: respondent_weighted_working_target
+    law: mokken_coefH_level_two_var_delta_Wald
+metadata_required:
+  - law_id
+  - target_id
+  - row_grain
+  - cluster_id_hash
+  - cluster_sizes
+  - normalization_formula
+  - rng_kind
+  - seed
+  - replication_id
+  - draw_ids
+  - unseen_pattern_mass_allowed
+proof_obligations:
+  - nonnegative_weights
+  - exact_draw_normalization
+  - uniform_point_identity
+  - respondent_equal_cluster_target_separation
+  - cluster_relabeling_invariance
+  - within_cluster_row_relabeling_invariance
+  - unequal_cluster_size_special_case
+  - one_respondent_per_cluster_special_case
+  - reproducible_seed_identity
+calibration_firewall:
+  binary_gamma_0_25_transfer: prohibited
+  cluster_gamma_tuning_phase14: prohibited
+  candidate_rate_if_future_authorized: one_plus_gamma_cluster_over_sqrt_G
+stop_rule: g14_before_phase15

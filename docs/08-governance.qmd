@@ -1,0 +1,81 @@
+# Governance: what was fixed before what
+
+```bash
+Rscript verification/verify_governance.R
+#   references: 30   resolved: 30   dangling: 0
+```
+
+## The gate chain
+
+| Gate | Asked | Recorded in |
+|---|---|---|
+| **G14** | is a cluster-aware interval feasible? | `v4-g14-decision-receipt-v1.json` |
+| Phase 15 lock | the calibration, fitted on **training** data | `v4-phase15-protocol-lock-receipt-v1.json` |
+| Phase 15 validation | does it hold **held out**? | `validation/` |
+| **G16** | a **fresh** 24-cell confirmation | `v4-phase16-confirmation-decision-v1.json` |
+| **G17** | the SWMDK application | `v4-g17-decision-receipt-v1.json` |
+| **G18-A** | does the method match its cited sources? | 3 crosswalks closed, 13 checks |
+| **G18-B** | integration into `bayesmokken` | 791 expectations, `R CMD check` OK |
+
+The order is the argument. The calibration was fitted, then held out, then run
+on a *fresh* confirmation — so the confirmation's coverage is not the coverage
+the calibration was tuned to.
+
+## G18-A: checking the method against its sources
+
+Unusual enough to call out. Before integration, the implementation was checked
+against the published sources it claims to follow — **three crosswalks closed**
+across 13 blocking checks, with page- and line-level registers shipping:
+
+- `v4-andreadis-file-line-crosswalk-v1.csv`
+- `v4-molenaar-page-crosswalk-v1.csv`
+- `v4-rueschendorf-page-crosswalk-v1.csv`
+
+That is what makes the Andreadis (2017) predecessor credit in claim CL-03 a
+finding rather than a courtesy.
+
+## The claim-eligibility register
+
+`v4-phase18-claim-eligibility-v1.csv`, 14 claims, frozen at the source-review
+gate. It governs the article's wording: what may be asserted, what must be
+attributed, and what is out of bounds.
+
+It ships as Table H1, and `verify_semantics.R` asserts all 14 are transcribed.
+A results table you can regenerate; a claim register you can only preserve.
+
+## The SWMDK lock
+
+The Phase 17 protocol recorded the data object's digest, version, dimensions
+and score support before the application ran. Since **no responses ship**, that
+lock is what makes the application's numbers checkable at all —
+`read_swmdk()` asserts it on every load.
+
+The digest appears in `provenance/excluded-digests.csv` with a reason: it is
+the digest of an **R object**, not a file, so it resolves to a live check
+rather than to something on disk.
+
+## Two documented departures from byte-identity
+
+| What | Register |
+|---|---|
+| 21 reference-code files bannered | `reference-code/ARCHIVAL-DIGESTS.csv` |
+| — including `ordinal-h.R`, with its defect notice | same |
+| 10 authority records redacted | `provenance/redactions.csv` |
+
+No code line was changed by the banners. The redactions touched two fields of
+the authority records: the one naming the command-line harness through which
+the author's instruction arrived, and the one that held that instruction
+verbatim as a short colloquial message. The second is now an English authority
+token of the same form the companion package uses.
+
+Neither field carried evidence. What each authority actually licensed is in
+`authorized_scope`, what it withheld is in `explicitly_not_authorized`, where it
+had to stop is in `required_stop`, and when it was recorded and what it descends
+from are in `recorded_at_utc` and `parent_governance.sha256`. Every one of those
+is unchanged, and they are what the gate reads.
+
+`verify_governance.R` accepts the pre-modification digest from either register,
+which is what lets both departures coexist with a chain that closes.
+
+The rule: **a package may modify what it ships only if it records what the file
+was before.**

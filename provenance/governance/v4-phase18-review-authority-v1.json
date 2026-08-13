@@ -1,0 +1,21 @@
+{
+  "schema_version": "paperA-v4-phase18-review-authority-v1",
+  "generated_at_utc": "2026-07-27T14:03:42Z",
+  "status": "AUTHORIZED_PHASE18_1_TO_G18A_ONLY",
+  "authority_text": "AUTHORIZE_PHASE18_1_THROUGH_G18A_ONLY",
+  "parent": {
+    "phase17_status": "PHASE17_EMPIRICAL_APPLICATION_COMPLETE",
+    "phase17_decision": "PROCEED_TO_PHASE18_REVIEW",
+    "phase17_closure_path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/artifacts/v4-phase17-final-closure-receipt-v1.json",
+    "phase17_closure_sha256": "67feebb53f76567bf1da3d9e6f077f819e9d5cc773a1c331f70cee63ed7b82a8",
+    "phase17_gate_sha256": "e40bdd9f61d392e86b310a7d4fd6db10d6d250979f32a59a9d1647a434ce870f"
+  },
+  "authorized": ["Phase 18.1 authority and fail-closed review protocol", "lawful acquisition and local hashing of three original sources", "page-level formula/theorem mapping for article sources", "file-and-line mapping for the Andreadis software release", "assumption and difference ledger", "application and manuscript-claim eligibility decision at G18-A", "integrated-versus-dedicated paper architecture decision", "QMD, HTML, and machine-readable review evidence"],
+  "explicitly_not_authorized": ["production package source changes", "public cluster-polytomous API export", "manuscript drafting or section edits", "new empirical or simulation outcome generation", "post-Phase17 method or gamma tuning", "formal H threshold decision", "Phase 18 work after G18-A", "GCP access or use"],
+  "source_scope": ["Molenaar (1991)", "Rueschendorf (1982)", "Andreadis (2017) v1.0.0"],
+  "output_count_at_authorization": 0,
+  "production_package_changes_at_authorization": false,
+  "manuscript_drafting_at_authorization": false,
+  "phase18_post_G18A_authorized": false,
+  "required_stop": "STOP_AT_G18A_BEFORE_PACKAGE_OR_MANUSCRIPT"
+}

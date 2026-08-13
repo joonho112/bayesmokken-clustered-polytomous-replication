@@ -1,0 +1,56 @@
+{
+  "schema_version": "paperA-v4-phase15-final-method-lock-v1",
+  "generated_at_utc": "2026-07-27T04:35:21Z",
+  "status": "LOCKED_FOR_PHASE16_CONFIRMATION",
+  "gate_decision": "READY_FOR_PHASE16_PROTOCOL_PREPARATION_WITH_SELECTED_METHOD",
+  "final_method_label": "CALIBRATED_CANDIDATE",
+  "final_gamma_cluster": -1.5,
+  "final_respondent_method_id": "V4-P15-HBB-RESP-GN150-v1",
+  "final_equal_cluster_method_id": "V4-P15-HBB-CLUSTER-GN150-v1",
+  "training_selected_label": "CALIBRATED_CANDIDATE",
+  "training_selected_gamma_cluster": -1.5,
+  "training_selected_passed_validation": true,
+  "raw_fallback_passed_validation": false,
+  "selected_gate_checks": {
+    "respondent_regular_coverage": true,
+    "equal_cluster_regular_coverage": true,
+    "minimum_regular_cell_coverage": true,
+    "minimum_G_group_coverage": true,
+    "minimum_size_mechanism_group_coverage": true,
+    "maximum_invalid_fraction": true,
+    "maximum_mean_length_to_raw_ratio": true
+  },
+  "raw_fallback_gate_checks": {
+    "respondent_regular_coverage": false,
+    "equal_cluster_regular_coverage": false,
+    "minimum_G_group_coverage": true,
+    "minimum_size_mechanism_group_coverage": true,
+    "maximum_invalid_fraction": true
+  },
+  "key_metrics": {
+    "selected_respondent_coverage": 0.97175925925925921,
+    "selected_equal_cluster_coverage": 0.97222222222222221,
+    "selected_respondent_mean_interval_length": 0.088054542239900238,
+    "raw_respondent_coverage": 0.99490740740740746,
+    "raw_equal_cluster_coverage": 0.99675925925925923,
+    "raw_respondent_mean_interval_length": 0.1157115113984265,
+    "selected_to_raw_mean_length_ratio": 0.76098342486171733
+  },
+  "validation": {
+    "cells": 18,
+    "scheduled_replications": 3240,
+    "observed_replications": 3240,
+    "raw_download_complete_before_evaluation": true,
+    "raw_file_count": 54
+  },
+  "source_hashes": {
+    "frozen_protocol_sha256": "248b45f0a7beab829086a79f7335bd88cff31096968daf8649b0fec49ba2d69c",
+    "protocol_lock_sha256": "d67f8a052d89b74466167a7561baceab4cddc51177a61f503fa7c9a80e9a805b",
+    "training_method_lock_sha256": "8c7fcff56425b1bf89ed549acf7732d228a9155efbb143629ea36ff39d40de73",
+    "raw_manifest_sha256": "05908ad2a32072db08df0db5a3258980ff9fef461d0c6cedea03a07473aa3171",
+    "gate_checks_sha256": "3394d132ceca09751b9497b3ff4a1b12c6184354f56f727d9f281589d9b9815e"
+  },
+  "phase16_confirmation_authorized": false,
+  "phase16_confirmation_executed": false,
+  "terminal_rule": "STOP_AT_PHASE16_PROTOCOL_READY_BEFORE_CONFIRMATION"
+}

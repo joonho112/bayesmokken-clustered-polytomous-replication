@@ -1,0 +1,83 @@
+{
+  "schema_version": "paperA-v4-phase17-execution-code-lock-v1",
+  "generated_at_utc": "2026-07-27T12:25:00Z",
+  "status": "PASS_CODE_LOCKED_PRE_EMPIRICAL_OUTCOME",
+  "files": {
+    "protocol": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/protocol/v4-phase17-swmdk-empirical-protocol-v1.yml",
+      "size_bytes": 4325,
+      "sha256": "26ea8bfef638f25ed102c9d2f545016d1ee828a31d62becc2883fb765c38e484"
+    },
+    "protocol_lock": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/protocol/v4-phase17-protocol-lock-receipt-v1.json",
+      "size_bytes": 2318,
+      "sha256": "bad8bbfb9faf4a2344c87965feb4a4f32bbd0e259f1e7c4ee39df5f447e89819"
+    },
+    "task_design": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/protocol/v4-phase17-task-design-v1.csv",
+      "size_bytes": 970,
+      "sha256": "7a6bc2cb75dbbafa016751c61351bb5116b492c707112fbb64ad7a7ce074a472"
+    },
+    "test_runner": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/tests/run-phase17-tests-v1.R",
+      "size_bytes": 10475,
+      "sha256": "f7977b2d228bd18e74309147bee912511c7d27e5f1bb1b1d44ce78ad92e4c219"
+    },
+    "test_receipt": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/tests/artifacts/v4-phase17-test-receipt-v1.json",
+      "size_bytes": 535,
+      "sha256": "41a156fa01473d1d5862e04135bb07105e531a8e1396a5f77da8bee4c45efa21"
+    },
+    "task_runner": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/run-phase17-task-v1.R",
+      "size_bytes": 8421,
+      "sha256": "9fc9269f8031917a9d71cb35d73a1b913ba19555bec5576b22b64f54fff9f150"
+    },
+    "aws_launcher": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/run-phase17-aws-v1.sh",
+      "size_bytes": 836,
+      "sha256": "df2edad0fb59f90c97737ec256d9ef1617ab507ff531200c99cd921f50553b0f"
+    },
+    "frozen_evaluator": {
+      "path": "codebase/research/v4/cluster-polytomous/empirical-swmdk/phase17/evaluate-phase17-swmdk-v1.R",
+      "size_bytes": 24158,
+      "sha256": "3a4133ac2d52756fab892ebc1b7730bd49930265c196cd9b0c016dfca4f04d4d"
+    },
+    "ordinal_h": {
+      "path": "codebase/research/v4/cluster-polytomous/R/core/ordinal-h.R",
+      "size_bytes": 8053,
+      "sha256": "a9fef7ae0a9e8dd135790ad2b4fa88896416643b2403422aad29140c725964c4"
+    },
+    "knot_diagnostics": {
+      "path": "codebase/research/v4/cluster-polytomous/R/core/knot-diagnostics.R",
+      "size_bytes": 2146,
+      "sha256": "dd4025412dfa9409547f3f1ba68148c643085c907ef8172f2f43ad80fd1e3899"
+    },
+    "cluster_weights": {
+      "path": "codebase/research/v4/cluster-polytomous/R/weights/cluster-weights.R",
+      "size_bytes": 9060,
+      "sha256": "746f5cb529a61e7102ec01a763dd624da08ef5005eb009f276bb3b154f8b962b"
+    },
+    "intervals_and_comparators": {
+      "path": "codebase/research/v4/cluster-polytomous/R/evaluation/intervals-and-comparators.R",
+      "size_bytes": 3666,
+      "sha256": "6abdca85ec2278372a6bb60254416ca2eac7d7ed393086455a3c925d3dcc0c9f"
+    },
+    "phase15_calibration": {
+      "path": "codebase/research/v4/cluster-polytomous/R/evaluation/phase15-calibration.R",
+      "size_bytes": 3002,
+      "sha256": "e0d9fac4540857279db03a586ea8a44d9aec531b9994c15ee7fbb42fa402c5fd"
+    }
+  },
+  "tests": {
+    "status": "PASS",
+    "passed": 17,
+    "total": 17
+  },
+  "execution_output_count_at_code_lock": 0,
+  "scheduled_random_weight_draws": 1199988,
+  "heavy_provider": "AWS_ONLY",
+  "gcp_allowed": false,
+  "phase18_authorized": false,
+  "terminal_rule": "STOP_AT_G17_BEFORE_PHASE18"
+}
