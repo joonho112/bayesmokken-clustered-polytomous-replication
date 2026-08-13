@@ -4,10 +4,10 @@ Both replication packages are complete and verified. Everything left is version
 control and the arXiv posting, which decision **D-9** put outside the build
 scope. This document is the procedure.
 
-**Paper A is published.** Its `main` carries the 405-file package, the guide is
-live, and the three URLs the manuscript prints all resolve. **Paper B has not
-been pushed**, and neither paper is on arXiv. The procedure below is what was
-actually run for Paper A, so it can be followed as-is for Paper B.
+**Both packages are published.** Each `main` carries its verified file set, each
+guide is live from a `gh-pages` branch, and every URL the manuscripts print
+resolves. What remains is the arXiv posting and the `TODO(author)` identifiers
+that depend on it. The procedure below is what was actually run, not a plan.
 
 ---
 
